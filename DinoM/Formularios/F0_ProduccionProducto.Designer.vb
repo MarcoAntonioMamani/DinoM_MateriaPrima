@@ -427,7 +427,7 @@ Partial Class F0_ProduccionProducto
         Me.btSubGrupo.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
         Me.btSubGrupo.Image = Global.DinoM.My.Resources.Resources.add
         Me.btSubGrupo.ImageFixedSize = New System.Drawing.Size(25, 23)
-        Me.btSubGrupo.Location = New System.Drawing.Point(417, 158)
+        Me.btSubGrupo.Location = New System.Drawing.Point(451, 158)
         Me.btSubGrupo.Margin = New System.Windows.Forms.Padding(4)
         Me.btSubGrupo.Name = "btSubGrupo"
         Me.btSubGrupo.Size = New System.Drawing.Size(37, 28)
@@ -442,7 +442,7 @@ Partial Class F0_ProduccionProducto
         Me.btGrupo.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
         Me.btGrupo.Image = Global.DinoM.My.Resources.Resources.add
         Me.btGrupo.ImageFixedSize = New System.Drawing.Size(25, 23)
-        Me.btGrupo.Location = New System.Drawing.Point(417, 123)
+        Me.btGrupo.Location = New System.Drawing.Point(451, 123)
         Me.btGrupo.Margin = New System.Windows.Forms.Padding(4)
         Me.btGrupo.Name = "btGrupo"
         Me.btGrupo.Size = New System.Drawing.Size(37, 28)
@@ -457,7 +457,7 @@ Partial Class F0_ProduccionProducto
         Me.btUnidad.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
         Me.btUnidad.Image = Global.DinoM.My.Resources.Resources.add
         Me.btUnidad.ImageFixedSize = New System.Drawing.Size(25, 23)
-        Me.btUnidad.Location = New System.Drawing.Point(417, 86)
+        Me.btUnidad.Location = New System.Drawing.Point(451, 86)
         Me.btUnidad.Margin = New System.Windows.Forms.Padding(4)
         Me.btUnidad.Name = "btUnidad"
         Me.btUnidad.Size = New System.Drawing.Size(37, 28)
@@ -475,7 +475,7 @@ Partial Class F0_ProduccionProducto
         Me.LabelX23.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX23.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX23.Location = New System.Drawing.Point(467, 131)
+        Me.LabelX23.Location = New System.Drawing.Point(501, 131)
         Me.LabelX23.Margin = New System.Windows.Forms.Padding(4)
         Me.LabelX23.Name = "LabelX23"
         Me.LabelX23.SingleLineColor = System.Drawing.SystemColors.Control
@@ -488,7 +488,7 @@ Partial Class F0_ProduccionProducto
         cbSubGrupo_DesignTimeLayout.LayoutString = resources.GetString("cbSubGrupo_DesignTimeLayout.LayoutString")
         Me.cbSubGrupo.DesignTimeLayout = cbSubGrupo_DesignTimeLayout
         Me.cbSubGrupo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbSubGrupo.Location = New System.Drawing.Point(217, 158)
+        Me.cbSubGrupo.Location = New System.Drawing.Point(251, 158)
         Me.cbSubGrupo.Margin = New System.Windows.Forms.Padding(4)
         Me.cbSubGrupo.MaxLength = 40
         Me.cbSubGrupo.Name = "cbSubGrupo"
@@ -505,7 +505,7 @@ Partial Class F0_ProduccionProducto
         cbGrupo_DesignTimeLayout.LayoutString = resources.GetString("cbGrupo_DesignTimeLayout.LayoutString")
         Me.cbGrupo.DesignTimeLayout = cbGrupo_DesignTimeLayout
         Me.cbGrupo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbGrupo.Location = New System.Drawing.Point(217, 122)
+        Me.cbGrupo.Location = New System.Drawing.Point(251, 122)
         Me.cbGrupo.Margin = New System.Windows.Forms.Padding(4)
         Me.cbGrupo.MaxLength = 40
         Me.cbGrupo.Name = "cbGrupo"
@@ -544,7 +544,7 @@ Partial Class F0_ProduccionProducto
         Me.tbPeso.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbPeso.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.tbPeso.Increment = 1.0R
-        Me.tbPeso.Location = New System.Drawing.Point(467, 158)
+        Me.tbPeso.Location = New System.Drawing.Point(501, 158)
         Me.tbPeso.Name = "tbPeso"
         Me.tbPeso.Size = New System.Drawing.Size(128, 26)
         Me.tbPeso.TabIndex = 5
@@ -587,7 +587,7 @@ Partial Class F0_ProduccionProducto
         Me.tbPrecioC.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbPrecioC.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.tbPrecioC.Increment = 1.0R
-        Me.tbPrecioC.Location = New System.Drawing.Point(467, 259)
+        Me.tbPrecioC.Location = New System.Drawing.Point(501, 259)
         Me.tbPrecioC.Name = "tbPrecioC"
         Me.tbPrecioC.Size = New System.Drawing.Size(128, 26)
         Me.tbPrecioC.TabIndex = 242
@@ -619,7 +619,7 @@ Partial Class F0_ProduccionProducto
         Me.LabelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX8.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX8.Location = New System.Drawing.Point(391, 257)
+        Me.LabelX8.Location = New System.Drawing.Point(425, 257)
         Me.LabelX8.Margin = New System.Windows.Forms.Padding(4)
         Me.LabelX8.Name = "LabelX8"
         Me.LabelX8.SingleLineColor = System.Drawing.SystemColors.Control
@@ -636,7 +636,7 @@ Partial Class F0_ProduccionProducto
         Me.tbPrecioB.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbPrecioB.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.tbPrecioB.Increment = 1.0R
-        Me.tbPrecioB.Location = New System.Drawing.Point(217, 291)
+        Me.tbPrecioB.Location = New System.Drawing.Point(251, 291)
         Me.tbPrecioB.Name = "tbPrecioB"
         Me.tbPrecioB.Size = New System.Drawing.Size(128, 26)
         Me.tbPrecioB.TabIndex = 8
@@ -668,7 +668,7 @@ Partial Class F0_ProduccionProducto
         Me.tbPrecioA.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbPrecioA.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.tbPrecioA.Increment = 1.0R
-        Me.tbPrecioA.Location = New System.Drawing.Point(217, 259)
+        Me.tbPrecioA.Location = New System.Drawing.Point(251, 259)
         Me.tbPrecioA.Name = "tbPrecioA"
         Me.tbPrecioA.Size = New System.Drawing.Size(128, 26)
         Me.tbPrecioA.TabIndex = 7
@@ -696,7 +696,7 @@ Partial Class F0_ProduccionProducto
         cbUnidad_DesignTimeLayout.LayoutString = resources.GetString("cbUnidad_DesignTimeLayout.LayoutString")
         Me.cbUnidad.DesignTimeLayout = cbUnidad_DesignTimeLayout
         Me.cbUnidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbUnidad.Location = New System.Drawing.Point(217, 88)
+        Me.cbUnidad.Location = New System.Drawing.Point(251, 88)
         Me.cbUnidad.Margin = New System.Windows.Forms.Padding(4)
         Me.cbUnidad.MaxLength = 40
         Me.cbUnidad.Name = "cbUnidad"
@@ -771,7 +771,7 @@ Partial Class F0_ProduccionProducto
         Me.tbCodigo.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbCodigo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbCodigo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbCodigo.Location = New System.Drawing.Point(217, 19)
+        Me.tbCodigo.Location = New System.Drawing.Point(251, 19)
         Me.tbCodigo.Margin = New System.Windows.Forms.Padding(4)
         Me.tbCodigo.Name = "tbCodigo"
         Me.tbCodigo.PreventEnterBeep = True
@@ -789,7 +789,7 @@ Partial Class F0_ProduccionProducto
         Me.tbObservacion.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbObservacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbObservacion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbObservacion.Location = New System.Drawing.Point(217, 188)
+        Me.tbObservacion.Location = New System.Drawing.Point(251, 188)
         Me.tbObservacion.Margin = New System.Windows.Forms.Padding(4)
         Me.tbObservacion.Multiline = True
         Me.tbObservacion.Name = "tbObservacion"
@@ -843,7 +843,7 @@ Partial Class F0_ProduccionProducto
         Me.tbDescripcion.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbDescripcion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbDescripcion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbDescripcion.Location = New System.Drawing.Point(217, 55)
+        Me.tbDescripcion.Location = New System.Drawing.Point(251, 55)
         Me.tbDescripcion.Margin = New System.Windows.Forms.Padding(4)
         Me.tbDescripcion.Name = "tbDescripcion"
         Me.tbDescripcion.PreventEnterBeep = True
@@ -2231,7 +2231,7 @@ Partial Class F0_ProduccionProducto
         Me.LabelX24.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX24.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX24.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX24.Location = New System.Drawing.Point(340, 19)
+        Me.LabelX24.Location = New System.Drawing.Point(374, 19)
         Me.LabelX24.Margin = New System.Windows.Forms.Padding(4)
         Me.LabelX24.Name = "LabelX24"
         Me.LabelX24.SingleLineColor = System.Drawing.SystemColors.Control
@@ -2248,7 +2248,7 @@ Partial Class F0_ProduccionProducto
         Me.tbId.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbId.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbId.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbId.Location = New System.Drawing.Point(392, 17)
+        Me.tbId.Location = New System.Drawing.Point(426, 17)
         Me.tbId.Margin = New System.Windows.Forms.Padding(4)
         Me.tbId.Name = "tbId"
         Me.tbId.PreventEnterBeep = True
