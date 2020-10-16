@@ -157,6 +157,7 @@ Partial Class P_Principal
         Me.lbUsuario = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.MetroTileItem11 = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.MetroTileItem12 = New DevComponents.DotNetBar.Metro.MetroTileItem()
+        Me.btConfProductoMateriaPrima = New DevComponents.DotNetBar.Metro.MetroTileItem()
         MetroTileFrame1 = New DevComponents.DotNetBar.Metro.MetroTileFrame()
         MetroTileFrame2 = New DevComponents.DotNetBar.Metro.MetroTileFrame()
         Me.SideNav1.SuspendLayout()
@@ -231,10 +232,9 @@ Partial Class P_Principal
         '
         Me.SideNavPanel7.Controls.Add(Me.MenuCreditos)
         Me.SideNavPanel7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SideNavPanel7.Location = New System.Drawing.Point(165, 40)
-        Me.SideNavPanel7.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SideNavPanel7.Location = New System.Drawing.Point(142, 36)
         Me.SideNavPanel7.Name = "SideNavPanel7"
-        Me.SideNavPanel7.Size = New System.Drawing.Size(874, 649)
+        Me.SideNavPanel7.Size = New System.Drawing.Size(637, 524)
         Me.SideNavPanel7.TabIndex = 162
         Me.SideNavPanel7.Visible = False
         '
@@ -255,10 +255,9 @@ Partial Class P_Principal
         Me.MenuCreditos.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btnCredPago, Me.btnCredEstCuenta, Me.btnCredInfMorosidad, Me.btnCredPagoCliente, Me.btnCredPagoClienteVendedor, Me.btEstadoCuentasClientes})
         Me.MenuCreditos.ItemSpacing = 10
         Me.MenuCreditos.Location = New System.Drawing.Point(0, 0)
-        Me.MenuCreditos.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MenuCreditos.MultiLine = True
         Me.MenuCreditos.Name = "MenuCreditos"
-        Me.MenuCreditos.Size = New System.Drawing.Size(874, 649)
+        Me.MenuCreditos.Size = New System.Drawing.Size(637, 524)
         Me.MenuCreditos.TabIndex = 2
         Me.MenuCreditos.Text = "mtp2Logistica"
         '
@@ -1176,7 +1175,7 @@ Partial Class P_Principal
         Me.MetroTilePanel1.DragDropSupport = True
         Me.MetroTilePanel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MetroTilePanel1.ForeColor = System.Drawing.Color.White
-        Me.MetroTilePanel1.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btConfRoles, Me.btConfUsuarios, Me.btConfCliente, Me.btConfProducto, Me.btConfPrecio, Me.btConfLibreria, Me.btConfDosificacion, Me.btnCodControl, Me.btZonas1})
+        Me.MetroTilePanel1.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btConfRoles, Me.btConfUsuarios, Me.btConfCliente, Me.btConfProducto, Me.btConfPrecio, Me.btConfLibreria, Me.btConfDosificacion, Me.btnCodControl, Me.btZonas1, Me.btConfProductoMateriaPrima})
         Me.MetroTilePanel1.ItemSpacing = 10
         Me.MetroTilePanel1.Location = New System.Drawing.Point(0, 0)
         Me.MetroTilePanel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
@@ -2403,6 +2402,22 @@ Partial Class P_Principal
         Me.MetroTileItem12.TitleTextAlignment = System.Drawing.ContentAlignment.BottomCenter
         Me.MetroTileItem12.TitleTextColor = System.Drawing.Color.Red
         '
+        'btConfProductoMateriaPrima
+        '
+        Me.btConfProductoMateriaPrima.Image = Global.DinoM.My.Resources.Resources.producto
+        Me.btConfProductoMateriaPrima.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btConfProductoMateriaPrima.Name = "btConfProductoMateriaPrima"
+        Me.btConfProductoMateriaPrima.SymbolColor = System.Drawing.Color.Empty
+        Me.btConfProductoMateriaPrima.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Azure
+        Me.btConfProductoMateriaPrima.TileSize = New System.Drawing.Size(250, 135)
+        '
+        '
+        '
+        Me.btConfProductoMateriaPrima.TileStyle.BackColor = System.Drawing.Color.Crimson
+        Me.btConfProductoMateriaPrima.TileStyle.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(150, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.btConfProductoMateriaPrima.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.btConfProductoMateriaPrima.TitleText = "MATERIA PRIMA"
+        '
         'P_Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -2571,4 +2586,5 @@ Partial Class P_Principal
     Friend WithEvents btEstadoCuentasProveedores As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents MetroTileItem12 As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btEstadoCuentasClientes As DevComponents.DotNetBar.Metro.MetroTileItem
+    Friend WithEvents btConfProductoMateriaPrima As DevComponents.DotNetBar.Metro.MetroTileItem
 End Class

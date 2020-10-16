@@ -159,7 +159,7 @@ Partial Class F1_Productos
         'SuperTabControlPanelBuscador
         '
         Me.SuperTabControlPanelBuscador.Location = New System.Drawing.Point(0, 0)
-        Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(1104, 711)
+        Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(1322, 711)
         '
         'SuperTabControlPanelRegistro
         '
@@ -215,6 +215,10 @@ Partial Class F1_Productos
         Me.BubbleBarUsuario.ButtonBackAreaStyle.PaddingTop = 3
         Me.BubbleBarUsuario.MouseOverTabColors.BorderColor = System.Drawing.SystemColors.Highlight
         Me.BubbleBarUsuario.SelectedTabColors.BorderColor = System.Drawing.Color.Black
+        '
+        'TxtNombreUsu
+        '
+        Me.TxtNombreUsu.Size = New System.Drawing.Size(200, 36)
         '
         'btnSalir
         '
@@ -315,6 +319,10 @@ Partial Class F1_Productos
         Me.btnImprimir.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnImprimir.Location = New System.Drawing.Point(75, 0)
         Me.btnImprimir.Visible = False
+        '
+        'btnUltimo
+        '
+        Me.btnUltimo.Location = New System.Drawing.Point(129, 0)
         '
         'MPanelUserAct
         '
@@ -1245,8 +1253,8 @@ Partial Class F1_Productos
         Me.SuperTabControl_Imagenes_DetalleProducto.ControlBox.MenuBox.Name = ""
         Me.SuperTabControl_Imagenes_DetalleProducto.ControlBox.Name = ""
         Me.SuperTabControl_Imagenes_DetalleProducto.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabControl_Imagenes_DetalleProducto.ControlBox.MenuBox, Me.SuperTabControl_Imagenes_DetalleProducto.ControlBox.CloseBox})
-        Me.SuperTabControl_Imagenes_DetalleProducto.Controls.Add(Me.SuperTabControlPanel1)
         Me.SuperTabControl_Imagenes_DetalleProducto.Controls.Add(Me.SuperTabControlPanel2)
+        Me.SuperTabControl_Imagenes_DetalleProducto.Controls.Add(Me.SuperTabControlPanel1)
         Me.SuperTabControl_Imagenes_DetalleProducto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SuperTabControl_Imagenes_DetalleProducto.Location = New System.Drawing.Point(0, 0)
         Me.SuperTabControl_Imagenes_DetalleProducto.Name = "SuperTabControl_Imagenes_DetalleProducto"

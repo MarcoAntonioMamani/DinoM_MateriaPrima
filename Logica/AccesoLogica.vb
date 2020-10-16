@@ -5755,4 +5755,72 @@ Public Class AccesoLogica
     End Function
 #End Region
 
+#Region "PRODUCTO DE MATERIA PRIMA"
+    Public Shared Function L_GuardarProductosMateriaPrima(ByRef Id As Integer, Estado As Integer, Descripcion As String, Grupo1 As Integer,
+                                                          Grupo2 As Integer, detalle As DataTable, TipoEvento As Integer) As Boolean
+        Try
+            Dim _Tabla As DataTable
+            Dim _listParam As New List(Of Datos.DParametro)
+            _listParam.Add(New Datos.DParametro("@tipo", TipoEvento))
+            _listParam.Add(New Datos.DParametro("@Id", Id))
+            _listParam.Add(New Datos.DParametro("@Estado", Estado))
+            _listParam.Add(New Datos.DParametro("@Descripcion", Descripcion))
+            _listParam.Add(New Datos.DParametro("@Grupo1", Grupo1))
+            _listParam.Add(New Datos.DParametro("@Grupo2", Grupo2))
+            _listParam.Add(New Datos.DParametro("@detalle", "", detalle))
+            _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+            _Tabla = D_ProcedimientoConParam("sp_ProductoMateriaPrima", _listParam)
+            If _Tabla.Rows.Count > 0 Then
+                Id = _Tabla.Rows(0).Item(0)
+            Else
+                Return False
+            End If
+            Return True
+        Catch ex As Exception
+            Throw New Exception(ex.Message)
+        End Try
+    End Function
+
+    Public Shared Function L_EliminarProductosMateriaPrima(Id As String, ByRef mensaje As String) As Boolean
+        Try
+            Dim _resultado As Boolean
+            If L_fnbValidarEliminacion(Id, "ProductoMateriaPrima", "id", mensaje) = True Then
+                Dim _Tabla As DataTable
+                Dim _listParam As New List(Of Datos.DParametro)
+                _listParam.Add(New Datos.DParametro("@tipo", -1))
+                _listParam.Add(New Datos.DParametro("@Id", Id))
+                _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+                _Tabla = D_ProcedimientoConParam("sp_ProductoMateriaPrima", _listParam)
+                If _Tabla.Rows.Count > 0 Then
+                    _resultado = True
+                Else
+                    _resultado = False
+                End If
+            Else
+                _resultado = False
+            End If
+            Return _resultado
+        Catch ex As Exception
+            Throw New Exception(ex.Message)
+        End Try
+    End Function
+    Public Shared Function L_MostraProductosMateriaPrima() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_ProductoMateriaPrima", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_MostraProductosMateriaPrimaDetalle(IdProducto As Integer) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@Id", IdProducto))
+        _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_ProductoMateriaPrima", _listParam)
+        Return _Tabla
+    End Function
+#End Region
+
 End Class

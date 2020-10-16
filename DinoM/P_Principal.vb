@@ -1059,6 +1059,13 @@ Public Class P_Principal
         frm.Show()
     End Sub
 
+    Private Sub btConfProductoMateriaPrima_Click(sender As Object, e As EventArgs) Handles btConfProductoMateriaPrima.Click
+        Dim frm As New F0_ProductoMateriaPrima
+        frm._nameButton = btConfProductoMateriaPrima.Name
+        'frm._modulo = FP_COMPRAS
+        frm.Show()
+    End Sub
+
     'Private Sub btnCredPagoCliente_Click(sender As Object, e As EventArgs) Handles btnCredPagoCliente.Click
     '    SideNav1.IsMenuExpanded = False
     '    Ventana.Select()
