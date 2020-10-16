@@ -31,6 +31,12 @@ Public Class F0_ProduccionProducto
         _prCargarComboLibreria(cbGrupo, 20, 1)
         _prCargarComboLibreria(cbSubGrupo, 20, 2)
         _prCargarComboLibreria(cbUnidad, 20, 3)
+
+        _prCargarComboLibreria(cbUnidad, 20, 3)
+        _prCargarComboLibreria(cbEmpaqueUnidad, 20, 3)
+        _prCargarComboLibreria(cbMateriaUnidad, 20, 3)
+
+
         ' Me.WindowState = FormWindowState.Maximized
         _prCargarCompra()
         _prInhabiliitar()
@@ -294,6 +300,8 @@ Public Class F0_ProduccionProducto
             .GroupByBoxVisible = False
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
+            .Size = MaximumSize
+            .AutoSizeColumns()
         End With
     End Sub
 
@@ -320,6 +328,8 @@ Public Class F0_ProduccionProducto
             .GroupByBoxVisible = False
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
+            .Size = MaximumSize
+            .AutoSizeColumns()
         End With
     End Sub
     Private Sub _prCargarHerramental(_numi As String)
@@ -345,6 +355,8 @@ Public Class F0_ProduccionProducto
             .GroupByBoxVisible = False
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
+            .Size = MaximumSize
+            .AutoSizeColumns()
         End With
     End Sub
 
@@ -371,6 +383,8 @@ Public Class F0_ProduccionProducto
             .GroupByBoxVisible = False
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
+            .Size = MaximumSize
+            .AutoSizeColumns()
         End With
     End Sub
 
@@ -401,6 +415,8 @@ Public Class F0_ProduccionProducto
             .GroupByBoxVisible = False
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
+            .Size = MaximumSize
+            .AutoSizeColumns()
         End With
     End Sub
     Private Sub _prCargarEmpaque(_numi As String)
@@ -428,35 +444,41 @@ Public Class F0_ProduccionProducto
 
         With grEmpaque
             .GroupByBoxVisible = False
-            'diseño de la grilla
+            .Size = MaximumSize
+            .AutoSizeColumns()
+            'diseño de la grilla.
             .VisualStyle = VisualStyle.Office2007
         End With
     End Sub
 
     Private Sub _prCargarMaquinaria(_numi As String)
         Dim dt As New DataTable
-        dt = L_fnDetalleEmpaque(_numi)
-        grEmpaque.DataSource = dt
-        grEmpaque.RetrieveStructure()
-        grEmpaque.AlternatingColors = True
+        dt = L_fnDetalleMaquinaria(_numi)
+        grMaquinaria.DataSource = dt
+        grMaquinaria.RetrieveStructure()
+        grMaquinaria.AlternatingColors = True
         'a.Id ,a.ProductoId ,a.Cantidad ,a.Unidad,uni.ycdes3 as UnidadDescripcion ,1 as estado L_fnDetalleMaquinaria
 
-        With grEmpaque.RootTable.Columns("ProductoId")
+        With grMaquinaria.RootTable.Columns("ProductoId")
             .Width = 100
             .Caption = "CODIGO"
             .Visible = False
         End With
-        With grEmpaque.RootTable.Columns("estado")
+        With grMaquinaria.RootTable.Columns("estado")
             .Width = 100
             .Caption = "CODIGO"
             .Visible = False
         End With
 
-        With grEmpaque
+        With grMaquinaria
             .GroupByBoxVisible = False
+            .Size = MaximumSize
+            .AutoSizeColumns()
+
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
         End With
+
     End Sub
 
     Private Sub _prCargarCompra()
@@ -904,6 +926,8 @@ Public Class F0_ProduccionProducto
 
 
             CType(grCaracterisiticaFisicas.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grCaracterisiticaFisicas) + 1, 0, tbFisicaCaracteristica.Text, tbFisicaValor.Text, 0)
+            tbFisicaCaracteristica.Clear()
+            tbFisicaValor.Clear()
 
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Caracteristica Fisica..!!!",
@@ -921,6 +945,8 @@ Public Class F0_ProduccionProducto
 
 
             CType(grCaracteristicaCalidad.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grCaracteristicaCalidad) + 1, 0, tbCalidadAtributo.Text, tbCalidadDescripcion.Text, 0)
+            tbCalidadAtributo.Clear()
+            tbCalidadDescripcion.Clear()
 
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Caracteristica Calidad..!!!",
@@ -937,6 +963,7 @@ Public Class F0_ProduccionProducto
             'a.Id , a.ProductoId, a.Cantidad, a.Unidad, uni.ycdes3 As UnidadDescripcion , 1 as estado
 
             CType(grDosificacion.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grDosificacion) + 1, 0, tbMateriaCantidad.Text, cbMateriaUnidad.Value, cbMateriaUnidad.Text, 0)
+            tbMateriaCantidad.Clear()
 
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Dosificacion Materia..!!!",
@@ -954,6 +981,9 @@ Public Class F0_ProduccionProducto
 
             CType(grEmpaque.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grEmpaque) + 1, 0, tbEmpaqueMedida.Text, cbEmpaqueUnidad.Value, cbEmpaqueUnidad.Text, 0)
 
+            tbEmpaqueMedida.Clear()
+
+
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Dosificacion Materia..!!!",
                                     My.Resources.WARNING, 2000,
@@ -970,6 +1000,8 @@ Public Class F0_ProduccionProducto
 
             CType(grMaquinaria.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grMaquinaria) + 1, 0, tbMaquinariaMedida.Text, 0)
 
+            tbMaquinariaMedida.Clear()
+
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Dosificacion Materia..!!!",
                                     My.Resources.WARNING, 2000,
@@ -985,7 +1017,7 @@ Public Class F0_ProduccionProducto
             'a.Id , a.ProductoId, a.Cantidad, a.Unidad, uni.ycdes3 As UnidadDescripcion , 1 as estado
 
             CType(grMolde.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grMolde) + 1, 0, tbMoldeCodigo.Text, 0)
-
+            tbMoldeCodigo.Clear()
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Dosificacion Materia..!!!",
                                     My.Resources.WARNING, 2000,
@@ -1002,6 +1034,10 @@ Public Class F0_ProduccionProducto
 
             CType(grHerramental.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grHerramental) + 1, 0, tbHerramentalCampo.Text, tbHerramentalCodigo.Text, 0)
 
+            tbHerramentalCampo.Clear()
+            tbHerramentalCodigo.Clear()
+
+
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Dosificacion Materia..!!!",
                                     My.Resources.WARNING, 2000,
@@ -1010,6 +1046,56 @@ Public Class F0_ProduccionProducto
         End If
     End Sub
 
+    Private Sub BtAdicionar_Click(sender As Object, e As EventArgs) Handles BtAdicionar.Click
+        _fnCopiarImagenRutaDefinida()
+    End Sub
+    Private Function _fnCopiarImagenRutaDefinida() As String
+        'copio la imagen en la carpeta del sistema
+
+        Dim file As New OpenFileDialog()
+        file.Filter = "Ficheros JPG o JPEG o PNG|*.jpg;*.jpeg;*.png" &
+                      "|Ficheros GIF|*.gif" &
+                      "|Ficheros BMP|*.bmp" &
+                      "|Ficheros PNG|*.png" &
+                      "|Ficheros TIFF|*.tif"
+        If file.ShowDialog() = DialogResult.OK Then
+            Dim ruta As String = file.FileName
+
+
+            If file.CheckFileExists = True Then
+                Dim img As New Bitmap(New Bitmap(ruta))
+                Dim imgM As New Bitmap(New Bitmap(ruta))
+                Dim Bin As New MemoryStream
+                imgM.Save(Bin, System.Drawing.Imaging.ImageFormat.Jpeg)
+                Dim a As Object = file.GetType.ToString
+                If (tbId.Text = "") Then
+
+                    Dim mayor As Integer
+                    mayor = grCompra.GetTotal(grCompra.RootTable.Columns("Id"), AggregateFunction.Max)
+                    nameImg = "\Imagen_" + Str(mayor + 1).Trim + ".jpg"
+                    UsImg.pbImage.SizeMode = PictureBoxSizeMode.StretchImage
+                    UsImg.pbImage.Image = Image.FromStream(Bin)
+
+                    img.Save(RutaTemporal + nameImg, System.Drawing.Imaging.ImageFormat.Jpeg)
+                    img.Dispose()
+                Else
+
+                    nameImg = "\Imagen_" + Str(tbCodigo.Text).Trim + ".jpg"
+
+
+                    UsImg.pbImage.Image = Image.FromStream(Bin)
+                    img.Save(RutaTemporal + nameImg, System.Drawing.Imaging.ImageFormat.Jpeg)
+                    Modificado = True
+                    img.Dispose()
+
+                End If
+            End If
+
+            Return nameImg
+        End If
+
+        Return "default.jpg"
+    End Function
 
 #End Region
 

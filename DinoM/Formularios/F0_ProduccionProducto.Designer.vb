@@ -497,7 +497,7 @@ Partial Class F0_ProduccionProducto
         Me.cbSubGrupo.SelectedIndex = -1
         Me.cbSubGrupo.SelectedItem = Nothing
         Me.cbSubGrupo.Size = New System.Drawing.Size(192, 26)
-        Me.cbSubGrupo.TabIndex = 246
+        Me.cbSubGrupo.TabIndex = 4
         Me.cbSubGrupo.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
         'cbGrupo
@@ -514,7 +514,7 @@ Partial Class F0_ProduccionProducto
         Me.cbGrupo.SelectedIndex = -1
         Me.cbGrupo.SelectedItem = Nothing
         Me.cbGrupo.Size = New System.Drawing.Size(192, 26)
-        Me.cbGrupo.TabIndex = 245
+        Me.cbGrupo.TabIndex = 3
         Me.cbGrupo.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
         'LabelX22
@@ -547,7 +547,7 @@ Partial Class F0_ProduccionProducto
         Me.tbPeso.Location = New System.Drawing.Point(467, 158)
         Me.tbPeso.Name = "tbPeso"
         Me.tbPeso.Size = New System.Drawing.Size(128, 26)
-        Me.tbPeso.TabIndex = 243
+        Me.tbPeso.TabIndex = 5
         '
         'UsImg
         '
@@ -574,7 +574,7 @@ Partial Class F0_ProduccionProducto
         Me.BtAdicionar.Size = New System.Drawing.Size(114, 69)
         Me.BtAdicionar.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
         Me.BtAdicionar.SubItemsExpandWidth = 10
-        Me.BtAdicionar.TabIndex = 223
+        Me.BtAdicionar.TabIndex = 9
         Me.BtAdicionar.Text = "Adicionar"
         Me.BtAdicionar.TextColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
         '
@@ -639,7 +639,7 @@ Partial Class F0_ProduccionProducto
         Me.tbPrecioB.Location = New System.Drawing.Point(217, 291)
         Me.tbPrecioB.Name = "tbPrecioB"
         Me.tbPrecioB.Size = New System.Drawing.Size(128, 26)
-        Me.tbPrecioB.TabIndex = 240
+        Me.tbPrecioB.TabIndex = 8
         '
         'LabelX7
         '
@@ -671,7 +671,7 @@ Partial Class F0_ProduccionProducto
         Me.tbPrecioA.Location = New System.Drawing.Point(217, 259)
         Me.tbPrecioA.Name = "tbPrecioA"
         Me.tbPrecioA.Size = New System.Drawing.Size(128, 26)
-        Me.tbPrecioA.TabIndex = 238
+        Me.tbPrecioA.TabIndex = 7
         '
         'LabelX6
         '
@@ -705,7 +705,7 @@ Partial Class F0_ProduccionProducto
         Me.cbUnidad.SelectedIndex = -1
         Me.cbUnidad.SelectedItem = Nothing
         Me.cbUnidad.Size = New System.Drawing.Size(192, 26)
-        Me.cbUnidad.TabIndex = 236
+        Me.cbUnidad.TabIndex = 2
         Me.cbUnidad.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
         'LabelX5
@@ -776,7 +776,7 @@ Partial Class F0_ProduccionProducto
         Me.tbCodigo.Name = "tbCodigo"
         Me.tbCodigo.PreventEnterBeep = True
         Me.tbCodigo.Size = New System.Drawing.Size(84, 26)
-        Me.tbCodigo.TabIndex = 227
+        Me.tbCodigo.TabIndex = 0
         Me.tbCodigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'tbObservacion
@@ -795,7 +795,7 @@ Partial Class F0_ProduccionProducto
         Me.tbObservacion.Name = "tbObservacion"
         Me.tbObservacion.PreventEnterBeep = True
         Me.tbObservacion.Size = New System.Drawing.Size(378, 64)
-        Me.tbObservacion.TabIndex = 229
+        Me.tbObservacion.TabIndex = 6
         '
         'LabelX2
         '
@@ -848,7 +848,7 @@ Partial Class F0_ProduccionProducto
         Me.tbDescripcion.Name = "tbDescripcion"
         Me.tbDescripcion.PreventEnterBeep = True
         Me.tbDescripcion.Size = New System.Drawing.Size(378, 26)
-        Me.tbDescripcion.TabIndex = 228
+        Me.tbDescripcion.TabIndex = 1
         '
         'GroupPanel1
         '

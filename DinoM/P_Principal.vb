@@ -329,9 +329,9 @@ Public Class P_Principal
     Private Sub btConfTipoEquipo_Click(sender As Object, e As EventArgs) Handles btConfProducto.Click
         'SideNav1.IsMenuExpanded = False
         'Ventana.Select()
-        Dim frm As New F1_Productos
+        Dim frm As New F0_ProduccionProducto
         frm._nameButton = btConfProducto.Name
-        frm._modulo = FP_Configuracion
+
         'Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)
         'frm._tab = tab3
         'Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)

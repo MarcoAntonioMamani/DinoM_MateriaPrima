@@ -352,7 +352,7 @@ Public Class F0_MCompras
 
     Private Sub _prCargarDetalleVenta(_numi As String)
         Dim dt As New DataTable
-        dt = L_fnDetalleCompra(_numi)
+        'dt = L_fnDetalleCompra(_numi)
         grdetalle.DataSource = dt
         grdetalle.RetrieveStructure()
         grdetalle.AlternatingColors = True

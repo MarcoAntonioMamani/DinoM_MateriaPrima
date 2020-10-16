@@ -203,142 +203,142 @@ Public Class F0_Compra
     End Sub
 
     Private Sub _prCargarDetalleVenta(_numi As String)
-        Dim dt As New DataTable
-        dt = L_fnDetalleCompra(_numi)
-        grdetalle.DataSource = dt
-        grdetalle.RetrieveStructure()
-        grdetalle.AlternatingColors = True
-        '     a.cbnumi ,a.cbtv1numi ,a.cbty5prod ,b.yfcdprod1 as producto,a.cbest ,a.cbcmin ,a.cbumin ,Umin .ycdes3 as unidad,a.cbpcost 
-        ',a.cbutven ,a.cbprven  ,a.cbptot ,a.cbobs ,
-        'a.cbfact ,a.cbhact ,a.cbuact,1 as escado,Cast(null as Image) as img
+        'Dim dt As New DataTable
+        'dt = L_fnDetalleCompra(_numi)
+        'grdetalle.DataSource = dt
+        'grdetalle.RetrieveStructure()
+        'grdetalle.AlternatingColors = True
+        ''     a.cbnumi ,a.cbtv1numi ,a.cbty5prod ,b.yfcdprod1 as producto,a.cbest ,a.cbcmin ,a.cbumin ,Umin .ycdes3 as unidad,a.cbpcost 
+        '',a.cbutven ,a.cbprven  ,a.cbptot ,a.cbobs ,
+        ''a.cbfact ,a.cbhact ,a.cbuact,1 as escado,Cast(null as Image) as img
 
-        With grdetalle.RootTable.Columns("cbnumi")
-            .Width = 100
-            .Caption = "CODIGO"
-            .Visible = False
-        End With
+        'With grdetalle.RootTable.Columns("cbnumi")
+        '    .Width = 100
+        '    .Caption = "CODIGO"
+        '    .Visible = False
+        'End With
 
-        With grdetalle.RootTable.Columns("cbtv1numi")
-            .Width = 90
-            .Visible = False
-        End With
-        With grdetalle.RootTable.Columns("cbty5prod")
-            .Width = 90
-            .Visible = False
-        End With
+        'With grdetalle.RootTable.Columns("cbtv1numi")
+        '    .Width = 90
+        '    .Visible = False
+        'End With
+        'With grdetalle.RootTable.Columns("cbty5prod")
+        '    .Width = 90
+        '    .Visible = False
+        'End With
 
-        With grdetalle.RootTable.Columns("producto")
-            .Caption = "PRODUCTOS"
-            .Width = 250
-            .Visible = True
+        'With grdetalle.RootTable.Columns("producto")
+        '    .Caption = "PRODUCTOS"
+        '    .Width = 250
+        '    .Visible = True
 
-        End With
-        With grdetalle.RootTable.Columns("cbest")
-            .Width = 50
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = False
-        End With
+        'End With
+        'With grdetalle.RootTable.Columns("cbest")
+        '    .Width = 50
+        '    .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+        '    .Visible = False
+        'End With
 
-        With grdetalle.RootTable.Columns("cbcmin")
-            .Width = 160
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = True
-            .FormatString = "0.00"
-            .Caption = "Cant. Minima".ToUpper
-        End With
-        With grdetalle.RootTable.Columns("cbumin")
-            .Width = 50
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = False
-        End With
-        With grdetalle.RootTable.Columns("unidad")
-            .Width = 100
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = True
-            .Caption = "Unidad".ToUpper
-        End With
-        With grdetalle.RootTable.Columns("cbpcost")
-            .Width = 120
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = True
-            .FormatString = "0.00"
-            .Caption = "Precio U.".ToUpper
-        End With
-        If (_estadoPor = 1) Then
-            With grdetalle.RootTable.Columns("cbutven")
-                .Width = 120
-                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-                .Visible = True
-                .FormatString = "0.00"
-                .Caption = "Utilidad.".ToUpper
-            End With
-            With grdetalle.RootTable.Columns("cbprven")
-                .Width = 120
-                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-                .Visible = True
-                .FormatString = "0.00"
-                .Caption = "Precio Venta.".ToUpper
-            End With
-        Else
-            With grdetalle.RootTable.Columns("cbutven")
-                .Width = 120
-                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-                .Visible = False
-                .FormatString = "0.00"
-                .Caption = "Utilidad.".ToUpper
-            End With
-            With grdetalle.RootTable.Columns("cbprven")
-                .Width = 120
-                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-                .Visible = False
-                .FormatString = "0.00"
-                .Caption = "Precio Venta.".ToUpper
-            End With
-        End If
+        'With grdetalle.RootTable.Columns("cbcmin")
+        '    .Width = 160
+        '    .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+        '    .Visible = True
+        '    .FormatString = "0.00"
+        '    .Caption = "Cant. Minima".ToUpper
+        'End With
+        'With grdetalle.RootTable.Columns("cbumin")
+        '    .Width = 50
+        '    .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+        '    .Visible = False
+        'End With
+        'With grdetalle.RootTable.Columns("unidad")
+        '    .Width = 100
+        '    .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+        '    .Visible = True
+        '    .Caption = "Unidad".ToUpper
+        'End With
+        'With grdetalle.RootTable.Columns("cbpcost")
+        '    .Width = 120
+        '    .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+        '    .Visible = True
+        '    .FormatString = "0.00"
+        '    .Caption = "Precio U.".ToUpper
+        'End With
+        'If (_estadoPor = 1) Then
+        '    With grdetalle.RootTable.Columns("cbutven")
+        '        .Width = 120
+        '        .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+        '        .Visible = True
+        '        .FormatString = "0.00"
+        '        .Caption = "Utilidad.".ToUpper
+        '    End With
+        '    With grdetalle.RootTable.Columns("cbprven")
+        '        .Width = 120
+        '        .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+        '        .Visible = True
+        '        .FormatString = "0.00"
+        '        .Caption = "Precio Venta.".ToUpper
+        '    End With
+        'Else
+        '    With grdetalle.RootTable.Columns("cbutven")
+        '        .Width = 120
+        '        .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+        '        .Visible = False
+        '        .FormatString = "0.00"
+        '        .Caption = "Utilidad.".ToUpper
+        '    End With
+        '    With grdetalle.RootTable.Columns("cbprven")
+        '        .Width = 120
+        '        .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+        '        .Visible = False
+        '        .FormatString = "0.00"
+        '        .Caption = "Precio Venta.".ToUpper
+        '    End With
+        'End If
 
-        With grdetalle.RootTable.Columns("cbptot")
-            .Width = 100
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = True
-            .FormatString = "0.00"
-            .Caption = "Sub Total".ToUpper
-        End With
-        With grdetalle.RootTable.Columns("cbobs")
-            .Width = 50
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = False
-        End With
-        With grdetalle.RootTable.Columns("cbfact")
-            .Width = 50
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = False
-        End With
-        With grdetalle.RootTable.Columns("cbhact")
-            .Width = 50
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = False
-        End With
-        With grdetalle.RootTable.Columns("cbuact")
-            .Width = 50
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = False
-        End With
-        With grdetalle.RootTable.Columns("estado")
-            .Width = 50
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = False
-        End With
-        With grdetalle.RootTable.Columns("img")
-            .Width = 80
-            .Caption = "Eliminar".ToUpper
-            .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
-            .Visible = False
-        End With
-        With grdetalle
-            .GroupByBoxVisible = False
-            'diseño de la grilla
-            .VisualStyle = VisualStyle.Office2007
-        End With
+        'With grdetalle.RootTable.Columns("cbptot")
+        '    .Width = 100
+        '    .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+        '    .Visible = True
+        '    .FormatString = "0.00"
+        '    .Caption = "Sub Total".ToUpper
+        'End With
+        'With grdetalle.RootTable.Columns("cbobs")
+        '    .Width = 50
+        '    .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+        '    .Visible = False
+        'End With
+        'With grdetalle.RootTable.Columns("cbfact")
+        '    .Width = 50
+        '    .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+        '    .Visible = False
+        'End With
+        'With grdetalle.RootTable.Columns("cbhact")
+        '    .Width = 50
+        '    .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+        '    .Visible = False
+        'End With
+        'With grdetalle.RootTable.Columns("cbuact")
+        '    .Width = 50
+        '    .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+        '    .Visible = False
+        'End With
+        'With grdetalle.RootTable.Columns("estado")
+        '    .Width = 50
+        '    .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+        '    .Visible = False
+        'End With
+        'With grdetalle.RootTable.Columns("img")
+        '    .Width = 80
+        '    .Caption = "Eliminar".ToUpper
+        '    .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
+        '    .Visible = False
+        'End With
+        'With grdetalle
+        '    .GroupByBoxVisible = False
+        '    'diseño de la grilla
+        '    .VisualStyle = VisualStyle.Office2007
+        'End With
     End Sub
 
     Private Sub _prCargarCompra()
