@@ -675,5 +675,24 @@ Public Class F0_ProductoMateriaPrima
             MostrarMensajeError(ex.Message)
         End Try
     End Sub
+
+    Private Sub lbgrupo3_Click(sender As Object, e As EventArgs) Handles lbgrupo3.Click
+
+    End Sub
+
+    Private Sub btnMaquinariaAgregar_Click(sender As Object, e As EventArgs) Handles btnMaquinariaAgregar.Click
+        Try
+            If ValidarIngresoADetalle() Then
+                If tbValor.Text = String.Empty Then
+                    Throw New Exception("Debe introducir un valor")
+                End If
+                agregarFilaDetalle()
+            Else
+                Throw New Exception("Ya existe el grupo introducido")
+            End If
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+        End Try
+    End Sub
 #End Region
 End Class

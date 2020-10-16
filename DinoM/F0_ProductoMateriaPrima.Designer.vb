@@ -59,6 +59,7 @@ Partial Class F0_ProductoMateriaPrima
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.cmDetalle = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.tsmiEliminarFilaDetalle = New System.Windows.Forms.ToolStripMenuItem()
+        Me.btnMaquinariaAgregar = New DevComponents.DotNetBar.ButtonX()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelInferior.SuspendLayout()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -287,6 +288,7 @@ Partial Class F0_ProductoMateriaPrima
         'Panel3
         '
         Me.Panel3.AutoScroll = True
+        Me.Panel3.Controls.Add(Me.BtnAdicionar)
         Me.Panel3.Controls.Add(Me.lbgrupo1)
         Me.Panel3.Controls.Add(Me.lbgrupo2)
         Me.Panel3.Controls.Add(Me.btgrupo2)
@@ -319,7 +321,7 @@ Partial Class F0_ProductoMateriaPrima
         Me.lbgrupo1.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbgrupo1.Size = New System.Drawing.Size(116, 23)
         Me.lbgrupo1.TabIndex = 220
-        Me.lbgrupo1.Text = "Grupo 1:"
+        Me.lbgrupo1.Text = "Grupo:"
         '
         'lbgrupo2
         '
@@ -335,7 +337,7 @@ Partial Class F0_ProductoMateriaPrima
         Me.lbgrupo2.SingleLineColor = System.Drawing.SystemColors.Control
         Me.lbgrupo2.Size = New System.Drawing.Size(116, 23)
         Me.lbgrupo2.TabIndex = 221
-        Me.lbgrupo2.Text = "Grupo 2:"
+        Me.lbgrupo2.Text = "Sub Grupo:"
         '
         'btgrupo2
         '
@@ -520,12 +522,13 @@ Partial Class F0_ProductoMateriaPrima
         '
         'BtnAdicionar
         '
-        Me.BtnAdicionar.Location = New System.Drawing.Point(621, 16)
+        Me.BtnAdicionar.Location = New System.Drawing.Point(330, 237)
         Me.BtnAdicionar.Name = "BtnAdicionar"
         Me.BtnAdicionar.Size = New System.Drawing.Size(90, 23)
         Me.BtnAdicionar.TabIndex = 228
         Me.BtnAdicionar.Text = "Adicionar"
         Me.BtnAdicionar.UseVisualStyleBackColor = True
+        Me.BtnAdicionar.Visible = False
         '
         'GroupPanel2
         '
@@ -538,7 +541,7 @@ Partial Class F0_ProductoMateriaPrima
         Me.GroupPanel2.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.GroupPanel2.Location = New System.Drawing.Point(441, 0)
         Me.GroupPanel2.Name = "GroupPanel2"
-        Me.GroupPanel2.Size = New System.Drawing.Size(720, 80)
+        Me.GroupPanel2.Size = New System.Drawing.Size(720, 87)
         '
         '
         '
@@ -573,8 +576,8 @@ Partial Class F0_ProductoMateriaPrima
         'Panel2
         '
         Me.Panel2.AutoScroll = True
-        Me.Panel2.Controls.Add(Me.BtnAdicionar)
         Me.Panel2.Controls.Add(Me.tbValor)
+        Me.Panel2.Controls.Add(Me.btnMaquinariaAgregar)
         Me.Panel2.Controls.Add(Me.LblValor)
         Me.Panel2.Controls.Add(Me.btgrupo3)
         Me.Panel2.Controls.Add(Me.lbgrupo3)
@@ -582,7 +585,7 @@ Partial Class F0_ProductoMateriaPrima
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(714, 57)
+        Me.Panel2.Size = New System.Drawing.Size(714, 64)
         Me.Panel2.TabIndex = 227
         '
         'LblValor
@@ -594,10 +597,10 @@ Partial Class F0_ProductoMateriaPrima
         Me.LblValor.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LblValor.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblValor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LblValor.Location = New System.Drawing.Point(281, 13)
+        Me.LblValor.Location = New System.Drawing.Point(327, 13)
         Me.LblValor.Name = "LblValor"
         Me.LblValor.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LblValor.Size = New System.Drawing.Size(113, 23)
+        Me.LblValor.Size = New System.Drawing.Size(63, 23)
         Me.LblValor.TabIndex = 231
         Me.LblValor.Text = "Valor:"
         '
@@ -608,7 +611,7 @@ Partial Class F0_ProductoMateriaPrima
         Me.btgrupo3.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
         Me.btgrupo3.Image = Global.DinoM.My.Resources.Resources.add
         Me.btgrupo3.ImageFixedSize = New System.Drawing.Size(25, 23)
-        Me.btgrupo3.Location = New System.Drawing.Point(247, 14)
+        Me.btgrupo3.Location = New System.Drawing.Point(293, 13)
         Me.btgrupo3.Name = "btgrupo3"
         Me.btgrupo3.Size = New System.Drawing.Size(28, 23)
         Me.btgrupo3.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -624,19 +627,19 @@ Partial Class F0_ProductoMateriaPrima
         Me.lbgrupo3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.lbgrupo3.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbgrupo3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.lbgrupo3.Location = New System.Drawing.Point(15, 13)
+        Me.lbgrupo3.Location = New System.Drawing.Point(8, 13)
         Me.lbgrupo3.Name = "lbgrupo3"
         Me.lbgrupo3.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.lbgrupo3.Size = New System.Drawing.Size(60, 23)
+        Me.lbgrupo3.Size = New System.Drawing.Size(110, 23)
         Me.lbgrupo3.TabIndex = 229
-        Me.lbgrupo3.Text = "Grupo 3:"
+        Me.lbgrupo3.Text = "Caracteristica:"
         '
         'cbgrupo3
         '
         cbgrupo3_DesignTimeLayout.LayoutString = resources.GetString("cbgrupo3_DesignTimeLayout.LayoutString")
         Me.cbgrupo3.DesignTimeLayout = cbgrupo3_DesignTimeLayout
         Me.cbgrupo3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbgrupo3.Location = New System.Drawing.Point(90, 14)
+        Me.cbgrupo3.Location = New System.Drawing.Point(143, 14)
         Me.cbgrupo3.MaxLength = 40
         Me.cbgrupo3.Name = "cbgrupo3"
         Me.cbgrupo3.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
@@ -656,9 +659,9 @@ Partial Class F0_ProductoMateriaPrima
         Me.gpDetalleVenta.DisabledBackColor = System.Drawing.Color.Empty
         Me.gpDetalleVenta.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gpDetalleVenta.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gpDetalleVenta.Location = New System.Drawing.Point(441, 80)
+        Me.gpDetalleVenta.Location = New System.Drawing.Point(441, 87)
         Me.gpDetalleVenta.Name = "gpDetalleVenta"
-        Me.gpDetalleVenta.Size = New System.Drawing.Size(720, 285)
+        Me.gpDetalleVenta.Size = New System.Drawing.Size(720, 278)
         '
         '
         '
@@ -698,7 +701,7 @@ Partial Class F0_ProductoMateriaPrima
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel5.Location = New System.Drawing.Point(0, 0)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(714, 262)
+        Me.Panel5.Size = New System.Drawing.Size(714, 255)
         Me.Panel5.TabIndex = 0
         '
         'grdetalle
@@ -711,7 +714,7 @@ Partial Class F0_ProductoMateriaPrima
         Me.grdetalle.Name = "grdetalle"
         Me.grdetalle.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.grdetalle.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.grdetalle.Size = New System.Drawing.Size(714, 262)
+        Me.grdetalle.Size = New System.Drawing.Size(714, 255)
         Me.grdetalle.TabIndex = 3
         Me.grdetalle.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -814,6 +817,24 @@ Partial Class F0_ProductoMateriaPrima
         Me.tsmiEliminarFilaDetalle.Size = New System.Drawing.Size(147, 32)
         Me.tsmiEliminarFilaDetalle.Text = "Eliminar Fila"
         '
+        'btnMaquinariaAgregar
+        '
+        Me.btnMaquinariaAgregar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnMaquinariaAgregar.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.btnMaquinariaAgregar.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnMaquinariaAgregar.Image = Global.DinoM.My.Resources.Resources.add
+        Me.btnMaquinariaAgregar.ImageFixedSize = New System.Drawing.Size(40, 40)
+        Me.btnMaquinariaAgregar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btnMaquinariaAgregar.Location = New System.Drawing.Point(628, 3)
+        Me.btnMaquinariaAgregar.Name = "btnMaquinariaAgregar"
+        Me.btnMaquinariaAgregar.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(4)
+        Me.btnMaquinariaAgregar.Size = New System.Drawing.Size(86, 56)
+        Me.btnMaquinariaAgregar.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btnMaquinariaAgregar.SubItemsExpandWidth = 10
+        Me.btnMaquinariaAgregar.TabIndex = 237
+        Me.btnMaquinariaAgregar.Text = "Agregar"
+        Me.btnMaquinariaAgregar.TextColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        '
         'F0_ProductoMateriaPrima
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -894,4 +915,5 @@ Partial Class F0_ProductoMateriaPrima
     Friend WithEvents Timer1 As Timer
     Friend WithEvents cmDetalle As ContextMenuStrip
     Friend WithEvents tsmiEliminarFilaDetalle As ToolStripMenuItem
+    Friend WithEvents btnMaquinariaAgregar As DevComponents.DotNetBar.ButtonX
 End Class
