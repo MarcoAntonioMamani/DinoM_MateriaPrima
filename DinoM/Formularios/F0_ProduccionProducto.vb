@@ -286,7 +286,7 @@ Public Class F0_ProduccionProducto
         ' a.Id ,a.ProductoId ,a.Caracterisitica  ,a.Valor  ,1 as estado
         With grCaracterisiticaFisicas.RootTable.Columns("Id")
             .Width = 100
-            .Caption = "CODIGO"
+            .Caption = "Codigo"
             .Visible = True
         End With
         With grCaracterisiticaFisicas.RootTable.Columns("Caracterisitica")
@@ -323,16 +323,30 @@ Public Class F0_ProduccionProducto
         grCaracteristicaCalidad.DataSource = dt
         grCaracteristicaCalidad.RetrieveStructure()
         grCaracteristicaCalidad.AlternatingColors = True
-        'a.Id , a.ProductoId, a.Caracterisitica, a.Valor, 1 as estado L_fnDetalleHerramental
+        ' a.Id ,a.ProductoId ,a.Atributo ,a.Descripcion ,1 as estado
+        With grCaracteristicaCalidad.RootTable.Columns("Id")
+            .Width = 100
+            .Caption = "Codigo"
+            .Visible = True
+        End With
 
+        With grCaracteristicaCalidad.RootTable.Columns("Atributo")
+            .Width = 500
+            .Caption = "Atributo"
+            .Visible = True
+        End With
+
+        With grCaracteristicaCalidad.RootTable.Columns("Descripcion")
+            .Width = 400
+            .Caption = "Descripcion"
+            .Visible = True
+        End With
         With grCaracteristicaCalidad.RootTable.Columns("ProductoId")
             .Width = 100
-            .Caption = "CODIGO"
             .Visible = False
         End With
         With grCaracteristicaCalidad.RootTable.Columns("estado")
             .Width = 100
-            .Caption = "CODIGO"
             .Visible = False
         End With
 
@@ -340,8 +354,7 @@ Public Class F0_ProduccionProducto
             .GroupByBoxVisible = False
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
-            .Size = MaximumSize
-            .AutoSizeColumns()
+
         End With
     End Sub
     Private Sub _prCargarHerramental(_numi As String)
@@ -960,6 +973,7 @@ Public Class F0_ProduccionProducto
             CType(grCaracteristicaCalidad.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grCaracteristicaCalidad) + 1, 0, tbCalidadAtributo.Text, tbCalidadDescripcion.Text, 0)
             tbCalidadAtributo.Clear()
             tbCalidadDescripcion.Clear()
+            tbCalidadAtributo.Focus()
 
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Caracteristica Calidad..!!!",
