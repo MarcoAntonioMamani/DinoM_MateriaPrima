@@ -283,16 +283,29 @@ Public Class F0_ProduccionProducto
         grCaracterisiticaFisicas.DataSource = dt
         grCaracterisiticaFisicas.RetrieveStructure()
         grCaracterisiticaFisicas.AlternatingColors = True
-        'a.Id , a.ProductoId, a.Caracterisitica, a.Valor, 1 as estado
-
-        With grCaracterisiticaFisicas.RootTable.Columns("ProductoId")
+        ' a.Id ,a.ProductoId ,a.Caracterisitica  ,a.Valor  ,1 as estado
+        With grCaracterisiticaFisicas.RootTable.Columns("Id")
             .Width = 100
             .Caption = "CODIGO"
+            .Visible = True
+        End With
+        With grCaracterisiticaFisicas.RootTable.Columns("Caracterisitica")
+            .Width = 500
+            .Caption = "Caracteristica"
+            .Visible = True
+        End With
+
+        With grCaracterisiticaFisicas.RootTable.Columns("Valor")
+            .Width = 400
+            .Caption = "Valor"
+            .Visible = True
+        End With
+        With grCaracterisiticaFisicas.RootTable.Columns("ProductoId")
+            .Width = 100
             .Visible = False
         End With
         With grCaracterisiticaFisicas.RootTable.Columns("estado")
             .Width = 100
-            .Caption = "CODIGO"
             .Visible = False
         End With
 
@@ -300,8 +313,7 @@ Public Class F0_ProduccionProducto
             .GroupByBoxVisible = False
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
-            .Size = MaximumSize
-            .AutoSizeColumns()
+
         End With
     End Sub
 
@@ -551,7 +563,7 @@ Public Class F0_ProduccionProducto
         If (rows.Count > 0) Then
             Return rows(rows.Count - 1).Item("Id")
         End If
-        Return 1
+        Return 0
     End Function
     Public Function _fnAccesible()
         Return tbObservacion.ReadOnly = False
@@ -928,6 +940,7 @@ Public Class F0_ProduccionProducto
             CType(grCaracterisiticaFisicas.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grCaracterisiticaFisicas) + 1, 0, tbFisicaCaracteristica.Text, tbFisicaValor.Text, 0)
             tbFisicaCaracteristica.Clear()
             tbFisicaValor.Clear()
+            tbFisicaCaracteristica.Focus()
 
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Caracteristica Fisica..!!!",
