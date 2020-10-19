@@ -139,6 +139,7 @@ Public Class F0_ProduccionProducto
         tbPrecioB.IsInputReadOnly = True
         tbPrecioC.IsInputReadOnly = True
 
+        btMateriaAgregar.Visible = False
         btnfisicaAgregar.Visible = False
         btnCalidadAgregar.Visible = False
         btnMaquinariaAgregar.Visible = False
@@ -174,7 +175,7 @@ Public Class F0_ProduccionProducto
         tbPrecioA.IsInputReadOnly = False
         tbPrecioB.IsInputReadOnly = False
         tbPrecioC.IsInputReadOnly = False
-
+        btMateriaAgregar.Visible = True
         btnfisicaAgregar.Visible = True
         btnCalidadAgregar.Visible = True
         btnMaquinariaAgregar.Visible = True
@@ -991,6 +992,7 @@ Public Class F0_ProduccionProducto
 
             CType(grDosificacion.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grDosificacion) + 1, 0, tbMateriaCantidad.Text, cbMateriaUnidad.Value, cbMateriaUnidad.Text, 0)
             tbMateriaCantidad.Clear()
+            tbMateriaCantidad.Focus()
 
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Dosificacion Materia..!!!",
@@ -1009,7 +1011,7 @@ Public Class F0_ProduccionProducto
             CType(grEmpaque.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grEmpaque) + 1, 0, tbEmpaqueMedida.Text, cbEmpaqueUnidad.Value, cbEmpaqueUnidad.Text, 0)
 
             tbEmpaqueMedida.Clear()
-
+            tbEmpaqueMedida.Focus()
 
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Dosificacion Materia..!!!",
@@ -1028,6 +1030,7 @@ Public Class F0_ProduccionProducto
             CType(grMaquinaria.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grMaquinaria) + 1, 0, tbMaquinariaMedida.Text, 0)
 
             tbMaquinariaMedida.Clear()
+            tbMaquinariaMedida.Focus()
 
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Dosificacion Materia..!!!",
