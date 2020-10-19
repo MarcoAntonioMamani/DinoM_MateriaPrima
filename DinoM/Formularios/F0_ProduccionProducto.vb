@@ -22,6 +22,7 @@ Public Class F0_ProduccionProducto
     Dim RutaTemporal As String = "C:\Temporal"
     Dim Modificado As Boolean = False
     Dim nameImg As String = "Default.jpg"
+    Dim gs_RutaImg As String = ""
 #End Region
 
 #Region "Metodos Privados"
@@ -63,24 +64,48 @@ Public Class F0_ProduccionProducto
 
         End If
     End Sub
+    Sub _prEliminarContenidoImage()
+        Try
+            My.Computer.FileSystem.DeleteDirectory(gs_RutaImg, FileIO.DeleteDirectoryOption.DeleteAllContents)
+        Catch ex As Exception
 
-    Sub _prCrearCarpetaImagenes()
-        Dim rutaDestino As String = RutaGlobal + "\Imagenes\Imagenes ProductoDino\"
+        End Try
+    End Sub
+    Public Function _fnObtenerNumeroFilasActivas() As Integer
+        Dim n As Integer = -1
+        For i As Integer = 0 To TablaImagenes.Rows.Count - 1 Step 1
+            Dim estado As Integer = TablaImagenes.Rows(i).Item("estado")
+            If (estado = 0 Or estado = 1) Then
+                n += 1
 
-        If System.IO.Directory.Exists(RutaGlobal + "\Imagenes\Imagenes ProductoDino\") = False Then
+            End If
+        Next
+        Return n
+    End Function
+    Private Sub _prCrearCarpetaImagenes(carpetaFinal As String)
+        Dim rutaDestino As String = RutaGlobal + "\Imagenes\Imagenes Productos\" + carpetaFinal + "\"
+
+        If System.IO.Directory.Exists(RutaGlobal + "\Imagenes\Imagenes Productos\" + carpetaFinal) = False Then
             If System.IO.Directory.Exists(RutaGlobal + "\Imagenes") = False Then
                 System.IO.Directory.CreateDirectory(RutaGlobal + "\Imagenes")
-                If System.IO.Directory.Exists(RutaGlobal + "\Imagenes\Imagenes ProductoDino") = False Then
-                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Imagenes\Imagenes ProductoDino")
+                If System.IO.Directory.Exists(RutaGlobal + "\Imagenes\Imagenes Productos") = False Then
+                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Imagenes\Imagenes Productos")
+                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Imagenes\Imagenes Productos\" + carpetaFinal + "\")
                 End If
             Else
-                If System.IO.Directory.Exists(RutaGlobal + "\Imagenes\Imagenes ProductoDino") = False Then
-                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Imagenes\Imagenes ProductoDino")
+                If System.IO.Directory.Exists(RutaGlobal + "\Imagenes\Imagenes Productos") = False Then
+                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Imagenes\Imagenes Productos")
+                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Imagenes\Imagenes Productos\" + carpetaFinal + "\")
+                Else
+                    If System.IO.Directory.Exists(RutaGlobal + "\Imagenes\Imagenes Productos\" + carpetaFinal) = False Then
+                        System.IO.Directory.CreateDirectory(RutaGlobal + "\Imagenes\Imagenes Productos\" + carpetaFinal + "\")
+                    End If
 
                 End If
             End If
         End If
     End Sub
+
     Private Sub _fnMoverImagenRuta(Folder As String, name As String)
         'copio la imagen en la carpeta del sistema
         If (Not name.Equals("Default.jpg") And File.Exists(RutaTemporal + name)) Then
@@ -150,7 +175,8 @@ Public Class F0_ProduccionProducto
         BtAdicionar.Visible = False
 
 
-
+        btnDelete.Visible = False
+        btnImagen.Visible = False
         ''''''''''
         btnModificar.Enabled = True
         btnGrabar.Enabled = False
@@ -184,11 +210,32 @@ Public Class F0_ProduccionProducto
         btnMoldeAgregar.Visible = True
         btnHerramentalAgregar.Visible = True
 
-
+        btnDelete.Visible = True
+        btnImagen.Visible = True
+        _prCrearCarpetaImagenes()
+        _prCrearCarpetaTemporal()
         btMateriaUnidad.Visible = False
 
 
         btnGrabar.Enabled = True
+    End Sub
+    Private Sub _prCrearCarpetaTemporal()
+
+        If System.IO.Directory.Exists(RutaTemporal) = False Then
+            System.IO.Directory.CreateDirectory(RutaTemporal)
+        Else
+            Try
+                My.Computer.FileSystem.DeleteDirectory(RutaTemporal, FileIO.DeleteDirectoryOption.DeleteAllContents)
+                My.Computer.FileSystem.CreateDirectory(RutaTemporal)
+                'My.Computer.FileSystem.DeleteDirectory(RutaTemporal, FileIO.UIOption.AllDialogs, FileIO.RecycleOption.SendToRecycleBin)
+                'System.IO.Directory.CreateDirectory(RutaTemporal)
+
+            Catch ex As Exception
+
+            End Try
+
+        End If
+
     End Sub
     Public Sub _prFiltrar()
         'cargo el buscador
@@ -209,7 +256,6 @@ Public Class F0_ProduccionProducto
 
 
 
-
         tbPeso.Value = 0
         tbObservacion.Clear()
         tbPrecioA.Value = 0
@@ -227,6 +273,9 @@ Public Class F0_ProduccionProducto
         _prCargarCaracterisiticaCalidad(-1)
         _prCargarCaracterisiticaFisica(-1)
         MSuperTabControl.SelectedTabIndex = 0
+        TablaImagenes = L_fnDetalleImagenes(-1)
+        _prCargarImagen()
+        _prEliminarContenidoImage()
 
 
     End Sub
@@ -250,14 +299,14 @@ Public Class F0_ProduccionProducto
 
         End With
         Dim name As String = grCompra.GetValue("Imagen")
-        If name.Equals("Default.jpg") Or Not File.Exists(RutaGlobal + "\Imagenes\Imagenes ProductoDino" + name) Then
+        If name.Equals("Default.jpg") Or Not File.Exists(RutaGlobal + "\Imagenes\Imagenes Productos" + name) Then
 
             Dim im As New Bitmap(My.Resources.pantalla)
             UsImg.pbImage.Image = im
         Else
-            If (File.Exists(RutaGlobal + "\Imagenes\Imagenes ProductoDino" + name)) Then
+            If (File.Exists(RutaGlobal + "\Imagenes\Imagenes Productos" + name)) Then
                 Dim Bin As New MemoryStream
-                Dim im As New Bitmap(New Bitmap(RutaGlobal + "\Imagenes\Imagenes ProductoDino" + name))
+                Dim im As New Bitmap(New Bitmap(RutaGlobal + "\Imagenes\Imagenes Productos" + name))
                 im.Save(Bin, System.Drawing.Imaging.ImageFormat.Jpeg)
                 UsImg.pbImage.SizeMode = PictureBoxSizeMode.StretchImage
                 UsImg.pbImage.Image = Image.FromStream(Bin)
@@ -272,7 +321,8 @@ Public Class F0_ProduccionProducto
         _prCargarHerramental(grCompra.GetValue("Id"))
         _prCargarCaracterisiticaCalidad(grCompra.GetValue("Id"))
         _prCargarCaracterisiticaFisica(grCompra.GetValue("Id"))
-
+        TablaImagenes = L_fnDetalleImagenes(tbId.Text)
+        _prCargarImagen()
         LblPaginacion.Text = Str(grCompra.Row + 1) + "/" + grCompra.RowCount.ToString
 
     End Sub
@@ -287,7 +337,7 @@ Public Class F0_ProduccionProducto
         ' a.Id ,a.ProductoId ,a.Caracterisitica  ,a.Valor  ,1 as estado
         With grCaracterisiticaFisicas.RootTable.Columns("Id")
             .Width = 100
-            .Caption = "Codigo"
+            .Caption = "Id"
             .Visible = True
         End With
         With grCaracterisiticaFisicas.RootTable.Columns("Caracterisitica")
@@ -327,7 +377,7 @@ Public Class F0_ProduccionProducto
         ' a.Id ,a.ProductoId ,a.Atributo ,a.Descripcion ,1 as estado
         With grCaracteristicaCalidad.RootTable.Columns("Id")
             .Width = 100
-            .Caption = "Codigo"
+            .Caption = "Id"
             .Visible = True
         End With
 
@@ -364,8 +414,24 @@ Public Class F0_ProduccionProducto
         grHerramental.DataSource = dt
         grHerramental.RetrieveStructure()
         grHerramental.AlternatingColors = True
-        'a.Id , a.ProductoId, a.Caracterisitica, a.Valor, 1 as estado L_fnDetalleMolde
+        'a.Id ,a.ProductoId ,a.Campo   ,a.Codigo   ,1 as estado
+        With grHerramental.RootTable.Columns("Id")
+            .Width = 100
+            .Caption = "Id"
+            .Visible = True
+        End With
 
+        With grHerramental.RootTable.Columns("Campo")
+            .Width = 500
+            .Caption = "Campo"
+            .Visible = True
+        End With
+
+        With grHerramental.RootTable.Columns("Codigo")
+            .Width = 400
+            .Caption = "Codigo"
+            .Visible = True
+        End With
         With grHerramental.RootTable.Columns("ProductoId")
             .Width = 100
             .Caption = "CODIGO"
@@ -381,8 +447,7 @@ Public Class F0_ProduccionProducto
             .GroupByBoxVisible = False
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
-            .Size = MaximumSize
-            .AutoSizeColumns()
+
         End With
     End Sub
 
@@ -392,8 +457,17 @@ Public Class F0_ProduccionProducto
         grMolde.DataSource = dt
         grMolde.RetrieveStructure()
         grMolde.AlternatingColors = True
-        'a.Id , a.ProductoId, a.Caracterisitica, a.Valor, 1 as estado L_fnDetalleDosificacion
-
+        'a.Id ,a.ProductoId ,a.CodigoMolde,1 as estado
+        With grMolde.RootTable.Columns("Id")
+            .Width = 100
+            .Caption = "Id"
+            .Visible = True
+        End With
+        With grMolde.RootTable.Columns("CodigoMolde")
+            .Width = 500
+            .Caption = "CodigoMolde"
+            .Visible = True
+        End With
         With grMolde.RootTable.Columns("ProductoId")
             .Width = 100
             .Caption = "CODIGO"
@@ -409,8 +483,7 @@ Public Class F0_ProduccionProducto
             .GroupByBoxVisible = False
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
-            .Size = MaximumSize
-            .AutoSizeColumns()
+
         End With
     End Sub
 
@@ -420,7 +493,23 @@ Public Class F0_ProduccionProducto
         grDosificacion.DataSource = dt
         grDosificacion.RetrieveStructure()
         grDosificacion.AlternatingColors = True
-        'a.Id ,a.ProductoId ,a.Cantidad ,a.Unidad,uni.ycdes3 as UnidadDescripcion ,1 as estado L_fnDetalleEmpaque
+        'a.Id ,a.ProductoId ,a.Cantidad ,a.Unidad,uni.ycdes3 as UnidadDescripcion ,1 as estado
+        With grDosificacion.RootTable.Columns("Id")
+            .Width = 100
+            .Caption = "Id"
+            .Visible = True
+        End With
+        With grDosificacion.RootTable.Columns("Cantidad")
+            .Width = 500
+            .Caption = "Cantidad"
+            .Visible = True
+        End With
+        With grDosificacion.RootTable.Columns("UnidadDescripcion")
+            .Width = 400
+            .Caption = "Unidad"
+            .Visible = True
+        End With
+
         With grDosificacion.RootTable.Columns("Unidad")
             .Width = 100
             .Caption = "CODIGO"
@@ -441,8 +530,7 @@ Public Class F0_ProduccionProducto
             .GroupByBoxVisible = False
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
-            .Size = MaximumSize
-            .AutoSizeColumns()
+
         End With
     End Sub
     Private Sub _prCargarEmpaque(_numi As String)
@@ -451,7 +539,24 @@ Public Class F0_ProduccionProducto
         grEmpaque.DataSource = dt
         grEmpaque.RetrieveStructure()
         grEmpaque.AlternatingColors = True
-        'a.Id ,a.ProductoId ,a.Cantidad ,a.Unidad,uni.ycdes3 as UnidadDescripcion ,1 as estado L_fnDetalleMaquinaria
+        'a.Id ,a.ProductoId ,a.Medida  ,a.Unidad,uni.ycdes3 as UnidadDescripcion ,1 as estado
+
+        With grEmpaque.RootTable.Columns("Id")
+            .Width = 100
+            .Caption = "Id"
+            .Visible = True
+        End With
+        With grEmpaque.RootTable.Columns("Medida")
+            .Width = 500
+            .Caption = "Medida"
+            .Visible = True
+        End With
+        With grEmpaque.RootTable.Columns("UnidadDescripcion")
+            .Width = 400
+            .Caption = "Unidad"
+            .Visible = True
+        End With
+
         With grEmpaque.RootTable.Columns("Unidad")
             .Width = 100
             .Caption = "CODIGO"
@@ -470,8 +575,7 @@ Public Class F0_ProduccionProducto
 
         With grEmpaque
             .GroupByBoxVisible = False
-            .Size = MaximumSize
-            .AutoSizeColumns()
+
             'diseño de la grilla.
             .VisualStyle = VisualStyle.Office2007
         End With
@@ -483,23 +587,33 @@ Public Class F0_ProduccionProducto
         grMaquinaria.DataSource = dt
         grMaquinaria.RetrieveStructure()
         grMaquinaria.AlternatingColors = True
-        'a.Id ,a.ProductoId ,a.Cantidad ,a.Unidad,uni.ycdes3 as UnidadDescripcion ,1 as estado L_fnDetalleMaquinaria
+        'a.Id ,a.ProductoId ,a.Medida  ,1 as estado
 
-        With grMaquinaria.RootTable.Columns("ProductoId")
+        With grMaquinaria.RootTable.Columns("Id")
             .Width = 100
+            .Caption = "Id"
+            .Visible = True
+        End With
+
+        With grMaquinaria.RootTable.Columns("Medida")
+            .Width = 500
+            .Caption = "Medida"
+            .Visible = True
+        End With
+        With grMaquinaria.RootTable.Columns("ProductoId")
+            .Width = 0
             .Caption = "CODIGO"
             .Visible = False
         End With
         With grMaquinaria.RootTable.Columns("estado")
-            .Width = 100
+            .Width = 0
             .Caption = "CODIGO"
             .Visible = False
         End With
 
         With grMaquinaria
             .GroupByBoxVisible = False
-            .Size = MaximumSize
-            .AutoSizeColumns()
+
 
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
@@ -621,9 +735,10 @@ Public Class F0_ProduccionProducto
 
         If res Then
             Modificado = False
-            _fnMoverImagenRuta(RutaGlobal + "\Imagenes\Imagenes ProductoDino", nameImg)
+            _fnMoverImagenRuta(RutaGlobal + "\Imagenes\Imagenes Productos", nameImg)
             nameImg = "Default.jpg"
-
+            _prCrearCarpetaImagenes("ProductosTodos")
+            _prGuardarImagenes(RutaGlobal + "\Imagenes\Imagenes Productos\" + "ProductosTodos" + "\")
             Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
             ToastNotification.Show(Me, "Código de Producto ".ToUpper + tbCodigo.Text + " Grabado con Exito.".ToUpper,
                                       img, 2000,
@@ -656,9 +771,11 @@ Public Class F0_ProduccionProducto
 
         If res Then
             If (Modificado = True) Then
-                _fnMoverImagenRuta(RutaGlobal + "\Imagenes\Imagenes ProductoDino", nameImg)
+                _fnMoverImagenRuta(RutaGlobal + "\Imagenes\Imagenes Productos", nameImg)
                 Modificado = False
             End If
+            _prCrearCarpetaImagenes("ProductosTodos")
+            _prGuardarImagenes(RutaGlobal + "\Imagenes\Imagenes Productos\" + "ProductosTodos" + "\")
             nameImg = "Default.jpg"
 
             Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
@@ -686,8 +803,8 @@ Public Class F0_ProduccionProducto
             End If
         Else
 
-            'Me.Close()
-            _tab.Close()
+            Me.Close()
+
 
         End If
     End Sub
@@ -818,7 +935,10 @@ Public Class F0_ProduccionProducto
     End Sub
 
     Private Sub grVentas_SelectionChanged(sender As Object, e As EventArgs) Handles grCompra.SelectionChanged
+        If (grCompra.RowCount >= 0 And grCompra.Row >= 0) Then
 
+            _prMostrarRegistro(grCompra.Row)
+        End If
     End Sub
 
     Private Sub btnSiguiente_Click(sender As Object, e As EventArgs) Handles btnSiguiente.Click
@@ -852,7 +972,11 @@ Public Class F0_ProduccionProducto
         _PrimerRegistro()
     End Sub
     Private Sub grVentas_KeyDown(sender As Object, e As KeyEventArgs) Handles grCompra.KeyDown
+        If e.KeyData = Keys.Enter Then
+            MSuperTabControl.SelectedTabIndex = 0
 
+
+        End If
     End Sub
 
     Private Sub cbUnidad_ValueChanged(sender As Object, e As EventArgs) Handles cbUnidad.ValueChanged
@@ -1048,6 +1172,8 @@ Public Class F0_ProduccionProducto
 
             CType(grMolde.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grMolde) + 1, 0, tbMoldeCodigo.Text, 0)
             tbMoldeCodigo.Clear()
+
+            tbMoldeCodigo.Focus()
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Dosificacion Materia..!!!",
                                     My.Resources.WARNING, 2000,
@@ -1066,6 +1192,7 @@ Public Class F0_ProduccionProducto
 
             tbHerramentalCampo.Clear()
             tbHerramentalCodigo.Clear()
+            tbHerramentalCampo.Focus()
 
 
         Else
@@ -1127,6 +1254,196 @@ Public Class F0_ProduccionProducto
         Return "default.jpg"
     End Function
 
+    Private Sub btnImagen_Click(sender As Object, e As EventArgs) Handles btnImagen.Click
+        _fnCopiarImagenVariosRutaDefinida()
+        _prCargarImagen()
+    End Sub
+    Public Sub _prCargarImagen()
+        PanelListImagenes.Controls.Clear()
+
+        pbImgProdu.Image = Nothing
+
+        Dim i As Integer = 0
+        For Each fila As DataRow In TablaImagenes.Rows
+            Dim elemImg As UCLavadero = New UCLavadero
+            Dim rutImg = fila.Item("lhima").ToString
+            Dim estado As Integer = fila.Item("estado")
+
+            If (estado = 0) Then
+                elemImg.pbImg.SizeMode = PictureBoxSizeMode.StretchImage
+                Dim bm As Bitmap = Nothing
+                Dim by As Byte() = fila.Item("img")
+                Dim ms As New MemoryStream(by)
+                bm = New Bitmap(ms)
+
+
+                elemImg.pbImg.Image = bm
+
+                pbImgProdu.SizeMode = PictureBoxSizeMode.StretchImage
+                pbImgProdu.Image = bm
+                elemImg.pbImg.Tag = i
+                elemImg.Dock = DockStyle.Top
+                pbImgProdu.Tag = i
+                AddHandler elemImg.pbImg.MouseEnter, AddressOf pbImg_MouseEnter
+
+                PanelListImagenes.Controls.Add(elemImg)
+                ms.Dispose()
+
+            Else
+                If (estado = 1) Then
+                    If (File.Exists(RutaGlobal + "\Imagenes\Imagenes Productos\ProductosTodos" + rutImg)) Then
+                        Dim bm As Bitmap = New Bitmap(RutaGlobal + "\Imagenes\Imagenes Productos\ProductosTodos" + rutImg)
+                        elemImg.pbImg.SizeMode = PictureBoxSizeMode.StretchImage
+                        elemImg.pbImg.Image = bm
+                        pbImgProdu.SizeMode = PictureBoxSizeMode.StretchImage
+                        pbImgProdu.Image = bm
+                        elemImg.pbImg.Tag = i
+                        elemImg.Dock = DockStyle.Top
+                        pbImgProdu.Tag = i
+                        AddHandler elemImg.pbImg.MouseEnter, AddressOf pbImg_MouseEnter
+
+                        PanelListImagenes.Controls.Add(elemImg)
+                    End If
+
+                End If
+            End If
+
+
+
+
+            i += 1
+        Next
+
+    End Sub
+    Public Sub _prGuardarImagenes(_ruta As String)
+        PanelListImagenes.Controls.Clear()
+
+
+        For i As Integer = 0 To TablaImagenes.Rows.Count - 1 Step 1
+            Dim estado As Integer = TablaImagenes.Rows(i).Item("estado")
+            If (estado = 0) Then
+
+                Dim bm As Bitmap = Nothing
+                Dim by As Byte() = TablaImagenes.Rows(i).Item("img")
+                Dim ms As New MemoryStream(by)
+                bm = New Bitmap(ms)
+                Try
+                    bm.Save(_ruta + TablaImagenes.Rows(i).Item("lhima"), System.Drawing.Imaging.ImageFormat.Jpeg)
+                Catch ex As Exception
+
+                End Try
+
+
+
+
+            End If
+            If (estado = -1) Then
+                Try
+                    Me.pbImgProdu.Image.Dispose()
+                    Me.pbImgProdu.Image = Nothing
+                    Application.DoEvents()
+                    TablaImagenes.Rows(i).Item("img") = Nothing
+
+
+
+                    If (File.Exists(_ruta + TablaImagenes.Rows(i).Item("lhima"))) Then
+                        My.Computer.FileSystem.DeleteFile(_ruta + TablaImagenes.Rows(i).Item("lhima"))
+                    End If
+
+                Catch ex As Exception
+
+                End Try
+            End If
+        Next
+    End Sub
+
+    Private Sub _prCrearCarpetaImagenes()
+        Dim rutaDestino As String = RutaGlobal + "\Imagenes\Imagenes Productos\"
+
+        If System.IO.Directory.Exists(RutaGlobal + "\Imagenes\Imagenes Productos\") = False Then
+            If System.IO.Directory.Exists(RutaGlobal + "\Imagenes") = False Then
+                System.IO.Directory.CreateDirectory(RutaGlobal + "\Imagenes")
+                If System.IO.Directory.Exists(RutaGlobal + "\Imagenes\Imagenes Productos") = False Then
+                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Imagenes\Imagenes Productos")
+                End If
+            Else
+                If System.IO.Directory.Exists(RutaGlobal + "\Imagenes\Imagenes Productos") = False Then
+                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Imagenes\Imagenes Productos")
+
+                End If
+            End If
+        End If
+    End Sub
+    Private Sub pbImg_MouseEnter(sender As Object, e As EventArgs)
+        Dim pb As PictureBox = CType(sender, PictureBox)
+        pbImgProdu.Image = pb.Image
+        pbImgProdu.Tag = pb.Tag
+
+    End Sub
+    Private Function _fnCopiarImagenVariosRutaDefinida() As String
+        'copio la imagen en la carpeta del sistema
+
+        Dim file As New OpenFileDialog()
+        'file.InitialDirectory = gs_RutaImg
+        file.Filter = "Ficheros JPG o JPEG o PNG|*.jpg;*.jpeg;*.png" &
+                      "|Ficheros GIF|*.gif" &
+                      "|Ficheros BMP|*.bmp" &
+                      "|Ficheros PNG|*.png" &
+                      "|Ficheros TIFF|*.tif"
+        If file.ShowDialog() = DialogResult.OK Then
+            Dim ruta As String = file.FileName
+            Dim nombre As String = ""
+
+            If file.CheckFileExists = True Then
+                Dim img As New Bitmap(New Bitmap(ruta), 1000, 800)
+                Dim a As Object = file.GetType.ToString
+
+                Dim da As String = Str(Now.Day).Trim + Str(Now.Month).Trim + Str(Now.Year).Trim + Str(Now.Hour).Trim + Str(Now.Minute).Trim + Str(Now.Second).Trim
+
+                nombre = "\Imagen_" + da + ".jpg".Trim
+
+
+                If (tbId.Text = "") Then
+                    Dim mstream = New MemoryStream()
+
+                    img.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
+
+                    TablaImagenes.Rows.Add(0, 0, nombre, mstream.ToArray(), 0)
+                    mstream.Dispose()
+                    img.Dispose()
+
+                Else
+                    Dim mstream = New MemoryStream()
+
+                    img.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
+                    TablaImagenes.Rows.Add(0, tbCodigo.Text, nombre, mstream.ToArray(), 0)
+                    mstream.Dispose()
+
+                End If
+
+                'img.Save(RutaTemporal + nombre, System.Drawing.Imaging.ImageFormat.Jpeg)
+
+
+
+
+            End If
+            Return nombre
+        End If
+
+        Return "default.jpg"
+    End Function
+
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        Dim pos As Integer = CType(pbImgProdu.Tag, Integer)
+        If (IsDBNull(TablaImagenes)) Then
+            Return
+
+        End If
+        If (pos >= 0 And TablaImagenes.Rows.Count > 0) Then
+            TablaImagenes.Rows(pos).Item("estado") = -1
+            _prCargarImagen()
+        End If
+    End Sub
 #End Region
 
 
