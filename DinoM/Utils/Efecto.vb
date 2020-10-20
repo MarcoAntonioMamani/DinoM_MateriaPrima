@@ -14,6 +14,9 @@ Public Class Efecto
     Public ancho As Integer
     Public Row As Janus.Windows.GridEX.GridEXRow
     Public SeleclCol As Integer = -1
+    Public ClienteId As Integer = 0
+    Public Nombrecliente As String = ""
+    Public Bandera As Boolean = False
 
 
 
@@ -31,6 +34,8 @@ Public Class Efecto
                 _prMostrarFormAyuda()
             Case 4
                 _prLogin()
+            Case 5
+                _prMostrarCliente()
         End Select
     End Sub
     Public Sub _prLogin()
@@ -56,7 +61,26 @@ Public Class Efecto
             band = False
             Me.Close()
         End If
-       
+
+    End Sub
+
+    Sub _prMostrarCliente()
+
+        Dim frmAyuda As F_CrearCliente = New F_CrearCliente
+
+
+        frmAyuda.ShowDialog()
+        If frmAyuda.bandera = True Then
+            ClienteId = frmAyuda.ClienteId
+            Nombrecliente = frmAyuda.NombreCliente
+            Bandera = True
+            Me.Close()
+        Else
+            Bandera = False
+            band = False
+            Me.Close()
+        End If
+
     End Sub
     Sub _prMostrarMensaje()
         Dim blah As Bitmap = My.Resources.cuestion

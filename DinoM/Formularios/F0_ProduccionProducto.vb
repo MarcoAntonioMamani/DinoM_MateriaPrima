@@ -23,6 +23,7 @@ Public Class F0_ProduccionProducto
     Dim Modificado As Boolean = False
     Dim nameImg As String = "Default.jpg"
     Dim gs_RutaImg As String = ""
+    Dim ClienteId As Integer = 0
 #End Region
 
 #Region "Metodos Privados"
@@ -150,14 +151,14 @@ Public Class F0_ProduccionProducto
 
     Private Sub _prInhabiliitar()
         tbCodigo.ReadOnly = True
-
+        btnSearchCliente.Visible = False
         tbId.ReadOnly = True
         tbCodigo.ReadOnly = True
         tbDescripcion.ReadOnly = True
         cbUnidad.ReadOnly = True
         cbGrupo.ReadOnly = True
         cbSubGrupo.ReadOnly = True
-
+        btnCrearCliente.Visible = False
         tbPeso.IsInputReadOnly = True
         tbObservacion.ReadOnly = True
         tbPrecioA.IsInputReadOnly = True
@@ -187,6 +188,8 @@ Public Class F0_ProduccionProducto
 
     End Sub
     Private Sub _prhabilitar()
+        btnCrearCliente.Visible = True
+        btnSearchCliente.Visible = True
         BtAdicionar.Visible = True
         tbCodigo.ReadOnly = False
         tbDescripcion.ReadOnly = False
@@ -261,7 +264,7 @@ Public Class F0_ProduccionProducto
         tbPrecioA.Value = 0
         tbPrecioB.Value = 0
         tbPrecioC.Value = 0
-
+        ClienteId = 0
 
 
 
@@ -296,6 +299,8 @@ Public Class F0_ProduccionProducto
             tbPrecioA.Value = .GetValue("PrecioA")
             tbPrecioB.Value = .GetValue("PrecioB")
             tbPrecioC.Value = .GetValue("PrecioC")
+            tbCliente.Text = .GetValue("Cliente").ToString
+            ClienteId = .GetValue("ClienteId")
 
         End With
         Dim name As String = grCompra.GetValue("Imagen")
@@ -630,7 +635,15 @@ Public Class F0_ProduccionProducto
         'a.Id , a.Codigo, a.Descripcion, a.Unidad, uni.ycdes3 As UnidadDescripcion, a.Grupo,
         'gr.ycdes3 As GrupoDescripcion, a.SubGrupo, Sub() .ycdes3 as SubGrupoDescripcion, a.Peso, a.Observaciones,
         'a.PrecioA, a.PrecioB, a.PrecioC, a.Imagen, a.Usuario 
-
+        With grCompra.RootTable.Columns("ClienteId")
+            .Width = 90
+            .Visible = False
+        End With
+        With grCompra.RootTable.Columns("Cliente")
+            .Width = 150
+            .Visible = True
+            .Caption = "Cliente"
+        End With
         With grCompra.RootTable.Columns("Id")
             .Width = 90
             .Visible = False
@@ -730,7 +743,7 @@ Public Class F0_ProduccionProducto
 
         'L_fnGrabarProductoNew(id As String, Codigo As String, Descripcion As String, Unidad As Integer, Grupo As Integer, SubGrupo As Integer, Peso As Double, Observaciones As String, PrecioA As Double, PrecioB As Double, PRecioC As Double, Imagen As String)
         'grmaquinari As DataTable, grEmpaque As DataTable, grDosificacion As DataTable, grMolde As DataTable, grHerramental As DataTable, grCalidad As DataTable, grfisica As DataTable, grImagen As DataTable
-        Dim res As Boolean = L_fnGrabarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value, cbGrupo.Value, cbSubGrupo.Value, tbPeso.Value, tbObservacion.Text, tbPrecioA.Value, tbPrecioB.Value, tbPrecioC.Value, nameImg, CType(grMaquinaria.DataSource, DataTable), CType(grEmpaque.DataSource, DataTable), CType(grDosificacion.DataSource, DataTable), CType(grMolde.DataSource, DataTable), CType(grHerramental.DataSource, DataTable), CType(grCaracteristicaCalidad.DataSource, DataTable), CType(grCaracterisiticaFisicas.DataSource, DataTable), TablaImagenes)
+        Dim res As Boolean = L_fnGrabarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value, cbGrupo.Value, cbSubGrupo.Value, tbPeso.Value, tbObservacion.Text, tbPrecioA.Value, tbPrecioB.Value, tbPrecioC.Value, nameImg, CType(grMaquinaria.DataSource, DataTable), CType(grEmpaque.DataSource, DataTable), CType(grDosificacion.DataSource, DataTable), CType(grMolde.DataSource, DataTable), CType(grHerramental.DataSource, DataTable), CType(grCaracteristicaCalidad.DataSource, DataTable), CType(grCaracterisiticaFisicas.DataSource, DataTable), TablaImagenes, ClienteId)
 
 
         If res Then
@@ -740,7 +753,7 @@ Public Class F0_ProduccionProducto
             _prCrearCarpetaImagenes("ProductosTodos")
             _prGuardarImagenes(RutaGlobal + "\Imagenes\Imagenes Productos\" + "ProductosTodos" + "\")
             Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
-            ToastNotification.Show(Me, "Código de Producto ".ToUpper + tbCodigo.Text + " Grabado con Exito.".ToUpper,
+            ToastNotification.Show(Me, "Código de Producto ".ToUpper + tbId.Text + " Grabado con Exito.".ToUpper,
                                       img, 2000,
                                       eToastGlowColor.Green,
                                       eToastPosition.TopCenter
@@ -763,9 +776,9 @@ Public Class F0_ProduccionProducto
 
         Dim nameImage As String = grCompra.GetValue("Imagen")
         If (Modificado = False) Then
-            res = L_fnModificarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value, cbGrupo.Value, cbSubGrupo.Value, tbPeso.Value, tbObservacion.Text, tbPrecioA.Value, tbPrecioB.Value, tbPrecioC.Value, nameImage, CType(grMaquinaria.DataSource, DataTable), CType(grEmpaque.DataSource, DataTable), CType(grDosificacion.DataSource, DataTable), CType(grMolde.DataSource, DataTable), CType(grHerramental.DataSource, DataTable), CType(grCaracteristicaCalidad.DataSource, DataTable), CType(grCaracterisiticaFisicas.DataSource, DataTable), TablaImagenes)
+            res = L_fnModificarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value, cbGrupo.Value, cbSubGrupo.Value, tbPeso.Value, tbObservacion.Text, tbPrecioA.Value, tbPrecioB.Value, tbPrecioC.Value, nameImage, CType(grMaquinaria.DataSource, DataTable), CType(grEmpaque.DataSource, DataTable), CType(grDosificacion.DataSource, DataTable), CType(grMolde.DataSource, DataTable), CType(grHerramental.DataSource, DataTable), CType(grCaracteristicaCalidad.DataSource, DataTable), CType(grCaracterisiticaFisicas.DataSource, DataTable), TablaImagenes, ClienteId)
         Else
-            res = L_fnModificarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value, cbGrupo.Value, cbSubGrupo.Value, tbPeso.Value, tbObservacion.Text, tbPrecioA.Value, tbPrecioB.Value, tbPrecioC.Value, nameImg, CType(grMaquinaria.DataSource, DataTable), CType(grEmpaque.DataSource, DataTable), CType(grDosificacion.DataSource, DataTable), CType(grMolde.DataSource, DataTable), CType(grHerramental.DataSource, DataTable), CType(grCaracteristicaCalidad.DataSource, DataTable), CType(grCaracterisiticaFisicas.DataSource, DataTable), TablaImagenes)
+            res = L_fnModificarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value, cbGrupo.Value, cbSubGrupo.Value, tbPeso.Value, tbObservacion.Text, tbPrecioA.Value, tbPrecioB.Value, tbPrecioC.Value, nameImg, CType(grMaquinaria.DataSource, DataTable), CType(grEmpaque.DataSource, DataTable), CType(grDosificacion.DataSource, DataTable), CType(grMolde.DataSource, DataTable), CType(grHerramental.DataSource, DataTable), CType(grCaracteristicaCalidad.DataSource, DataTable), CType(grCaracterisiticaFisicas.DataSource, DataTable), TablaImagenes, ClienteId)
         End If
 
 
@@ -779,7 +792,7 @@ Public Class F0_ProduccionProducto
             nameImg = "Default.jpg"
 
             Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
-            ToastNotification.Show(Me, "Código de Producto ".ToUpper + tbCodigo.Text + " Grabado con Exito.".ToUpper,
+            ToastNotification.Show(Me, "Código de Producto ".ToUpper + tbId.Text + " Grabado con Exito.".ToUpper,
                                       img, 2000,
                                       eToastGlowColor.Green,
                                       eToastPosition.TopCenter
@@ -842,6 +855,7 @@ Public Class F0_ProduccionProducto
         '_prhabilitar()
 
         '_Limpiar()
+        tbCliente.Focus()
     End Sub
     Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
         _prSalir()
@@ -864,7 +878,15 @@ Public Class F0_ProduccionProducto
             _ok = False
 
         End If
+        If ClienteId = 0 Then
+            tbCliente.Focus()
+            ToastNotification.Show(Me, "Campo Cliente Requerido!!!",
+                                       My.Resources.WARNING, 2000,
+                                       eToastGlowColor.Red,
+                                       eToastPosition.BottomLeft)
+            _ok = False
 
+        End If
         Return _ok
 
     End Function
@@ -874,10 +896,10 @@ Public Class F0_ProduccionProducto
             Exit Sub
         End If
 
-        If (tbCodigo.Text = String.Empty) Then
+        If (tbId.Text = String.Empty) Then
             _GuardarNuevo()
         Else
-            If (tbCodigo.Text <> String.Empty) Then
+            If (tbId.Text <> String.Empty) Then
                 _prGuardarModificado()
                 ''    _prInhabiliitar()
 
@@ -913,13 +935,13 @@ Public Class F0_ProduccionProducto
         bandera = ef.band
         If (bandera = True) Then
             Dim mensajeError As String = ""
-            Dim res As Boolean = L_fnEliminarProductoNew(tbCodigo.Text, mensajeError)
+            Dim res As Boolean = L_fnEliminarProductoNew(tbId.Text, mensajeError)
             If res Then
 
 
                 Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
 
-                ToastNotification.Show(Me, "Código de Producto ".ToUpper + tbCodigo.Text + " eliminado con Exito.".ToUpper,
+                ToastNotification.Show(Me, "Código de Producto ".ToUpper + tbId.Text + " eliminado con Exito.".ToUpper,
                                           img, 2000,
                                           eToastGlowColor.Green,
                                           eToastPosition.TopCenter)
@@ -1237,7 +1259,7 @@ Public Class F0_ProduccionProducto
                     img.Dispose()
                 Else
 
-                    nameImg = "\Imagen_" + Str(tbCodigo.Text).Trim + ".jpg"
+                    nameImg = "\Imagen_" + Str(tbId.Text).Trim + ".jpg"
 
 
                     UsImg.pbImage.Image = Image.FromStream(Bin)
@@ -1416,7 +1438,7 @@ Public Class F0_ProduccionProducto
                     Dim mstream = New MemoryStream()
 
                     img.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
-                    TablaImagenes.Rows.Add(0, tbCodigo.Text, nombre, mstream.ToArray(), 0)
+                    TablaImagenes.Rows.Add(0, tbId.Text, nombre, mstream.ToArray(), 0)
                     mstream.Dispose()
 
                 End If
@@ -1442,6 +1464,110 @@ Public Class F0_ProduccionProducto
         If (pos >= 0 And TablaImagenes.Rows.Count > 0) Then
             TablaImagenes.Rows(pos).Item("estado") = -1
             _prCargarImagen()
+        End If
+    End Sub
+
+    Private Sub tbCliente_KeyDown(sender As Object, e As KeyEventArgs) Handles tbCliente.KeyDown
+        If (_fnAccesible()) Then
+            If e.KeyData = Keys.Control + Keys.Enter Then
+
+                Dim dt As DataTable
+                'dt = L_fnListarClientes()
+                dt = L_fnListarClientesVenta()
+
+                Dim listEstCeldas As New List(Of Modelo.Celda)
+                listEstCeldas.Add(New Modelo.Celda("ydnumi,", True, "ID", 50))
+                listEstCeldas.Add(New Modelo.Celda("ydcod", False, "ID", 50))
+                listEstCeldas.Add(New Modelo.Celda("ydrazonsocial", False, "RAZÓN SOCIAL", 180))
+                listEstCeldas.Add(New Modelo.Celda("yddesc", True, "NOMBRE", 280))
+                listEstCeldas.Add(New Modelo.Celda("yddctnum", True, "N. Documento".ToUpper, 150))
+                listEstCeldas.Add(New Modelo.Celda("yddirec", True, "DIRECCIÓN", 220))
+                listEstCeldas.Add(New Modelo.Celda("ydtelf1", True, "Teléfono".ToUpper, 200))
+                listEstCeldas.Add(New Modelo.Celda("ydfnac", False, "F.Nacimiento".ToUpper, 150, "MM/dd,YYYY"))
+                listEstCeldas.Add(New Modelo.Celda("ydnumivend,", False, "ID", 50))
+                listEstCeldas.Add(New Modelo.Celda("vendedor,", False, "ID", 50))
+                listEstCeldas.Add(New Modelo.Celda("yddias", False, "CRED", 50))
+                listEstCeldas.Add(New Modelo.Celda("ydnomfac", False, "Nombre Factura", 50))
+                listEstCeldas.Add(New Modelo.Celda("ydnit", False, "Nit/CI", 50))
+                Dim ef = New Efecto
+                ef.tipo = 3
+                ef.dt = dt
+                ef.SeleclCol = 2
+                ef.listEstCeldas = listEstCeldas
+                ef.alto = 50
+                ef.ancho = 350
+                ef.Context = "Seleccione Cliente".ToUpper
+                ef.ShowDialog()
+                Dim bandera As Boolean = False
+                bandera = ef.band
+                If (bandera = True) Then
+                    Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
+
+                    ClienteId = Row.Cells("ydnumi").Value
+                    tbCliente.Text = Row.Cells("yddesc").Value
+                    tbDescripcion.Focus()
+
+
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub btnSearchCliente_Click(sender As Object, e As EventArgs) Handles btnSearchCliente.Click
+
+
+        Dim dt As DataTable
+            'dt = L_fnListarClientes()
+            dt = L_fnListarClientesVenta()
+
+            Dim listEstCeldas As New List(Of Modelo.Celda)
+            listEstCeldas.Add(New Modelo.Celda("ydnumi,", True, "ID", 50))
+            listEstCeldas.Add(New Modelo.Celda("ydcod", False, "ID", 50))
+            listEstCeldas.Add(New Modelo.Celda("ydrazonsocial", False, "RAZÓN SOCIAL", 180))
+            listEstCeldas.Add(New Modelo.Celda("yddesc", True, "NOMBRE", 280))
+            listEstCeldas.Add(New Modelo.Celda("yddctnum", True, "N. Documento".ToUpper, 150))
+            listEstCeldas.Add(New Modelo.Celda("yddirec", True, "DIRECCIÓN", 220))
+            listEstCeldas.Add(New Modelo.Celda("ydtelf1", True, "Teléfono".ToUpper, 200))
+            listEstCeldas.Add(New Modelo.Celda("ydfnac", False, "F.Nacimiento".ToUpper, 150, "MM/dd,YYYY"))
+            listEstCeldas.Add(New Modelo.Celda("ydnumivend,", False, "ID", 50))
+            listEstCeldas.Add(New Modelo.Celda("vendedor,", False, "ID", 50))
+            listEstCeldas.Add(New Modelo.Celda("yddias", False, "CRED", 50))
+            listEstCeldas.Add(New Modelo.Celda("ydnomfac", False, "Nombre Factura", 50))
+            listEstCeldas.Add(New Modelo.Celda("ydnit", False, "Nit/CI", 50))
+            Dim ef = New Efecto
+            ef.tipo = 3
+            ef.dt = dt
+            ef.SeleclCol = 2
+            ef.listEstCeldas = listEstCeldas
+            ef.alto = 50
+            ef.ancho = 350
+            ef.Context = "Seleccione Cliente".ToUpper
+            ef.ShowDialog()
+            Dim bandera As Boolean = False
+            bandera = ef.band
+            If (bandera = True) Then
+                Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
+
+                ClienteId = Row.Cells("ydnumi").Value
+                tbCliente.Text = Row.Cells("yddesc").Value
+            tbDescripcion.Focus()
+
+
+        End If
+
+    End Sub
+
+    Private Sub btnCrearCliente_Click(sender As Object, e As EventArgs) Handles btnCrearCliente.Click
+        Dim ef = New Efecto
+        ef.tipo = 5
+        ef.ShowDialog()
+        Dim bandera As Boolean = False
+        bandera = ef.Bandera
+        If (bandera = True) Then
+            ClienteId = ef.ClienteId
+            tbCliente.Text = ef.Nombrecliente
+            tbDescripcion.Focus()
+
         End If
     End Sub
 #End Region

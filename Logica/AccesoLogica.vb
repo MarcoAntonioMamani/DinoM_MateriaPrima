@@ -465,7 +465,7 @@ Public Class AccesoLogica
         Return _resultado
     End Function
 
-    Public Shared Function L_fnGrabarProductoNew(id As String, Codigo As String, Descripcion As String, Unidad As Integer, Grupo As Integer, SubGrupo As Integer, Peso As Double, Observaciones As String, PrecioA As Double, PrecioB As Double, PRecioC As Double, Imagen As String, grmaquinari As DataTable, grEmpaque As DataTable, grdosificacion As DataTable, grMolde As DataTable, grHerramental As DataTable, grCalidad As DataTable, grfisica As DataTable, grImagen As DataTable) As Boolean
+    Public Shared Function L_fnGrabarProductoNew(id As String, Codigo As String, Descripcion As String, Unidad As Integer, Grupo As Integer, SubGrupo As Integer, Peso As Double, Observaciones As String, PrecioA As Double, PrecioB As Double, PRecioC As Double, Imagen As String, grmaquinari As DataTable, grEmpaque As DataTable, grdosificacion As DataTable, grMolde As DataTable, grHerramental As DataTable, grCalidad As DataTable, grfisica As DataTable, grImagen As DataTable, ClienteId As Integer) As Boolean
         Dim _resultado As Boolean
         '     (@Id ,@Codigo ,@Descripcion ,@Unidad ,@Grupo ,@SubGrupo ,@Peso ,@Observaciones ,
         '@PrecioA ,@PrecioB ,@PrecioC ,@Imagen ,@Usuario ,@newFecha ,@newHor
@@ -486,6 +486,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@PrecioB", PrecioB))
         _listParam.Add(New Datos.DParametro("@PrecioC", PRecioC))
         _listParam.Add(New Datos.DParametro("@Imagen", Imagen))
+        _listParam.Add(New Datos.DParametro("@ClienteId", ClienteId))
 
         _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
 
@@ -510,7 +511,7 @@ Public Class AccesoLogica
         Return _resultado
     End Function
 
-    Public Shared Function L_fnModificarProductoNew(id As String, Codigo As String, Descripcion As String, Unidad As Integer, Grupo As Integer, SubGrupo As Integer, Peso As Double, Observaciones As String, PrecioA As Double, PrecioB As Double, PRecioC As Double, Imagen As String, grmaquinari As DataTable, grEmpaque As DataTable, grdosificacion As DataTable, grMolde As DataTable, grHerramental As DataTable, grCalidad As DataTable, grfisica As DataTable, grImagen As DataTable) As Boolean
+    Public Shared Function L_fnModificarProductoNew(id As String, Codigo As String, Descripcion As String, Unidad As Integer, Grupo As Integer, SubGrupo As Integer, Peso As Double, Observaciones As String, PrecioA As Double, PrecioB As Double, PRecioC As Double, Imagen As String, grmaquinari As DataTable, grEmpaque As DataTable, grdosificacion As DataTable, grMolde As DataTable, grHerramental As DataTable, grCalidad As DataTable, grfisica As DataTable, grImagen As DataTable, ClienteId As Integer) As Boolean
         Dim _resultado As Boolean
         '     (@Id ,@Codigo ,@Descripcion ,@Unidad ,@Grupo ,@SubGrupo ,@Peso ,@Observaciones ,
         '@PrecioA ,@PrecioB ,@PrecioC ,@Imagen ,@Usuario ,@newFecha ,@newHor
@@ -531,6 +532,8 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@PrecioB", PrecioB))
         _listParam.Add(New Datos.DParametro("@PrecioC", PRecioC))
         _listParam.Add(New Datos.DParametro("@Imagen", Imagen))
+
+        _listParam.Add(New Datos.DParametro("@ClienteId", ClienteId))
         _listParam.Add(New Datos.DParametro("@ProductoCaracteristicaCalidad", "", grCalidad))
         _listParam.Add(New Datos.DParametro("@ProductoCaracteristicaFisica", "", grfisica))
         _listParam.Add(New Datos.DParametro("@ProductoImagenes", "", grImagen))
@@ -834,7 +837,62 @@ Public Class AccesoLogica
         Return _resultado
     End Function
 
+    Public Shared Function L_fnGrabarCLiente02(ByRef _ydnumi As String,
+                                             _ydcod As String, _ydrazonsocial As String, _yddesc As String,
+                                             _ydnumiVendedor As Integer, _ydzona As Integer, _yddct As Integer,
+                                             _yddctnum As String, _yddirec As String, _ydtelf1 As String,
+                                             _ydtelf2 As String, _ydcat As Integer, _ydest As Integer,
+                                             _ydlat As Double, _ydlongi As Double, _ydobs As String,
+                                             _ydfnac As String, _ydnomfac As String, _ydtip As Integer,
+                                             _ydnit As String, _yddias As String, _ydlcred As String,
+                                             _ydfecing As String, _ydultvent As String, _ydimg As String, _ydrut As String) As DataTable
+        Dim _resultado As Boolean
 
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        ' @ydnumi ,@ydcod  ,@yddesc  ,@ydzona  ,@yddct  ,
+        '@yddctnum  ,@yddirec  ,@ydtelf1  ,@ydtelf2  ,@ydcat  ,@ydest  ,@ydlat  ,@ydlongi  ,
+        '@ydprconsu  ,@ydobs  ,@ydfnac  ,@ydnomfac  ,@ydtip,@ydnit ,@ydfecing ,@ydultvent,@ydimg ,@newFecha,@newHora,@yduact
+        _listParam.Add(New Datos.DParametro("@tipo", 12))
+        _listParam.Add(New Datos.DParametro("@ydnumi", _ydnumi))
+        _listParam.Add(New Datos.DParametro("@ydcod", _ydcod))
+        _listParam.Add(New Datos.DParametro("@ydrazonsocioal", _ydrazonsocial))
+        _listParam.Add(New Datos.DParametro("@yddesc", _yddesc))
+        _listParam.Add(New Datos.DParametro("@ydnumivend", _ydnumiVendedor))
+        _listParam.Add(New Datos.DParametro("@ydzona", _ydzona))
+        _listParam.Add(New Datos.DParametro("@yddct", _yddct))
+        _listParam.Add(New Datos.DParametro("@yddctnum", _yddctnum))
+        _listParam.Add(New Datos.DParametro("@yddirec", _yddirec))
+        _listParam.Add(New Datos.DParametro("@ydtelf1", _ydtelf1))
+        _listParam.Add(New Datos.DParametro("@ydtelf2", _ydtelf2))
+        _listParam.Add(New Datos.DParametro("@ydcat", _ydcat))
+        _listParam.Add(New Datos.DParametro("@ydest", _ydest))
+        _listParam.Add(New Datos.DParametro("@ydlat", _ydlat))
+        _listParam.Add(New Datos.DParametro("@ydlongi", _ydlongi))
+        _listParam.Add(New Datos.DParametro("@ydprconsu", 0))
+        _listParam.Add(New Datos.DParametro("@ydobs", _ydobs))
+        _listParam.Add(New Datos.DParametro("@ydfnac", _ydfnac))
+        _listParam.Add(New Datos.DParametro("@ydnomfac", _ydnomfac))
+        _listParam.Add(New Datos.DParametro("@ydtip", _ydtip))
+        _listParam.Add(New Datos.DParametro("@ydnit", _ydnit))
+        _listParam.Add(New Datos.DParametro("@yddias", _yddias))
+        _listParam.Add(New Datos.DParametro("@ydlcred", _ydlcred))
+        _listParam.Add(New Datos.DParametro("@ydfecing", _ydfecing))
+        _listParam.Add(New Datos.DParametro("@ydultvent", _ydultvent))
+        _listParam.Add(New Datos.DParametro("@ydimg", _ydimg))
+        _listParam.Add(New Datos.DParametro("@ydrut", _ydrut))
+        _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY004", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _ydnumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _Tabla
+    End Function
     Public Shared Function L_fnGrabarCLienteConDetalleZonas(ByRef _ydnumi As String, _ydcod As String, _yddesc As String, _ydnumiVendedor As Integer, _ydzona As Integer, _yddct As Integer, _yddctnum As String, _yddirec As String, _ydtelf1 As String, _ydtelf2 As String, _ydcat As Integer, _ydest As Integer, _ydlat As Double, _ydlongi As Double, _ydobs As String, _ydfnac As String, _ydnomfac As String, _ydtip As Integer, _ydnit As String, _ydfecing As String, _ydultvent As String, _ydimg As String, _detalle As DataTable) As Boolean
         Dim _resultado As Boolean
 
