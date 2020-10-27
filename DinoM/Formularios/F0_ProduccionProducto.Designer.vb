@@ -29,6 +29,7 @@ Partial Class F0_ProduccionProducto
         Dim cbMateriaUnidad_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim cbEmpaqueUnidad_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Me.PanelData = New System.Windows.Forms.Panel()
+        Me.btnCrearCliente = New DevComponents.DotNetBar.ButtonX()
         Me.btnSearchCliente = New DevComponents.DotNetBar.ButtonX()
         Me.LabelX25 = New DevComponents.DotNetBar.LabelX()
         Me.tbCliente = New DevComponents.DotNetBar.Controls.TextBoxX()
@@ -64,14 +65,6 @@ Partial Class F0_ProduccionProducto
         Me.SuperTabControl1 = New DevComponents.DotNetBar.SuperTabControl()
         Me.SuperTabControlPanel1 = New DevComponents.DotNetBar.SuperTabControlPanel()
         Me.TabControlCalidad = New DevComponents.DotNetBar.SuperTabControl()
-        Me.SuperTabControlPanel6 = New DevComponents.DotNetBar.SuperTabControlPanel()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.PanelVerImagen = New System.Windows.Forms.Panel()
-        Me.btnImagen = New DevComponents.DotNetBar.ButtonX()
-        Me.btnDelete = New DevComponents.DotNetBar.ButtonX()
-        Me.pbImgProdu = New System.Windows.Forms.PictureBox()
-        Me.PanelListImagenes = New System.Windows.Forms.Panel()
-        Me.SuperTabItem6 = New DevComponents.DotNetBar.SuperTabItem()
         Me.SuperTabControlPanel4 = New DevComponents.DotNetBar.SuperTabControlPanel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.grCaracterisiticaFisicas = New Janus.Windows.GridEX.GridEX()
@@ -83,6 +76,14 @@ Partial Class F0_ProduccionProducto
         Me.LabelX9 = New DevComponents.DotNetBar.LabelX()
         Me.tbFisicaCaracteristica = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.SuperTabItem4 = New DevComponents.DotNetBar.SuperTabItem()
+        Me.SuperTabControlPanel6 = New DevComponents.DotNetBar.SuperTabControlPanel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.PanelVerImagen = New System.Windows.Forms.Panel()
+        Me.btnImagen = New DevComponents.DotNetBar.ButtonX()
+        Me.btnDelete = New DevComponents.DotNetBar.ButtonX()
+        Me.pbImgProdu = New System.Windows.Forms.PictureBox()
+        Me.PanelListImagenes = New System.Windows.Forms.Panel()
+        Me.SuperTabItem6 = New DevComponents.DotNetBar.SuperTabItem()
         Me.SuperTabControlPanel5 = New DevComponents.DotNetBar.SuperTabControlPanel()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.grCaracteristicaCalidad = New Janus.Windows.GridEX.GridEX()
@@ -95,31 +96,6 @@ Partial Class F0_ProduccionProducto
         Me.tbCalidadAtributo = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.SuperTabItem5 = New DevComponents.DotNetBar.SuperTabItem()
         Me.SuperTabItem1 = New DevComponents.DotNetBar.SuperTabItem()
-        Me.SuperTabControlPanel3 = New DevComponents.DotNetBar.SuperTabControlPanel()
-        Me.SuperTabControl2 = New DevComponents.DotNetBar.SuperTabControl()
-        Me.SuperTabControlPanel10 = New DevComponents.DotNetBar.SuperTabControlPanel()
-        Me.Panel8 = New System.Windows.Forms.Panel()
-        Me.Panel18 = New System.Windows.Forms.Panel()
-        Me.grMolde = New Janus.Windows.GridEX.GridEX()
-        Me.GroupPanel8 = New DevComponents.DotNetBar.Controls.GroupPanel()
-        Me.Panel19 = New System.Windows.Forms.Panel()
-        Me.btnMoldeAgregar = New DevComponents.DotNetBar.ButtonX()
-        Me.LabelX18 = New DevComponents.DotNetBar.LabelX()
-        Me.tbMoldeCodigo = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.SuperTabItem10 = New DevComponents.DotNetBar.SuperTabItem()
-        Me.SuperTabControlPanel11 = New DevComponents.DotNetBar.SuperTabControlPanel()
-        Me.Panel9 = New System.Windows.Forms.Panel()
-        Me.Panel20 = New System.Windows.Forms.Panel()
-        Me.grHerramental = New Janus.Windows.GridEX.GridEX()
-        Me.grHerramentalddd = New DevComponents.DotNetBar.Controls.GroupPanel()
-        Me.Panel21 = New System.Windows.Forms.Panel()
-        Me.LabelX21 = New DevComponents.DotNetBar.LabelX()
-        Me.tbHerramentalCodigo = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.btnHerramentalAgregar = New DevComponents.DotNetBar.ButtonX()
-        Me.LabelX20 = New DevComponents.DotNetBar.LabelX()
-        Me.tbHerramentalCampo = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.SuperTabItem11 = New DevComponents.DotNetBar.SuperTabItem()
-        Me.SuperTabItem3 = New DevComponents.DotNetBar.SuperTabItem()
         Me.SuperTabControlPanel2 = New DevComponents.DotNetBar.SuperTabControlPanel()
         Me.SuperTabControlProduccion = New DevComponents.DotNetBar.SuperTabControl()
         Me.SuperTabControlPanel7 = New DevComponents.DotNetBar.SuperTabControlPanel()
@@ -159,12 +135,36 @@ Partial Class F0_ProduccionProducto
         Me.tbMaquinariaMedida = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.SuperTabItem9 = New DevComponents.DotNetBar.SuperTabItem()
         Me.SuperTabItem2 = New DevComponents.DotNetBar.SuperTabItem()
+        Me.SuperTabControlPanel3 = New DevComponents.DotNetBar.SuperTabControlPanel()
+        Me.SuperTabControl2 = New DevComponents.DotNetBar.SuperTabControl()
+        Me.SuperTabControlPanel10 = New DevComponents.DotNetBar.SuperTabControlPanel()
+        Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.Panel18 = New System.Windows.Forms.Panel()
+        Me.grMolde = New Janus.Windows.GridEX.GridEX()
+        Me.GroupPanel8 = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.Panel19 = New System.Windows.Forms.Panel()
+        Me.btnMoldeAgregar = New DevComponents.DotNetBar.ButtonX()
+        Me.LabelX18 = New DevComponents.DotNetBar.LabelX()
+        Me.tbMoldeCodigo = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.SuperTabItem10 = New DevComponents.DotNetBar.SuperTabItem()
+        Me.SuperTabControlPanel11 = New DevComponents.DotNetBar.SuperTabControlPanel()
+        Me.Panel9 = New System.Windows.Forms.Panel()
+        Me.Panel20 = New System.Windows.Forms.Panel()
+        Me.grHerramental = New Janus.Windows.GridEX.GridEX()
+        Me.grHerramentalddd = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.Panel21 = New System.Windows.Forms.Panel()
+        Me.LabelX21 = New DevComponents.DotNetBar.LabelX()
+        Me.tbHerramentalCodigo = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.btnHerramentalAgregar = New DevComponents.DotNetBar.ButtonX()
+        Me.LabelX20 = New DevComponents.DotNetBar.LabelX()
+        Me.tbHerramentalCampo = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.SuperTabItem11 = New DevComponents.DotNetBar.SuperTabItem()
+        Me.SuperTabItem3 = New DevComponents.DotNetBar.SuperTabItem()
         Me.SuperTabItem12 = New DevComponents.DotNetBar.SuperTabItem()
         Me.SuperTabControlPanel12 = New DevComponents.DotNetBar.SuperTabControlPanel()
         Me.GroupPanel2 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Panel22 = New System.Windows.Forms.Panel()
         Me.grCompra = New Janus.Windows.GridEX.GridEX()
-        Me.btnCrearCliente = New DevComponents.DotNetBar.ButtonX()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelInferior.SuspendLayout()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -195,35 +195,20 @@ Partial Class F0_ProduccionProducto
         Me.SuperTabControlPanel1.SuspendLayout()
         CType(Me.TabControlCalidad, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControlCalidad.SuspendLayout()
-        Me.SuperTabControlPanel6.SuspendLayout()
-        Me.Panel2.SuspendLayout()
-        Me.PanelVerImagen.SuspendLayout()
-        CType(Me.pbImgProdu, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabControlPanel4.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.grCaracterisiticaFisicas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupPanel3.SuspendLayout()
         Me.Panel10.SuspendLayout()
+        Me.SuperTabControlPanel6.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        Me.PanelVerImagen.SuspendLayout()
+        CType(Me.pbImgProdu, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabControlPanel5.SuspendLayout()
         Me.Panel4.SuspendLayout()
         CType(Me.grCaracteristicaCalidad, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupPanel4.SuspendLayout()
         Me.Panel11.SuspendLayout()
-        Me.SuperTabControlPanel3.SuspendLayout()
-        CType(Me.SuperTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuperTabControl2.SuspendLayout()
-        Me.SuperTabControlPanel10.SuspendLayout()
-        Me.Panel8.SuspendLayout()
-        Me.Panel18.SuspendLayout()
-        CType(Me.grMolde, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupPanel8.SuspendLayout()
-        Me.Panel19.SuspendLayout()
-        Me.SuperTabControlPanel11.SuspendLayout()
-        Me.Panel9.SuspendLayout()
-        Me.Panel20.SuspendLayout()
-        CType(Me.grHerramental, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.grHerramentalddd.SuspendLayout()
-        Me.Panel21.SuspendLayout()
         Me.SuperTabControlPanel2.SuspendLayout()
         CType(Me.SuperTabControlProduccion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabControlProduccion.SuspendLayout()
@@ -247,6 +232,21 @@ Partial Class F0_ProduccionProducto
         CType(Me.grMaquinaria, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupPanel7.SuspendLayout()
         Me.Panel17.SuspendLayout()
+        Me.SuperTabControlPanel3.SuspendLayout()
+        CType(Me.SuperTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuperTabControl2.SuspendLayout()
+        Me.SuperTabControlPanel10.SuspendLayout()
+        Me.Panel8.SuspendLayout()
+        Me.Panel18.SuspendLayout()
+        CType(Me.grMolde, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupPanel8.SuspendLayout()
+        Me.Panel19.SuspendLayout()
+        Me.SuperTabControlPanel11.SuspendLayout()
+        Me.Panel9.SuspendLayout()
+        Me.Panel20.SuspendLayout()
+        CType(Me.grHerramental, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.grHerramentalddd.SuspendLayout()
+        Me.Panel21.SuspendLayout()
         Me.SuperTabControlPanel12.SuspendLayout()
         Me.GroupPanel2.SuspendLayout()
         Me.Panel22.SuspendLayout()
@@ -456,6 +456,21 @@ Partial Class F0_ProduccionProducto
         Me.PanelData.Name = "PanelData"
         Me.PanelData.Size = New System.Drawing.Size(1240, 354)
         Me.PanelData.TabIndex = 0
+        '
+        'btnCrearCliente
+        '
+        Me.btnCrearCliente.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnCrearCliente.BackColor = System.Drawing.Color.Transparent
+        Me.btnCrearCliente.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
+        Me.btnCrearCliente.Image = Global.DinoM.My.Resources.Resources.add
+        Me.btnCrearCliente.ImageFixedSize = New System.Drawing.Size(25, 23)
+        Me.btnCrearCliente.Location = New System.Drawing.Point(580, 50)
+        Me.btnCrearCliente.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnCrearCliente.Name = "btnCrearCliente"
+        Me.btnCrearCliente.Size = New System.Drawing.Size(37, 28)
+        Me.btnCrearCliente.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btnCrearCliente.TabIndex = 256
+        Me.btnCrearCliente.Visible = False
         '
         'btnSearchCliente
         '
@@ -1037,8 +1052,8 @@ Partial Class F0_ProduccionProducto
         Me.SuperTabControl1.ControlBox.Name = ""
         Me.SuperTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabControl1.ControlBox.MenuBox, Me.SuperTabControl1.ControlBox.CloseBox})
         Me.SuperTabControl1.Controls.Add(Me.SuperTabControlPanel1)
-        Me.SuperTabControl1.Controls.Add(Me.SuperTabControlPanel3)
         Me.SuperTabControl1.Controls.Add(Me.SuperTabControlPanel2)
+        Me.SuperTabControl1.Controls.Add(Me.SuperTabControlPanel3)
         Me.SuperTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SuperTabControl1.Location = New System.Drawing.Point(0, 0)
         Me.SuperTabControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
@@ -1079,8 +1094,8 @@ Partial Class F0_ProduccionProducto
         Me.TabControlCalidad.ControlBox.MenuBox.Name = ""
         Me.TabControlCalidad.ControlBox.Name = ""
         Me.TabControlCalidad.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.TabControlCalidad.ControlBox.MenuBox, Me.TabControlCalidad.ControlBox.CloseBox})
-        Me.TabControlCalidad.Controls.Add(Me.SuperTabControlPanel4)
         Me.TabControlCalidad.Controls.Add(Me.SuperTabControlPanel6)
+        Me.TabControlCalidad.Controls.Add(Me.SuperTabControlPanel4)
         Me.TabControlCalidad.Controls.Add(Me.SuperTabControlPanel5)
         Me.TabControlCalidad.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControlCalidad.Location = New System.Drawing.Point(0, 0)
@@ -1096,106 +1111,6 @@ Partial Class F0_ProduccionProducto
         Me.TabControlCalidad.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItem4, Me.SuperTabItem5, Me.SuperTabItem6})
         Me.TabControlCalidad.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.Office2010BackstageBlue
         Me.TabControlCalidad.Text = "SuperTabControl2"
-        '
-        'SuperTabControlPanel6
-        '
-        Me.SuperTabControlPanel6.Controls.Add(Me.Panel2)
-        Me.SuperTabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SuperTabControlPanel6.Location = New System.Drawing.Point(0, 0)
-        Me.SuperTabControlPanel6.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.SuperTabControlPanel6.Name = "SuperTabControlPanel6"
-        Me.SuperTabControlPanel6.Size = New System.Drawing.Size(1056, 281)
-        Me.SuperTabControlPanel6.TabIndex = 0
-        Me.SuperTabControlPanel6.TabItem = Me.SuperTabItem6
-        '
-        'Panel2
-        '
-        Me.Panel2.Controls.Add(Me.PanelVerImagen)
-        Me.Panel2.Controls.Add(Me.PanelListImagenes)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Panel2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1056, 281)
-        Me.Panel2.TabIndex = 0
-        '
-        'PanelVerImagen
-        '
-        Me.PanelVerImagen.BackColor = System.Drawing.Color.Transparent
-        Me.PanelVerImagen.Controls.Add(Me.btnImagen)
-        Me.PanelVerImagen.Controls.Add(Me.btnDelete)
-        Me.PanelVerImagen.Controls.Add(Me.pbImgProdu)
-        Me.PanelVerImagen.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelVerImagen.Location = New System.Drawing.Point(209, 0)
-        Me.PanelVerImagen.Margin = New System.Windows.Forms.Padding(4)
-        Me.PanelVerImagen.Name = "PanelVerImagen"
-        Me.PanelVerImagen.Size = New System.Drawing.Size(847, 281)
-        Me.PanelVerImagen.TabIndex = 3
-        '
-        'btnImagen
-        '
-        Me.btnImagen.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btnImagen.BackColor = System.Drawing.Color.Transparent
-        Me.btnImagen.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
-        Me.btnImagen.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnImagen.Image = Global.DinoM.My.Resources.Resources.jpg
-        Me.btnImagen.ImageFixedSize = New System.Drawing.Size(60, 60)
-        Me.btnImagen.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnImagen.Location = New System.Drawing.Point(8, 10)
-        Me.btnImagen.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnImagen.Name = "btnImagen"
-        Me.btnImagen.Padding = New System.Windows.Forms.Padding(0, 0, 0, 25)
-        Me.btnImagen.Size = New System.Drawing.Size(88, 66)
-        Me.btnImagen.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
-        Me.btnImagen.TabIndex = 15
-        Me.btnImagen.TextColor = System.Drawing.Color.White
-        '
-        'btnDelete
-        '
-        Me.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btnDelete.BackColor = System.Drawing.Color.Transparent
-        Me.btnDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
-        Me.btnDelete.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDelete.Image = Global.DinoM.My.Resources.Resources.delete
-        Me.btnDelete.ImageFixedSize = New System.Drawing.Size(60, 60)
-        Me.btnDelete.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnDelete.Location = New System.Drawing.Point(8, 92)
-        Me.btnDelete.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Padding = New System.Windows.Forms.Padding(0, 0, 0, 25)
-        Me.btnDelete.Size = New System.Drawing.Size(88, 66)
-        Me.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
-        Me.btnDelete.TabIndex = 14
-        Me.btnDelete.TextColor = System.Drawing.Color.White
-        '
-        'pbImgProdu
-        '
-        Me.pbImgProdu.BackColor = System.Drawing.Color.White
-        Me.pbImgProdu.Dock = System.Windows.Forms.DockStyle.Left
-        Me.pbImgProdu.Location = New System.Drawing.Point(0, 0)
-        Me.pbImgProdu.Margin = New System.Windows.Forms.Padding(4)
-        Me.pbImgProdu.Name = "pbImgProdu"
-        Me.pbImgProdu.Size = New System.Drawing.Size(705, 281)
-        Me.pbImgProdu.TabIndex = 0
-        Me.pbImgProdu.TabStop = False
-        '
-        'PanelListImagenes
-        '
-        Me.PanelListImagenes.AutoScroll = True
-        Me.PanelListImagenes.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.PanelListImagenes.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelListImagenes.Location = New System.Drawing.Point(0, 0)
-        Me.PanelListImagenes.Margin = New System.Windows.Forms.Padding(4)
-        Me.PanelListImagenes.Name = "PanelListImagenes"
-        Me.PanelListImagenes.Size = New System.Drawing.Size(209, 281)
-        Me.PanelListImagenes.TabIndex = 4
-        '
-        'SuperTabItem6
-        '
-        Me.SuperTabItem6.AttachedControl = Me.SuperTabControlPanel6
-        Me.SuperTabItem6.GlobalItem = False
-        Me.SuperTabItem6.Name = "SuperTabItem6"
-        Me.SuperTabItem6.Text = "Sentidos Medición"
         '
         'SuperTabControlPanel4
         '
@@ -1387,6 +1302,106 @@ Partial Class F0_ProduccionProducto
         Me.SuperTabItem4.GlobalItem = False
         Me.SuperTabItem4.Name = "SuperTabItem4"
         Me.SuperTabItem4.Text = "Caract. Fisicas"
+        '
+        'SuperTabControlPanel6
+        '
+        Me.SuperTabControlPanel6.Controls.Add(Me.Panel2)
+        Me.SuperTabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SuperTabControlPanel6.Location = New System.Drawing.Point(0, 0)
+        Me.SuperTabControlPanel6.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.SuperTabControlPanel6.Name = "SuperTabControlPanel6"
+        Me.SuperTabControlPanel6.Size = New System.Drawing.Size(1056, 281)
+        Me.SuperTabControlPanel6.TabIndex = 0
+        Me.SuperTabControlPanel6.TabItem = Me.SuperTabItem6
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.PanelVerImagen)
+        Me.Panel2.Controls.Add(Me.PanelListImagenes)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(1056, 281)
+        Me.Panel2.TabIndex = 0
+        '
+        'PanelVerImagen
+        '
+        Me.PanelVerImagen.BackColor = System.Drawing.Color.Transparent
+        Me.PanelVerImagen.Controls.Add(Me.btnImagen)
+        Me.PanelVerImagen.Controls.Add(Me.btnDelete)
+        Me.PanelVerImagen.Controls.Add(Me.pbImgProdu)
+        Me.PanelVerImagen.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelVerImagen.Location = New System.Drawing.Point(209, 0)
+        Me.PanelVerImagen.Margin = New System.Windows.Forms.Padding(4)
+        Me.PanelVerImagen.Name = "PanelVerImagen"
+        Me.PanelVerImagen.Size = New System.Drawing.Size(847, 281)
+        Me.PanelVerImagen.TabIndex = 3
+        '
+        'btnImagen
+        '
+        Me.btnImagen.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnImagen.BackColor = System.Drawing.Color.Transparent
+        Me.btnImagen.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
+        Me.btnImagen.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnImagen.Image = Global.DinoM.My.Resources.Resources.jpg
+        Me.btnImagen.ImageFixedSize = New System.Drawing.Size(60, 60)
+        Me.btnImagen.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btnImagen.Location = New System.Drawing.Point(8, 10)
+        Me.btnImagen.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnImagen.Name = "btnImagen"
+        Me.btnImagen.Padding = New System.Windows.Forms.Padding(0, 0, 0, 25)
+        Me.btnImagen.Size = New System.Drawing.Size(88, 66)
+        Me.btnImagen.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btnImagen.TabIndex = 15
+        Me.btnImagen.TextColor = System.Drawing.Color.White
+        '
+        'btnDelete
+        '
+        Me.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnDelete.BackColor = System.Drawing.Color.Transparent
+        Me.btnDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
+        Me.btnDelete.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDelete.Image = Global.DinoM.My.Resources.Resources.delete
+        Me.btnDelete.ImageFixedSize = New System.Drawing.Size(60, 60)
+        Me.btnDelete.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btnDelete.Location = New System.Drawing.Point(8, 92)
+        Me.btnDelete.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnDelete.Name = "btnDelete"
+        Me.btnDelete.Padding = New System.Windows.Forms.Padding(0, 0, 0, 25)
+        Me.btnDelete.Size = New System.Drawing.Size(88, 66)
+        Me.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btnDelete.TabIndex = 14
+        Me.btnDelete.TextColor = System.Drawing.Color.White
+        '
+        'pbImgProdu
+        '
+        Me.pbImgProdu.BackColor = System.Drawing.Color.White
+        Me.pbImgProdu.Dock = System.Windows.Forms.DockStyle.Left
+        Me.pbImgProdu.Location = New System.Drawing.Point(0, 0)
+        Me.pbImgProdu.Margin = New System.Windows.Forms.Padding(4)
+        Me.pbImgProdu.Name = "pbImgProdu"
+        Me.pbImgProdu.Size = New System.Drawing.Size(705, 281)
+        Me.pbImgProdu.TabIndex = 0
+        Me.pbImgProdu.TabStop = False
+        '
+        'PanelListImagenes
+        '
+        Me.PanelListImagenes.AutoScroll = True
+        Me.PanelListImagenes.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.PanelListImagenes.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelListImagenes.Location = New System.Drawing.Point(0, 0)
+        Me.PanelListImagenes.Margin = New System.Windows.Forms.Padding(4)
+        Me.PanelListImagenes.Name = "PanelListImagenes"
+        Me.PanelListImagenes.Size = New System.Drawing.Size(209, 281)
+        Me.PanelListImagenes.TabIndex = 4
+        '
+        'SuperTabItem6
+        '
+        Me.SuperTabItem6.AttachedControl = Me.SuperTabControlPanel6
+        Me.SuperTabItem6.GlobalItem = False
+        Me.SuperTabItem6.Name = "SuperTabItem6"
+        Me.SuperTabItem6.Text = "Sentidos Medición"
         '
         'SuperTabControlPanel5
         '
@@ -1585,417 +1600,6 @@ Partial Class F0_ProduccionProducto
         Me.SuperTabItem1.Name = "SuperTabItem1"
         Me.SuperTabItem1.Text = "Calidad"
         '
-        'SuperTabControlPanel3
-        '
-        Me.SuperTabControlPanel3.Controls.Add(Me.SuperTabControl2)
-        Me.SuperTabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SuperTabControlPanel3.Location = New System.Drawing.Point(0, 39)
-        Me.SuperTabControlPanel3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.SuperTabControlPanel3.Name = "SuperTabControlPanel3"
-        Me.SuperTabControlPanel3.Size = New System.Drawing.Size(1234, 295)
-        Me.SuperTabControlPanel3.TabIndex = 0
-        Me.SuperTabControlPanel3.TabItem = Me.SuperTabItem3
-        '
-        'SuperTabControl2
-        '
-        '
-        '
-        '
-        '
-        '
-        '
-        Me.SuperTabControl2.ControlBox.CloseBox.Name = ""
-        '
-        '
-        '
-        Me.SuperTabControl2.ControlBox.MenuBox.Name = ""
-        Me.SuperTabControl2.ControlBox.Name = ""
-        Me.SuperTabControl2.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabControl2.ControlBox.MenuBox, Me.SuperTabControl2.ControlBox.CloseBox})
-        Me.SuperTabControl2.Controls.Add(Me.SuperTabControlPanel10)
-        Me.SuperTabControl2.Controls.Add(Me.SuperTabControlPanel11)
-        Me.SuperTabControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SuperTabControl2.Location = New System.Drawing.Point(0, 0)
-        Me.SuperTabControl2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.SuperTabControl2.Name = "SuperTabControl2"
-        Me.SuperTabControl2.ReorderTabsEnabled = True
-        Me.SuperTabControl2.SelectedTabFont = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.SuperTabControl2.SelectedTabIndex = 0
-        Me.SuperTabControl2.Size = New System.Drawing.Size(1234, 295)
-        Me.SuperTabControl2.TabAlignment = DevComponents.DotNetBar.eTabStripAlignment.Right
-        Me.SuperTabControl2.TabFont = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SuperTabControl2.TabIndex = 2
-        Me.SuperTabControl2.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItem10, Me.SuperTabItem11})
-        Me.SuperTabControl2.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.Office2010BackstageBlue
-        Me.SuperTabControl2.Text = "SuperTabControl2"
-        '
-        'SuperTabControlPanel10
-        '
-        Me.SuperTabControlPanel10.Controls.Add(Me.Panel8)
-        Me.SuperTabControlPanel10.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SuperTabControlPanel10.Location = New System.Drawing.Point(0, 0)
-        Me.SuperTabControlPanel10.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.SuperTabControlPanel10.Name = "SuperTabControlPanel10"
-        Me.SuperTabControlPanel10.Size = New System.Drawing.Size(998, 295)
-        Me.SuperTabControlPanel10.TabIndex = 1
-        Me.SuperTabControlPanel10.TabItem = Me.SuperTabItem10
-        '
-        'Panel8
-        '
-        Me.Panel8.Controls.Add(Me.Panel18)
-        Me.Panel8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel8.Location = New System.Drawing.Point(0, 0)
-        Me.Panel8.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(998, 295)
-        Me.Panel8.TabIndex = 2
-        '
-        'Panel18
-        '
-        Me.Panel18.Controls.Add(Me.grMolde)
-        Me.Panel18.Controls.Add(Me.GroupPanel8)
-        Me.Panel18.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel18.Location = New System.Drawing.Point(0, 0)
-        Me.Panel18.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Panel18.Name = "Panel18"
-        Me.Panel18.Size = New System.Drawing.Size(998, 295)
-        Me.Panel18.TabIndex = 5
-        '
-        'grMolde
-        '
-        Me.grMolde.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.[False]
-        Me.grMolde.ColumnAutoResize = True
-        Me.grMolde.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grMolde.Location = New System.Drawing.Point(498, 0)
-        Me.grMolde.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grMolde.Name = "grMolde"
-        Me.grMolde.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
-        Me.grMolde.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.grMolde.RowFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grMolde.RowHeaderFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grMolde.Size = New System.Drawing.Size(500, 295)
-        Me.grMolde.TabIndex = 256
-        Me.grMolde.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
-        '
-        'GroupPanel8
-        '
-        Me.GroupPanel8.CanvasColor = System.Drawing.SystemColors.Control
-        Me.GroupPanel8.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP
-        Me.GroupPanel8.Controls.Add(Me.Panel19)
-        Me.GroupPanel8.DisabledBackColor = System.Drawing.Color.Empty
-        Me.GroupPanel8.Dock = System.Windows.Forms.DockStyle.Left
-        Me.GroupPanel8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupPanel8.Location = New System.Drawing.Point(0, 0)
-        Me.GroupPanel8.Name = "GroupPanel8"
-        Me.GroupPanel8.Size = New System.Drawing.Size(498, 295)
-        '
-        '
-        '
-        Me.GroupPanel8.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
-        Me.GroupPanel8.Style.BackColorGradientAngle = 90
-        Me.GroupPanel8.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
-        Me.GroupPanel8.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.GroupPanel8.Style.BorderBottomWidth = 1
-        Me.GroupPanel8.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
-        Me.GroupPanel8.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.GroupPanel8.Style.BorderLeftWidth = 1
-        Me.GroupPanel8.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.GroupPanel8.Style.BorderRightWidth = 1
-        Me.GroupPanel8.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.GroupPanel8.Style.BorderTopWidth = 1
-        Me.GroupPanel8.Style.CornerDiameter = 4
-        Me.GroupPanel8.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
-        Me.GroupPanel8.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
-        Me.GroupPanel8.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
-        '
-        '
-        '
-        Me.GroupPanel8.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.GroupPanel8.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.GroupPanel8.TabIndex = 237
-        Me.GroupPanel8.Text = "Datos"
-        '
-        'Panel19
-        '
-        Me.Panel19.Controls.Add(Me.btnMoldeAgregar)
-        Me.Panel19.Controls.Add(Me.LabelX18)
-        Me.Panel19.Controls.Add(Me.tbMoldeCodigo)
-        Me.Panel19.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel19.Location = New System.Drawing.Point(0, 0)
-        Me.Panel19.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Panel19.Name = "Panel19"
-        Me.Panel19.Size = New System.Drawing.Size(508, 270)
-        Me.Panel19.TabIndex = 0
-        '
-        'btnMoldeAgregar
-        '
-        Me.btnMoldeAgregar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btnMoldeAgregar.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
-        Me.btnMoldeAgregar.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnMoldeAgregar.Image = Global.DinoM.My.Resources.Resources.add
-        Me.btnMoldeAgregar.ImageFixedSize = New System.Drawing.Size(30, 30)
-        Me.btnMoldeAgregar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnMoldeAgregar.Location = New System.Drawing.Point(171, 70)
-        Me.btnMoldeAgregar.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnMoldeAgregar.Name = "btnMoldeAgregar"
-        Me.btnMoldeAgregar.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(4)
-        Me.btnMoldeAgregar.Size = New System.Drawing.Size(111, 64)
-        Me.btnMoldeAgregar.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
-        Me.btnMoldeAgregar.SubItemsExpandWidth = 10
-        Me.btnMoldeAgregar.TabIndex = 236
-        Me.btnMoldeAgregar.Text = "Agregar"
-        Me.btnMoldeAgregar.TextColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        '
-        'LabelX18
-        '
-        Me.LabelX18.AutoSize = True
-        Me.LabelX18.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.LabelX18.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX18.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX18.Location = New System.Drawing.Point(45, 31)
-        Me.LabelX18.Margin = New System.Windows.Forms.Padding(4)
-        Me.LabelX18.Name = "LabelX18"
-        Me.LabelX18.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX18.Size = New System.Drawing.Size(114, 20)
-        Me.LabelX18.TabIndex = 233
-        Me.LabelX18.Text = "Codigo Molde:"
-        '
-        'tbMoldeCodigo
-        '
-        Me.tbMoldeCodigo.BackColor = System.Drawing.Color.White
-        '
-        '
-        '
-        Me.tbMoldeCodigo.Border.Class = "TextBoxBorder"
-        Me.tbMoldeCodigo.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbMoldeCodigo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbMoldeCodigo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbMoldeCodigo.Location = New System.Drawing.Point(171, 25)
-        Me.tbMoldeCodigo.Margin = New System.Windows.Forms.Padding(4)
-        Me.tbMoldeCodigo.Name = "tbMoldeCodigo"
-        Me.tbMoldeCodigo.PreventEnterBeep = True
-        Me.tbMoldeCodigo.Size = New System.Drawing.Size(267, 26)
-        Me.tbMoldeCodigo.TabIndex = 232
-        '
-        'SuperTabItem10
-        '
-        Me.SuperTabItem10.AttachedControl = Me.SuperTabControlPanel10
-        Me.SuperTabItem10.GlobalItem = False
-        Me.SuperTabItem10.Name = "SuperTabItem10"
-        Me.SuperTabItem10.Text = "Molde Requerido"
-        '
-        'SuperTabControlPanel11
-        '
-        Me.SuperTabControlPanel11.Controls.Add(Me.Panel9)
-        Me.SuperTabControlPanel11.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SuperTabControlPanel11.Location = New System.Drawing.Point(0, 0)
-        Me.SuperTabControlPanel11.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.SuperTabControlPanel11.Name = "SuperTabControlPanel11"
-        Me.SuperTabControlPanel11.Size = New System.Drawing.Size(1066, 295)
-        Me.SuperTabControlPanel11.TabIndex = 0
-        Me.SuperTabControlPanel11.TabItem = Me.SuperTabItem11
-        '
-        'Panel9
-        '
-        Me.Panel9.Controls.Add(Me.Panel20)
-        Me.Panel9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel9.Location = New System.Drawing.Point(0, 0)
-        Me.Panel9.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(1066, 295)
-        Me.Panel9.TabIndex = 2
-        '
-        'Panel20
-        '
-        Me.Panel20.Controls.Add(Me.grHerramental)
-        Me.Panel20.Controls.Add(Me.grHerramentalddd)
-        Me.Panel20.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel20.Location = New System.Drawing.Point(0, 0)
-        Me.Panel20.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Panel20.Name = "Panel20"
-        Me.Panel20.Size = New System.Drawing.Size(1066, 295)
-        Me.Panel20.TabIndex = 6
-        '
-        'grHerramental
-        '
-        Me.grHerramental.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.[False]
-        Me.grHerramental.ColumnAutoResize = True
-        Me.grHerramental.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grHerramental.Location = New System.Drawing.Point(498, 0)
-        Me.grHerramental.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.grHerramental.Name = "grHerramental"
-        Me.grHerramental.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
-        Me.grHerramental.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.grHerramental.RowFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grHerramental.RowHeaderFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grHerramental.Size = New System.Drawing.Size(568, 295)
-        Me.grHerramental.TabIndex = 257
-        Me.grHerramental.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
-        '
-        'grHerramentalddd
-        '
-        Me.grHerramentalddd.CanvasColor = System.Drawing.SystemColors.Control
-        Me.grHerramentalddd.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP
-        Me.grHerramentalddd.Controls.Add(Me.Panel21)
-        Me.grHerramentalddd.DisabledBackColor = System.Drawing.Color.Empty
-        Me.grHerramentalddd.Dock = System.Windows.Forms.DockStyle.Left
-        Me.grHerramentalddd.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grHerramentalddd.Location = New System.Drawing.Point(0, 0)
-        Me.grHerramentalddd.Name = "grHerramentalddd"
-        Me.grHerramentalddd.Size = New System.Drawing.Size(498, 295)
-        '
-        '
-        '
-        Me.grHerramentalddd.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
-        Me.grHerramentalddd.Style.BackColorGradientAngle = 90
-        Me.grHerramentalddd.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
-        Me.grHerramentalddd.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.grHerramentalddd.Style.BorderBottomWidth = 1
-        Me.grHerramentalddd.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
-        Me.grHerramentalddd.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.grHerramentalddd.Style.BorderLeftWidth = 1
-        Me.grHerramentalddd.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.grHerramentalddd.Style.BorderRightWidth = 1
-        Me.grHerramentalddd.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.grHerramentalddd.Style.BorderTopWidth = 1
-        Me.grHerramentalddd.Style.CornerDiameter = 4
-        Me.grHerramentalddd.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
-        Me.grHerramentalddd.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
-        Me.grHerramentalddd.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
-        '
-        '
-        '
-        Me.grHerramentalddd.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.grHerramentalddd.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.grHerramentalddd.TabIndex = 239
-        Me.grHerramentalddd.Text = "Datos"
-        '
-        'Panel21
-        '
-        Me.Panel21.Controls.Add(Me.LabelX21)
-        Me.Panel21.Controls.Add(Me.tbHerramentalCodigo)
-        Me.Panel21.Controls.Add(Me.btnHerramentalAgregar)
-        Me.Panel21.Controls.Add(Me.LabelX20)
-        Me.Panel21.Controls.Add(Me.tbHerramentalCampo)
-        Me.Panel21.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel21.Location = New System.Drawing.Point(0, 0)
-        Me.Panel21.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Panel21.Name = "Panel21"
-        Me.Panel21.Size = New System.Drawing.Size(626, 270)
-        Me.Panel21.TabIndex = 0
-        '
-        'LabelX21
-        '
-        Me.LabelX21.AutoSize = True
-        Me.LabelX21.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.LabelX21.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX21.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX21.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX21.Location = New System.Drawing.Point(45, 65)
-        Me.LabelX21.Margin = New System.Windows.Forms.Padding(4)
-        Me.LabelX21.Name = "LabelX21"
-        Me.LabelX21.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX21.Size = New System.Drawing.Size(62, 20)
-        Me.LabelX21.TabIndex = 238
-        Me.LabelX21.Text = "Codigo:"
-        '
-        'tbHerramentalCodigo
-        '
-        Me.tbHerramentalCodigo.BackColor = System.Drawing.Color.White
-        '
-        '
-        '
-        Me.tbHerramentalCodigo.Border.Class = "TextBoxBorder"
-        Me.tbHerramentalCodigo.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbHerramentalCodigo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbHerramentalCodigo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbHerramentalCodigo.Location = New System.Drawing.Point(171, 59)
-        Me.tbHerramentalCodigo.Margin = New System.Windows.Forms.Padding(4)
-        Me.tbHerramentalCodigo.Name = "tbHerramentalCodigo"
-        Me.tbHerramentalCodigo.PreventEnterBeep = True
-        Me.tbHerramentalCodigo.Size = New System.Drawing.Size(267, 26)
-        Me.tbHerramentalCodigo.TabIndex = 237
-        '
-        'btnHerramentalAgregar
-        '
-        Me.btnHerramentalAgregar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btnHerramentalAgregar.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
-        Me.btnHerramentalAgregar.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnHerramentalAgregar.Image = Global.DinoM.My.Resources.Resources.add
-        Me.btnHerramentalAgregar.ImageFixedSize = New System.Drawing.Size(30, 30)
-        Me.btnHerramentalAgregar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnHerramentalAgregar.Location = New System.Drawing.Point(171, 93)
-        Me.btnHerramentalAgregar.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnHerramentalAgregar.Name = "btnHerramentalAgregar"
-        Me.btnHerramentalAgregar.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(4)
-        Me.btnHerramentalAgregar.Size = New System.Drawing.Size(115, 69)
-        Me.btnHerramentalAgregar.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
-        Me.btnHerramentalAgregar.SubItemsExpandWidth = 10
-        Me.btnHerramentalAgregar.TabIndex = 236
-        Me.btnHerramentalAgregar.Text = "Agregar"
-        Me.btnHerramentalAgregar.TextColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        '
-        'LabelX20
-        '
-        Me.LabelX20.AutoSize = True
-        Me.LabelX20.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.LabelX20.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX20.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX20.Location = New System.Drawing.Point(45, 31)
-        Me.LabelX20.Margin = New System.Windows.Forms.Padding(4)
-        Me.LabelX20.Name = "LabelX20"
-        Me.LabelX20.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX20.Size = New System.Drawing.Size(62, 20)
-        Me.LabelX20.TabIndex = 233
-        Me.LabelX20.Text = "Campo:"
-        '
-        'tbHerramentalCampo
-        '
-        Me.tbHerramentalCampo.BackColor = System.Drawing.Color.White
-        '
-        '
-        '
-        Me.tbHerramentalCampo.Border.Class = "TextBoxBorder"
-        Me.tbHerramentalCampo.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbHerramentalCampo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbHerramentalCampo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbHerramentalCampo.Location = New System.Drawing.Point(171, 25)
-        Me.tbHerramentalCampo.Margin = New System.Windows.Forms.Padding(4)
-        Me.tbHerramentalCampo.Name = "tbHerramentalCampo"
-        Me.tbHerramentalCampo.PreventEnterBeep = True
-        Me.tbHerramentalCampo.Size = New System.Drawing.Size(267, 26)
-        Me.tbHerramentalCampo.TabIndex = 232
-        '
-        'SuperTabItem11
-        '
-        Me.SuperTabItem11.AttachedControl = Me.SuperTabControlPanel11
-        Me.SuperTabItem11.GlobalItem = False
-        Me.SuperTabItem11.Name = "SuperTabItem11"
-        Me.SuperTabItem11.Text = "Herramental"
-        '
-        'SuperTabItem3
-        '
-        Me.SuperTabItem3.AttachedControl = Me.SuperTabControlPanel3
-        Me.SuperTabItem3.GlobalItem = False
-        Me.SuperTabItem3.Name = "SuperTabItem3"
-        Me.SuperTabItem3.Text = "Mantenimiento"
-        '
         'SuperTabControlPanel2
         '
         Me.SuperTabControlPanel2.Controls.Add(Me.SuperTabControlProduccion)
@@ -2003,7 +1607,7 @@ Partial Class F0_ProduccionProducto
         Me.SuperTabControlPanel2.Location = New System.Drawing.Point(0, 39)
         Me.SuperTabControlPanel2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.SuperTabControlPanel2.Name = "SuperTabControlPanel2"
-        Me.SuperTabControlPanel2.Size = New System.Drawing.Size(1234, 295)
+        Me.SuperTabControlPanel2.Size = New System.Drawing.Size(1234, 281)
         Me.SuperTabControlPanel2.TabIndex = 0
         Me.SuperTabControlPanel2.TabItem = Me.SuperTabItem2
         '
@@ -2032,7 +1636,7 @@ Partial Class F0_ProduccionProducto
         Me.SuperTabControlProduccion.ReorderTabsEnabled = True
         Me.SuperTabControlProduccion.SelectedTabFont = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold)
         Me.SuperTabControlProduccion.SelectedTabIndex = 0
-        Me.SuperTabControlProduccion.Size = New System.Drawing.Size(1234, 295)
+        Me.SuperTabControlProduccion.Size = New System.Drawing.Size(1234, 281)
         Me.SuperTabControlProduccion.TabAlignment = DevComponents.DotNetBar.eTabStripAlignment.Right
         Me.SuperTabControlProduccion.TabFont = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SuperTabControlProduccion.TabIndex = 1
@@ -2047,7 +1651,7 @@ Partial Class F0_ProduccionProducto
         Me.SuperTabControlPanel7.Location = New System.Drawing.Point(0, 0)
         Me.SuperTabControlPanel7.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.SuperTabControlPanel7.Name = "SuperTabControlPanel7"
-        Me.SuperTabControlPanel7.Size = New System.Drawing.Size(998, 295)
+        Me.SuperTabControlPanel7.Size = New System.Drawing.Size(998, 281)
         Me.SuperTabControlPanel7.TabIndex = 1
         Me.SuperTabControlPanel7.TabItem = Me.SuperTabItem7
         '
@@ -2058,7 +1662,7 @@ Partial Class F0_ProduccionProducto
         Me.Panel5.Location = New System.Drawing.Point(0, 0)
         Me.Panel5.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(998, 295)
+        Me.Panel5.Size = New System.Drawing.Size(998, 281)
         Me.Panel5.TabIndex = 2
         '
         'Panel12
@@ -2069,7 +1673,7 @@ Partial Class F0_ProduccionProducto
         Me.Panel12.Location = New System.Drawing.Point(0, 0)
         Me.Panel12.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Panel12.Name = "Panel12"
-        Me.Panel12.Size = New System.Drawing.Size(998, 295)
+        Me.Panel12.Size = New System.Drawing.Size(998, 281)
         Me.Panel12.TabIndex = 2
         '
         'grDosificacion
@@ -2084,7 +1688,7 @@ Partial Class F0_ProduccionProducto
         Me.grDosificacion.Office2007CustomColor = System.Drawing.Color.DodgerBlue
         Me.grDosificacion.RowFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grDosificacion.RowHeaderFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grDosificacion.Size = New System.Drawing.Size(500, 295)
+        Me.grDosificacion.Size = New System.Drawing.Size(500, 281)
         Me.grDosificacion.TabIndex = 253
         Me.grDosificacion.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -2098,7 +1702,7 @@ Partial Class F0_ProduccionProducto
         Me.GroupPanel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupPanel5.Location = New System.Drawing.Point(0, 0)
         Me.GroupPanel5.Name = "GroupPanel5"
-        Me.GroupPanel5.Size = New System.Drawing.Size(498, 295)
+        Me.GroupPanel5.Size = New System.Drawing.Size(498, 281)
         '
         '
         '
@@ -2141,7 +1745,7 @@ Partial Class F0_ProduccionProducto
         Me.Panel13.Location = New System.Drawing.Point(0, 0)
         Me.Panel13.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Panel13.Name = "Panel13"
-        Me.Panel13.Size = New System.Drawing.Size(492, 270)
+        Me.Panel13.Size = New System.Drawing.Size(492, 256)
         Me.Panel13.TabIndex = 0
         '
         'btMateriaUnidad
@@ -2640,6 +2244,417 @@ Partial Class F0_ProduccionProducto
         Me.SuperTabItem2.Name = "SuperTabItem2"
         Me.SuperTabItem2.Text = "Producción"
         '
+        'SuperTabControlPanel3
+        '
+        Me.SuperTabControlPanel3.Controls.Add(Me.SuperTabControl2)
+        Me.SuperTabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SuperTabControlPanel3.Location = New System.Drawing.Point(0, 39)
+        Me.SuperTabControlPanel3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.SuperTabControlPanel3.Name = "SuperTabControlPanel3"
+        Me.SuperTabControlPanel3.Size = New System.Drawing.Size(1234, 295)
+        Me.SuperTabControlPanel3.TabIndex = 0
+        Me.SuperTabControlPanel3.TabItem = Me.SuperTabItem3
+        '
+        'SuperTabControl2
+        '
+        '
+        '
+        '
+        '
+        '
+        '
+        Me.SuperTabControl2.ControlBox.CloseBox.Name = ""
+        '
+        '
+        '
+        Me.SuperTabControl2.ControlBox.MenuBox.Name = ""
+        Me.SuperTabControl2.ControlBox.Name = ""
+        Me.SuperTabControl2.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabControl2.ControlBox.MenuBox, Me.SuperTabControl2.ControlBox.CloseBox})
+        Me.SuperTabControl2.Controls.Add(Me.SuperTabControlPanel10)
+        Me.SuperTabControl2.Controls.Add(Me.SuperTabControlPanel11)
+        Me.SuperTabControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SuperTabControl2.Location = New System.Drawing.Point(0, 0)
+        Me.SuperTabControl2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.SuperTabControl2.Name = "SuperTabControl2"
+        Me.SuperTabControl2.ReorderTabsEnabled = True
+        Me.SuperTabControl2.SelectedTabFont = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.SuperTabControl2.SelectedTabIndex = 0
+        Me.SuperTabControl2.Size = New System.Drawing.Size(1234, 295)
+        Me.SuperTabControl2.TabAlignment = DevComponents.DotNetBar.eTabStripAlignment.Right
+        Me.SuperTabControl2.TabFont = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SuperTabControl2.TabIndex = 2
+        Me.SuperTabControl2.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItem10, Me.SuperTabItem11})
+        Me.SuperTabControl2.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.Office2010BackstageBlue
+        Me.SuperTabControl2.Text = "SuperTabControl2"
+        '
+        'SuperTabControlPanel10
+        '
+        Me.SuperTabControlPanel10.Controls.Add(Me.Panel8)
+        Me.SuperTabControlPanel10.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SuperTabControlPanel10.Location = New System.Drawing.Point(0, 0)
+        Me.SuperTabControlPanel10.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.SuperTabControlPanel10.Name = "SuperTabControlPanel10"
+        Me.SuperTabControlPanel10.Size = New System.Drawing.Size(998, 295)
+        Me.SuperTabControlPanel10.TabIndex = 1
+        Me.SuperTabControlPanel10.TabItem = Me.SuperTabItem10
+        '
+        'Panel8
+        '
+        Me.Panel8.Controls.Add(Me.Panel18)
+        Me.Panel8.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel8.Location = New System.Drawing.Point(0, 0)
+        Me.Panel8.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel8.Name = "Panel8"
+        Me.Panel8.Size = New System.Drawing.Size(998, 295)
+        Me.Panel8.TabIndex = 2
+        '
+        'Panel18
+        '
+        Me.Panel18.Controls.Add(Me.grMolde)
+        Me.Panel18.Controls.Add(Me.GroupPanel8)
+        Me.Panel18.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel18.Location = New System.Drawing.Point(0, 0)
+        Me.Panel18.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel18.Name = "Panel18"
+        Me.Panel18.Size = New System.Drawing.Size(998, 295)
+        Me.Panel18.TabIndex = 5
+        '
+        'grMolde
+        '
+        Me.grMolde.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.[False]
+        Me.grMolde.ColumnAutoResize = True
+        Me.grMolde.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grMolde.Location = New System.Drawing.Point(498, 0)
+        Me.grMolde.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grMolde.Name = "grMolde"
+        Me.grMolde.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.grMolde.Office2007CustomColor = System.Drawing.Color.DodgerBlue
+        Me.grMolde.RowFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.grMolde.RowHeaderFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.grMolde.Size = New System.Drawing.Size(500, 295)
+        Me.grMolde.TabIndex = 256
+        Me.grMolde.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'GroupPanel8
+        '
+        Me.GroupPanel8.CanvasColor = System.Drawing.SystemColors.Control
+        Me.GroupPanel8.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP
+        Me.GroupPanel8.Controls.Add(Me.Panel19)
+        Me.GroupPanel8.DisabledBackColor = System.Drawing.Color.Empty
+        Me.GroupPanel8.Dock = System.Windows.Forms.DockStyle.Left
+        Me.GroupPanel8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupPanel8.Location = New System.Drawing.Point(0, 0)
+        Me.GroupPanel8.Name = "GroupPanel8"
+        Me.GroupPanel8.Size = New System.Drawing.Size(498, 295)
+        '
+        '
+        '
+        Me.GroupPanel8.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.GroupPanel8.Style.BackColorGradientAngle = 90
+        Me.GroupPanel8.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.GroupPanel8.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.GroupPanel8.Style.BorderBottomWidth = 1
+        Me.GroupPanel8.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
+        Me.GroupPanel8.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.GroupPanel8.Style.BorderLeftWidth = 1
+        Me.GroupPanel8.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.GroupPanel8.Style.BorderRightWidth = 1
+        Me.GroupPanel8.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.GroupPanel8.Style.BorderTopWidth = 1
+        Me.GroupPanel8.Style.CornerDiameter = 4
+        Me.GroupPanel8.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
+        Me.GroupPanel8.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
+        Me.GroupPanel8.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
+        '
+        '
+        '
+        Me.GroupPanel8.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.GroupPanel8.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.GroupPanel8.TabIndex = 237
+        Me.GroupPanel8.Text = "Datos"
+        '
+        'Panel19
+        '
+        Me.Panel19.Controls.Add(Me.btnMoldeAgregar)
+        Me.Panel19.Controls.Add(Me.LabelX18)
+        Me.Panel19.Controls.Add(Me.tbMoldeCodigo)
+        Me.Panel19.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel19.Location = New System.Drawing.Point(0, 0)
+        Me.Panel19.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel19.Name = "Panel19"
+        Me.Panel19.Size = New System.Drawing.Size(508, 270)
+        Me.Panel19.TabIndex = 0
+        '
+        'btnMoldeAgregar
+        '
+        Me.btnMoldeAgregar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnMoldeAgregar.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.btnMoldeAgregar.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnMoldeAgregar.Image = Global.DinoM.My.Resources.Resources.add
+        Me.btnMoldeAgregar.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btnMoldeAgregar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btnMoldeAgregar.Location = New System.Drawing.Point(171, 70)
+        Me.btnMoldeAgregar.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnMoldeAgregar.Name = "btnMoldeAgregar"
+        Me.btnMoldeAgregar.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(4)
+        Me.btnMoldeAgregar.Size = New System.Drawing.Size(111, 64)
+        Me.btnMoldeAgregar.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btnMoldeAgregar.SubItemsExpandWidth = 10
+        Me.btnMoldeAgregar.TabIndex = 236
+        Me.btnMoldeAgregar.Text = "Agregar"
+        Me.btnMoldeAgregar.TextColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        '
+        'LabelX18
+        '
+        Me.LabelX18.AutoSize = True
+        Me.LabelX18.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX18.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX18.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX18.Location = New System.Drawing.Point(45, 31)
+        Me.LabelX18.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX18.Name = "LabelX18"
+        Me.LabelX18.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX18.Size = New System.Drawing.Size(114, 20)
+        Me.LabelX18.TabIndex = 233
+        Me.LabelX18.Text = "Codigo Molde:"
+        '
+        'tbMoldeCodigo
+        '
+        Me.tbMoldeCodigo.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.tbMoldeCodigo.Border.Class = "TextBoxBorder"
+        Me.tbMoldeCodigo.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbMoldeCodigo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbMoldeCodigo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.tbMoldeCodigo.Location = New System.Drawing.Point(171, 25)
+        Me.tbMoldeCodigo.Margin = New System.Windows.Forms.Padding(4)
+        Me.tbMoldeCodigo.Name = "tbMoldeCodigo"
+        Me.tbMoldeCodigo.PreventEnterBeep = True
+        Me.tbMoldeCodigo.Size = New System.Drawing.Size(267, 26)
+        Me.tbMoldeCodigo.TabIndex = 232
+        '
+        'SuperTabItem10
+        '
+        Me.SuperTabItem10.AttachedControl = Me.SuperTabControlPanel10
+        Me.SuperTabItem10.GlobalItem = False
+        Me.SuperTabItem10.Name = "SuperTabItem10"
+        Me.SuperTabItem10.Text = "Molde Requerido"
+        '
+        'SuperTabControlPanel11
+        '
+        Me.SuperTabControlPanel11.Controls.Add(Me.Panel9)
+        Me.SuperTabControlPanel11.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SuperTabControlPanel11.Location = New System.Drawing.Point(0, 0)
+        Me.SuperTabControlPanel11.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.SuperTabControlPanel11.Name = "SuperTabControlPanel11"
+        Me.SuperTabControlPanel11.Size = New System.Drawing.Size(1066, 295)
+        Me.SuperTabControlPanel11.TabIndex = 0
+        Me.SuperTabControlPanel11.TabItem = Me.SuperTabItem11
+        '
+        'Panel9
+        '
+        Me.Panel9.Controls.Add(Me.Panel20)
+        Me.Panel9.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel9.Location = New System.Drawing.Point(0, 0)
+        Me.Panel9.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel9.Name = "Panel9"
+        Me.Panel9.Size = New System.Drawing.Size(1066, 295)
+        Me.Panel9.TabIndex = 2
+        '
+        'Panel20
+        '
+        Me.Panel20.Controls.Add(Me.grHerramental)
+        Me.Panel20.Controls.Add(Me.grHerramentalddd)
+        Me.Panel20.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel20.Location = New System.Drawing.Point(0, 0)
+        Me.Panel20.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel20.Name = "Panel20"
+        Me.Panel20.Size = New System.Drawing.Size(1066, 295)
+        Me.Panel20.TabIndex = 6
+        '
+        'grHerramental
+        '
+        Me.grHerramental.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.[False]
+        Me.grHerramental.ColumnAutoResize = True
+        Me.grHerramental.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grHerramental.Location = New System.Drawing.Point(498, 0)
+        Me.grHerramental.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.grHerramental.Name = "grHerramental"
+        Me.grHerramental.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.grHerramental.Office2007CustomColor = System.Drawing.Color.DodgerBlue
+        Me.grHerramental.RowFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.grHerramental.RowHeaderFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.grHerramental.Size = New System.Drawing.Size(568, 295)
+        Me.grHerramental.TabIndex = 257
+        Me.grHerramental.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'grHerramentalddd
+        '
+        Me.grHerramentalddd.CanvasColor = System.Drawing.SystemColors.Control
+        Me.grHerramentalddd.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP
+        Me.grHerramentalddd.Controls.Add(Me.Panel21)
+        Me.grHerramentalddd.DisabledBackColor = System.Drawing.Color.Empty
+        Me.grHerramentalddd.Dock = System.Windows.Forms.DockStyle.Left
+        Me.grHerramentalddd.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.grHerramentalddd.Location = New System.Drawing.Point(0, 0)
+        Me.grHerramentalddd.Name = "grHerramentalddd"
+        Me.grHerramentalddd.Size = New System.Drawing.Size(498, 295)
+        '
+        '
+        '
+        Me.grHerramentalddd.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.grHerramentalddd.Style.BackColorGradientAngle = 90
+        Me.grHerramentalddd.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.grHerramentalddd.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.grHerramentalddd.Style.BorderBottomWidth = 1
+        Me.grHerramentalddd.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
+        Me.grHerramentalddd.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.grHerramentalddd.Style.BorderLeftWidth = 1
+        Me.grHerramentalddd.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.grHerramentalddd.Style.BorderRightWidth = 1
+        Me.grHerramentalddd.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.grHerramentalddd.Style.BorderTopWidth = 1
+        Me.grHerramentalddd.Style.CornerDiameter = 4
+        Me.grHerramentalddd.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
+        Me.grHerramentalddd.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
+        Me.grHerramentalddd.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
+        '
+        '
+        '
+        Me.grHerramentalddd.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.grHerramentalddd.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.grHerramentalddd.TabIndex = 239
+        Me.grHerramentalddd.Text = "Datos"
+        '
+        'Panel21
+        '
+        Me.Panel21.Controls.Add(Me.LabelX21)
+        Me.Panel21.Controls.Add(Me.tbHerramentalCodigo)
+        Me.Panel21.Controls.Add(Me.btnHerramentalAgregar)
+        Me.Panel21.Controls.Add(Me.LabelX20)
+        Me.Panel21.Controls.Add(Me.tbHerramentalCampo)
+        Me.Panel21.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel21.Location = New System.Drawing.Point(0, 0)
+        Me.Panel21.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel21.Name = "Panel21"
+        Me.Panel21.Size = New System.Drawing.Size(626, 270)
+        Me.Panel21.TabIndex = 0
+        '
+        'LabelX21
+        '
+        Me.LabelX21.AutoSize = True
+        Me.LabelX21.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX21.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX21.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX21.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX21.Location = New System.Drawing.Point(45, 65)
+        Me.LabelX21.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX21.Name = "LabelX21"
+        Me.LabelX21.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX21.Size = New System.Drawing.Size(62, 20)
+        Me.LabelX21.TabIndex = 238
+        Me.LabelX21.Text = "Codigo:"
+        '
+        'tbHerramentalCodigo
+        '
+        Me.tbHerramentalCodigo.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.tbHerramentalCodigo.Border.Class = "TextBoxBorder"
+        Me.tbHerramentalCodigo.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbHerramentalCodigo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbHerramentalCodigo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.tbHerramentalCodigo.Location = New System.Drawing.Point(171, 59)
+        Me.tbHerramentalCodigo.Margin = New System.Windows.Forms.Padding(4)
+        Me.tbHerramentalCodigo.Name = "tbHerramentalCodigo"
+        Me.tbHerramentalCodigo.PreventEnterBeep = True
+        Me.tbHerramentalCodigo.Size = New System.Drawing.Size(267, 26)
+        Me.tbHerramentalCodigo.TabIndex = 237
+        '
+        'btnHerramentalAgregar
+        '
+        Me.btnHerramentalAgregar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnHerramentalAgregar.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.btnHerramentalAgregar.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnHerramentalAgregar.Image = Global.DinoM.My.Resources.Resources.add
+        Me.btnHerramentalAgregar.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btnHerramentalAgregar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btnHerramentalAgregar.Location = New System.Drawing.Point(171, 93)
+        Me.btnHerramentalAgregar.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnHerramentalAgregar.Name = "btnHerramentalAgregar"
+        Me.btnHerramentalAgregar.Shape = New DevComponents.DotNetBar.RoundRectangleShapeDescriptor(4)
+        Me.btnHerramentalAgregar.Size = New System.Drawing.Size(115, 69)
+        Me.btnHerramentalAgregar.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btnHerramentalAgregar.SubItemsExpandWidth = 10
+        Me.btnHerramentalAgregar.TabIndex = 236
+        Me.btnHerramentalAgregar.Text = "Agregar"
+        Me.btnHerramentalAgregar.TextColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        '
+        'LabelX20
+        '
+        Me.LabelX20.AutoSize = True
+        Me.LabelX20.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX20.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX20.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX20.Location = New System.Drawing.Point(45, 31)
+        Me.LabelX20.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX20.Name = "LabelX20"
+        Me.LabelX20.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX20.Size = New System.Drawing.Size(62, 20)
+        Me.LabelX20.TabIndex = 233
+        Me.LabelX20.Text = "Campo:"
+        '
+        'tbHerramentalCampo
+        '
+        Me.tbHerramentalCampo.BackColor = System.Drawing.Color.White
+        '
+        '
+        '
+        Me.tbHerramentalCampo.Border.Class = "TextBoxBorder"
+        Me.tbHerramentalCampo.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbHerramentalCampo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbHerramentalCampo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.tbHerramentalCampo.Location = New System.Drawing.Point(171, 25)
+        Me.tbHerramentalCampo.Margin = New System.Windows.Forms.Padding(4)
+        Me.tbHerramentalCampo.Name = "tbHerramentalCampo"
+        Me.tbHerramentalCampo.PreventEnterBeep = True
+        Me.tbHerramentalCampo.Size = New System.Drawing.Size(267, 26)
+        Me.tbHerramentalCampo.TabIndex = 232
+        '
+        'SuperTabItem11
+        '
+        Me.SuperTabItem11.AttachedControl = Me.SuperTabControlPanel11
+        Me.SuperTabItem11.GlobalItem = False
+        Me.SuperTabItem11.Name = "SuperTabItem11"
+        Me.SuperTabItem11.Text = "Herramental"
+        '
+        'SuperTabItem3
+        '
+        Me.SuperTabItem3.AttachedControl = Me.SuperTabControlPanel3
+        Me.SuperTabItem3.GlobalItem = False
+        Me.SuperTabItem3.Name = "SuperTabItem3"
+        Me.SuperTabItem3.Text = "Mantenimiento"
+        '
         'SuperTabItem12
         '
         Me.SuperTabItem12.AttachedControl = Me.SuperTabControlPanel12
@@ -2735,21 +2750,6 @@ Partial Class F0_ProduccionProducto
         Me.grCompra.TabIndex = 0
         Me.grCompra.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
-        'btnCrearCliente
-        '
-        Me.btnCrearCliente.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btnCrearCliente.BackColor = System.Drawing.Color.Transparent
-        Me.btnCrearCliente.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
-        Me.btnCrearCliente.Image = Global.DinoM.My.Resources.Resources.add
-        Me.btnCrearCliente.ImageFixedSize = New System.Drawing.Size(25, 23)
-        Me.btnCrearCliente.Location = New System.Drawing.Point(580, 50)
-        Me.btnCrearCliente.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnCrearCliente.Name = "btnCrearCliente"
-        Me.btnCrearCliente.Size = New System.Drawing.Size(37, 28)
-        Me.btnCrearCliente.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btnCrearCliente.TabIndex = 256
-        Me.btnCrearCliente.Visible = False
-        '
         'F0_ProduccionProducto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -2794,39 +2794,22 @@ Partial Class F0_ProduccionProducto
         Me.SuperTabControlPanel1.ResumeLayout(False)
         CType(Me.TabControlCalidad, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControlCalidad.ResumeLayout(False)
-        Me.SuperTabControlPanel6.ResumeLayout(False)
-        Me.Panel2.ResumeLayout(False)
-        Me.PanelVerImagen.ResumeLayout(False)
-        CType(Me.pbImgProdu, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SuperTabControlPanel4.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         CType(Me.grCaracterisiticaFisicas, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupPanel3.ResumeLayout(False)
         Me.Panel10.ResumeLayout(False)
         Me.Panel10.PerformLayout()
+        Me.SuperTabControlPanel6.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
+        Me.PanelVerImagen.ResumeLayout(False)
+        CType(Me.pbImgProdu, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SuperTabControlPanel5.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
         CType(Me.grCaracteristicaCalidad, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupPanel4.ResumeLayout(False)
         Me.Panel11.ResumeLayout(False)
         Me.Panel11.PerformLayout()
-        Me.SuperTabControlPanel3.ResumeLayout(False)
-        CType(Me.SuperTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SuperTabControl2.ResumeLayout(False)
-        Me.SuperTabControlPanel10.ResumeLayout(False)
-        Me.Panel8.ResumeLayout(False)
-        Me.Panel18.ResumeLayout(False)
-        CType(Me.grMolde, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupPanel8.ResumeLayout(False)
-        Me.Panel19.ResumeLayout(False)
-        Me.Panel19.PerformLayout()
-        Me.SuperTabControlPanel11.ResumeLayout(False)
-        Me.Panel9.ResumeLayout(False)
-        Me.Panel20.ResumeLayout(False)
-        CType(Me.grHerramental, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.grHerramentalddd.ResumeLayout(False)
-        Me.Panel21.ResumeLayout(False)
-        Me.Panel21.PerformLayout()
         Me.SuperTabControlPanel2.ResumeLayout(False)
         CType(Me.SuperTabControlProduccion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SuperTabControlProduccion.ResumeLayout(False)
@@ -2853,6 +2836,23 @@ Partial Class F0_ProduccionProducto
         Me.GroupPanel7.ResumeLayout(False)
         Me.Panel17.ResumeLayout(False)
         Me.Panel17.PerformLayout()
+        Me.SuperTabControlPanel3.ResumeLayout(False)
+        CType(Me.SuperTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SuperTabControl2.ResumeLayout(False)
+        Me.SuperTabControlPanel10.ResumeLayout(False)
+        Me.Panel8.ResumeLayout(False)
+        Me.Panel18.ResumeLayout(False)
+        CType(Me.grMolde, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupPanel8.ResumeLayout(False)
+        Me.Panel19.ResumeLayout(False)
+        Me.Panel19.PerformLayout()
+        Me.SuperTabControlPanel11.ResumeLayout(False)
+        Me.Panel9.ResumeLayout(False)
+        Me.Panel20.ResumeLayout(False)
+        CType(Me.grHerramental, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.grHerramentalddd.ResumeLayout(False)
+        Me.Panel21.ResumeLayout(False)
+        Me.Panel21.PerformLayout()
         Me.SuperTabControlPanel12.ResumeLayout(False)
         Me.GroupPanel2.ResumeLayout(False)
         Me.Panel22.ResumeLayout(False)

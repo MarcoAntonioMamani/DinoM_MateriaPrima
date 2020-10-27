@@ -477,10 +477,10 @@ Public Class F1_ClientesEmpresas
         listEstCeldas.Add(New Modelo.Celda("id", True, "Código".ToUpper, 80))
 
         listEstCeldas.Add(New Modelo.Celda("NombreEmpresa", True, "Empresa".ToUpper, 200))
-        listEstCeldas.Add(New Modelo.Celda("Direccion", True, "Direccion".ToUpper, 150))
+        listEstCeldas.Add(New Modelo.Celda("Direccion", True, "Direccion".ToUpper, 350))
         listEstCeldas.Add(New Modelo.Celda("Departamento", False))
         listEstCeldas.Add(New Modelo.Celda("Ciudad", False))
-        listEstCeldas.Add(New Modelo.Celda("Telefono01", True, "Telefono".ToUpper, 80))
+        listEstCeldas.Add(New Modelo.Celda("Telefono01", True, "Telefono".ToUpper, 150))
 
         listEstCeldas.Add(New Modelo.Celda("Email", False))
         listEstCeldas.Add(New Modelo.Celda("PaginaWeb", False))
@@ -731,6 +731,78 @@ Public Class F1_ClientesEmpresas
 
     End Sub
 
-    Private Sub MultiColumnCombo1_ValueChanged(sender As Object, e As EventArgs)
+    Private Sub cbDepartamento_ValueChanged(sender As Object, e As EventArgs) Handles cbDepartamento.ValueChanged
+        If cbDepartamento.SelectedIndex < 0 And cbDepartamento.Text <> String.Empty Then
+            btnDepartamento.Visible = True
+        Else
+            btnDepartamento.Visible = False
+        End If
+    End Sub
+
+    Private Sub cbCiudad_ValueChanged(sender As Object, e As EventArgs) Handles cbCiudad.ValueChanged
+        If cbCiudad.SelectedIndex < 0 And cbCiudad.Text <> String.Empty Then
+            btnCiudad.Visible = True
+        Else
+            btnCiudad.Visible = False
+        End If
+    End Sub
+
+    Private Sub cbActividadComercial_ValueChanged(sender As Object, e As EventArgs) Handles cbActividadComercial.ValueChanged
+        If cbActividadComercial.SelectedIndex < 0 And cbActividadComercial.Text <> String.Empty Then
+            btnActividadComercial.Visible = True
+        Else
+            btnActividadComercial.Visible = False
+        End If
+    End Sub
+
+    Private Sub cbCondicionesEntrega_ValueChanged(sender As Object, e As EventArgs) Handles cbCondicionesEntrega.ValueChanged
+        If cbCondicionesEntrega.SelectedIndex < 0 And cbCondicionesEntrega.Text <> String.Empty Then
+            btnCondicionesEntrega.Visible = True
+        Else
+            btnCondicionesEntrega.Visible = False
+        End If
+    End Sub
+
+    Private Sub btnDepartamento_Click(sender As Object, e As EventArgs) Handles btnDepartamento.Click
+        Dim numi As String = ""
+        If L_prLibreriaGrabar(numi, "2", "3", cbDepartamento.Text, "") Then
+            _prCargarComboLibreria(cbDepartamento, "2", "3")
+            cbDepartamento.SelectedIndex = CType(cbDepartamento.DataSource, DataTable).Rows.Count - 1
+        End If
+    End Sub
+
+    Private Sub btnCiudad_Click(sender As Object, e As EventArgs) Handles btnCiudad.Click
+        Dim numi As String = ""
+        If L_prLibreriaGrabar(numi, "2", "4", cbCiudad.Text, "") Then
+            _prCargarComboLibreria(cbCiudad, "2", "4")
+            cbCiudad.SelectedIndex = CType(cbCiudad.DataSource, DataTable).Rows.Count - 1
+        End If
+    End Sub
+
+    Private Sub btnActividadComercial_Click(sender As Object, e As EventArgs) Handles btnActividadComercial.Click
+        Dim numi As String = ""
+        If L_prLibreriaGrabar(numi, "2", "5", cbActividadComercial.Text, "") Then
+            _prCargarComboLibreria(cbActividadComercial, "2", "5")
+            cbActividadComercial.SelectedIndex = CType(cbActividadComercial.DataSource, DataTable).Rows.Count - 1
+        End If
+    End Sub
+
+    Private Sub btnCondicionesEntrega_Click(sender As Object, e As EventArgs) Handles btnCondicionesEntrega.Click
+        Dim numi As String = ""
+        If L_prLibreriaGrabar(numi, "2", "6", cbCondicionesEntrega.Text, "") Then
+            _prCargarComboLibreria(cbCondicionesEntrega, "2", "6")
+            cbCondicionesEntrega.SelectedIndex = CType(cbCondicionesEntrega.DataSource, DataTable).Rows.Count - 1
+        End If
+    End Sub
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        _Inter = _Inter + 1
+        If _Inter = 1 Then
+            Me.WindowState = FormWindowState.Maximized
+
+
+        Else
+            Me.Opacity = 100
+            Timer1.Enabled = False
+        End If
     End Sub
 End Class

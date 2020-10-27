@@ -738,21 +738,42 @@ Public Class AccesoLogica
         Dim _resultado As Boolean
 
         Dim _Tabla As DataTable
-            Dim _listParam As New List(Of Datos.DParametro)
+        Dim _listParam As New List(Of Datos.DParametro)
 
-            _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
         _listParam.Add(New Datos.DParametro("@Id", numi))
         _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
 
         _Tabla = D_ProcedimientoConParam("sp_Mam_Clientes", _listParam)
 
         If _Tabla.Rows.Count > 0 Then
-                _resultado = True
-            Else
-                _resultado = False
-            End If
+            _resultado = True
+        Else
+            _resultado = False
+        End If
 
-            Return _resultado
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnEliminarEquipo(numi As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@Id", numi))
+        _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Equipos", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
     End Function
     Public Shared Function L_fnEliminarClientesConDetalleZona(numi As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
@@ -827,6 +848,65 @@ Public Class AccesoLogica
 
         If _Tabla.Rows.Count > 0 Then
             _ydnumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnGrabarEquipo(ByRef Id As String, Nombre As String, Grupo As Integer,
+                                            ParametrosTecnico As Integer, Notas As String, dtImagenes As DataTable, dtDetalle As DataTable) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        '@Id ,@Nombre ,@Grupo ,@ParametrosTecnico ,@Notas ,@Usuario ,@newFecha
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@Id", Id))
+        _listParam.Add(New Datos.DParametro("@Nombre", Nombre))
+        _listParam.Add(New Datos.DParametro("@Grupo", Grupo))
+        _listParam.Add(New Datos.DParametro("@ParametrosTecnico", ParametrosTecnico))
+        _listParam.Add(New Datos.DParametro("@Notas", Notas))
+        _listParam.Add(New Datos.DParametro("@ProductoImagenes", "", dtImagenes))
+        _listParam.Add(New Datos.DParametro("@EquipoDetalle", "", dtDetalle))
+
+
+        _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Equipos", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            Id = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnModificarEquipo(ByRef Id As String, Nombre As String, Grupo As Integer,
+                                            ParametrosTecnico As Integer, Notas As String, dtImagenes As DataTable, dtDetalle As DataTable) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        '@Id ,@Nombre ,@Grupo ,@ParametrosTecnico ,@Notas ,@Usuario ,@newFecha
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@Id", Id))
+        _listParam.Add(New Datos.DParametro("@Nombre", Nombre))
+        _listParam.Add(New Datos.DParametro("@Grupo", Grupo))
+        _listParam.Add(New Datos.DParametro("@ParametrosTecnico", ParametrosTecnico))
+        _listParam.Add(New Datos.DParametro("@Notas", Notas))
+        _listParam.Add(New Datos.DParametro("@EquipoDetalle", "", dtDetalle))
+        _listParam.Add(New Datos.DParametro("@ProductoImagenes", "", dtImagenes))
+
+        _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Equipos", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            Id = _Tabla.Rows(0).Item(0)
             _resultado = True
         Else
             _resultado = False
@@ -1146,6 +1226,18 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@tipo", 3))
         _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_Clientes", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnGeneralEquipos() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Equipos", _listParam)
 
         Return _Tabla
     End Function
@@ -1842,6 +1934,19 @@ Public Class AccesoLogica
         Return _Tabla
     End Function
 
+    Public Shared Function L_fnDetalleEquipos(_IdProducto As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@Id", _IdProducto))
+        _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Equipos", _listParam)
+
+        Return _Tabla
+    End Function
+
     Public Shared Function L_fnDetalleMolde(_IdProducto As String) As DataTable
         Dim _Tabla As DataTable
 
@@ -1898,10 +2003,23 @@ Public Class AccesoLogica
 
         Dim _listParam As New List(Of Datos.DParametro)
 
-        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
         _listParam.Add(New Datos.DParametro("@Id", _IdProducto))
         _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
-        _Tabla = D_ProcedimientoConParam("sp_Mam_Productos", _listParam)
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Equipos", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnDetalleImagenesEquipos(EquipoId As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@Id", EquipoId))
+        _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Equipos", _listParam)
 
         Return _Tabla
     End Function

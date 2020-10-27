@@ -308,21 +308,35 @@ Public Class P_Principal
     End Sub
 
     Private Sub btConfFabrica_Click(sender As Object, e As EventArgs) Handles btConfCliente.Click
-        'SideNav1.IsMenuExpanded = False
-        'Ventana.Select()
-        F1_Clientes.AllowTransparency = True
-        Dim frm As New F1_Clientes
-        frm._Tipo = 1
+        ''SideNav1.IsMenuExpanded = False
+        ''Ventana.Select()
+        ''F1_Clientes.AllowTransparency = True
+        'Dim frm As New F1_ClientesEmpresas
+        'frm._Tipo = 1
+        'frm._nameButton = btConfCliente.Name
+        'frm._modulo = FP_Configuracion
+        ''Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)
+        ''frm._tab = tab3
+        ''Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        ''superTabControl3.SelectedTabIndex = superTabControl3.Tabs.Count - 1
+        ''tab3.AttachedControl.Controls.Add(panel)
+        'frm.Show()
+        ''tab3.Text = frm.Text
+        ''tab3.Icon = frm.Icon
+
+        SideNav1.IsMenuExpanded = False
+        Ventana.Select()
+        Dim frm As New F1_ClientesEmpresas
         frm._nameButton = btConfCliente.Name
         frm._modulo = FP_Configuracion
-        'Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)
-        'frm._tab = tab3
-        'Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
-        'superTabControl3.SelectedTabIndex = superTabControl3.Tabs.Count - 1
-        'tab3.AttachedControl.Controls.Add(panel)
+        Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)
+        frm._tab = tab3
+        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        superTabControl3.SelectedTabIndex = superTabControl3.Tabs.Count - 1
+        tab3.AttachedControl.Controls.Add(panel)
         frm.Show()
-        'tab3.Text = frm.Text
-        'tab3.Icon = frm.Icon
+        tab3.Text = frm.Text
+        tab3.Icon = frm.Icon
 
     End Sub
 
@@ -1064,6 +1078,22 @@ Public Class P_Principal
         frm._nameButton = btConfProductoMateriaPrima.Name
         'frm._modulo = FP_COMPRAS
         frm.Show()
+    End Sub
+
+    Private Sub btConfEquipos_Click(sender As Object, e As EventArgs) Handles btConfEquipos.Click
+        SideNav1.IsMenuExpanded = False
+        Ventana.Select()
+        Dim frm As New F1_Equipos
+        frm._nameButton = btConfEquipos.Name
+        frm._modulo = FP_Configuracion
+        Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)
+        frm._tab = tab3
+        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        superTabControl3.SelectedTabIndex = superTabControl3.Tabs.Count - 1
+        tab3.AttachedControl.Controls.Add(panel)
+        frm.Show()
+        tab3.Text = frm.Text
+        tab3.Icon = frm.Icon
     End Sub
 
     'Private Sub btnCredPagoCliente_Click(sender As Object, e As EventArgs) Handles btnCredPagoCliente.Click
