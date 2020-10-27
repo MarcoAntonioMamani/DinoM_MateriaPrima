@@ -883,4 +883,7 @@ Public Class F1_ClientesEmpresas
     Private Sub tbTelf2_TextChanged(sender As Object, e As EventArgs) Handles tbEmail.TextChanged
 
     End Sub
+
+    Private Sub MultiColumnCombo1_ValueChanged(sender As Object, e As EventArgs)
+    End Sub
 End Class
