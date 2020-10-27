@@ -25,6 +25,8 @@ Partial Class F1_ClientesEmpresas
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F1_ClientesEmpresas))
         Dim cbCiudad_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim cbDepartamento_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
+        Dim MultiColumnCombo1_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
+        Dim MultiColumnCombo2_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -59,6 +61,20 @@ Partial Class F1_ClientesEmpresas
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.TextBoxX1 = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.LabelX7 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX8 = New DevComponents.DotNetBar.LabelX()
+        Me.TextBoxX2 = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.LabelX9 = New DevComponents.DotNetBar.LabelX()
+        Me.TextBoxX3 = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.LabelX11 = New DevComponents.DotNetBar.LabelX()
+        Me.TextBoxX4 = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.LabelX12 = New DevComponents.DotNetBar.LabelX()
+        Me.TextBoxX5 = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.ButtonX1 = New DevComponents.DotNetBar.ButtonX()
+        Me.MultiColumnCombo1 = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
+        Me.LabelX13 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX14 = New DevComponents.DotNetBar.LabelX()
+        Me.ButtonX2 = New DevComponents.DotNetBar.ButtonX()
+        Me.MultiColumnCombo2 = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabPrincipal.SuspendLayout()
         Me.SuperTabControlPanelRegistro.SuspendLayout()
@@ -86,6 +102,8 @@ Partial Class F1_ClientesEmpresas
         Me.SuperTabControlPanel2.SuspendLayout()
         Me.GroupPanel2.SuspendLayout()
         Me.Panel4.SuspendLayout()
+        CType(Me.MultiColumnCombo1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MultiColumnCombo2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SuperTabPrincipal
@@ -866,6 +884,20 @@ Partial Class F1_ClientesEmpresas
         '
         Me.Panel4.AutoScroll = True
         Me.Panel4.BackColor = System.Drawing.Color.Transparent
+        Me.Panel4.Controls.Add(Me.LabelX14)
+        Me.Panel4.Controls.Add(Me.ButtonX2)
+        Me.Panel4.Controls.Add(Me.MultiColumnCombo2)
+        Me.Panel4.Controls.Add(Me.LabelX13)
+        Me.Panel4.Controls.Add(Me.ButtonX1)
+        Me.Panel4.Controls.Add(Me.MultiColumnCombo1)
+        Me.Panel4.Controls.Add(Me.LabelX11)
+        Me.Panel4.Controls.Add(Me.TextBoxX4)
+        Me.Panel4.Controls.Add(Me.LabelX12)
+        Me.Panel4.Controls.Add(Me.TextBoxX5)
+        Me.Panel4.Controls.Add(Me.LabelX9)
+        Me.Panel4.Controls.Add(Me.TextBoxX3)
+        Me.Panel4.Controls.Add(Me.LabelX8)
+        Me.Panel4.Controls.Add(Me.TextBoxX2)
         Me.Panel4.Controls.Add(Me.LabelX7)
         Me.Panel4.Controls.Add(Me.TextBoxX1)
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
@@ -884,7 +916,7 @@ Partial Class F1_ClientesEmpresas
         Me.TextBoxX1.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.TextBoxX1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxX1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.TextBoxX1.Location = New System.Drawing.Point(166, 41)
+        Me.TextBoxX1.Location = New System.Drawing.Point(188, 41)
         Me.TextBoxX1.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxX1.MaxLength = 50
         Me.TextBoxX1.Name = "TextBoxX1"
@@ -909,6 +941,246 @@ Partial Class F1_ClientesEmpresas
         Me.LabelX7.Size = New System.Drawing.Size(144, 20)
         Me.LabelX7.TabIndex = 247
         Me.LabelX7.Text = "Horario Atencion:"
+        '
+        'LabelX8
+        '
+        Me.LabelX8.AutoSize = True
+        Me.LabelX8.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX8.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX8.Location = New System.Drawing.Point(14, 76)
+        Me.LabelX8.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX8.Name = "LabelX8"
+        Me.LabelX8.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX8.Size = New System.Drawing.Size(166, 20)
+        Me.LabelX8.TabIndex = 249
+        Me.LabelX8.Text = "Nombre Contacto 01:"
+        '
+        'TextBoxX2
+        '
+        '
+        '
+        '
+        Me.TextBoxX2.Border.Class = "TextBoxBorder"
+        Me.TextBoxX2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.TextBoxX2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxX2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.TextBoxX2.Location = New System.Drawing.Point(188, 75)
+        Me.TextBoxX2.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBoxX2.MaxLength = 50
+        Me.TextBoxX2.Name = "TextBoxX2"
+        Me.TextBoxX2.PreventEnterBeep = True
+        Me.TextBoxX2.Size = New System.Drawing.Size(287, 26)
+        Me.TextBoxX2.TabIndex = 248
+        '
+        'LabelX9
+        '
+        Me.LabelX9.AutoSize = True
+        Me.LabelX9.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX9.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX9.Location = New System.Drawing.Point(14, 110)
+        Me.LabelX9.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX9.Name = "LabelX9"
+        Me.LabelX9.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX9.Size = New System.Drawing.Size(136, 20)
+        Me.LabelX9.TabIndex = 251
+        Me.LabelX9.Text = "Telefono Celular:"
+        '
+        'TextBoxX3
+        '
+        '
+        '
+        '
+        Me.TextBoxX3.Border.Class = "TextBoxBorder"
+        Me.TextBoxX3.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.TextBoxX3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxX3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.TextBoxX3.Location = New System.Drawing.Point(188, 109)
+        Me.TextBoxX3.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBoxX3.MaxLength = 50
+        Me.TextBoxX3.Name = "TextBoxX3"
+        Me.TextBoxX3.PreventEnterBeep = True
+        Me.TextBoxX3.Size = New System.Drawing.Size(287, 26)
+        Me.TextBoxX3.TabIndex = 250
+        '
+        'LabelX11
+        '
+        Me.LabelX11.AutoSize = True
+        Me.LabelX11.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX11.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX11.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX11.Location = New System.Drawing.Point(14, 178)
+        Me.LabelX11.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX11.Name = "LabelX11"
+        Me.LabelX11.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX11.Size = New System.Drawing.Size(136, 20)
+        Me.LabelX11.TabIndex = 255
+        Me.LabelX11.Text = "Telefono Celular:"
+        '
+        'TextBoxX4
+        '
+        '
+        '
+        '
+        Me.TextBoxX4.Border.Class = "TextBoxBorder"
+        Me.TextBoxX4.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.TextBoxX4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxX4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.TextBoxX4.Location = New System.Drawing.Point(188, 177)
+        Me.TextBoxX4.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBoxX4.MaxLength = 50
+        Me.TextBoxX4.Name = "TextBoxX4"
+        Me.TextBoxX4.PreventEnterBeep = True
+        Me.TextBoxX4.Size = New System.Drawing.Size(287, 26)
+        Me.TextBoxX4.TabIndex = 254
+        '
+        'LabelX12
+        '
+        Me.LabelX12.AutoSize = True
+        Me.LabelX12.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX12.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX12.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX12.Location = New System.Drawing.Point(14, 144)
+        Me.LabelX12.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX12.Name = "LabelX12"
+        Me.LabelX12.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX12.Size = New System.Drawing.Size(168, 20)
+        Me.LabelX12.TabIndex = 253
+        Me.LabelX12.Text = "Nombre Contacto 02:"
+        '
+        'TextBoxX5
+        '
+        '
+        '
+        '
+        Me.TextBoxX5.Border.Class = "TextBoxBorder"
+        Me.TextBoxX5.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.TextBoxX5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxX5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.TextBoxX5.Location = New System.Drawing.Point(188, 143)
+        Me.TextBoxX5.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBoxX5.MaxLength = 50
+        Me.TextBoxX5.Name = "TextBoxX5"
+        Me.TextBoxX5.PreventEnterBeep = True
+        Me.TextBoxX5.Size = New System.Drawing.Size(287, 26)
+        Me.TextBoxX5.TabIndex = 252
+        '
+        'ButtonX1
+        '
+        Me.ButtonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.ButtonX1.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
+        Me.ButtonX1.Image = Global.DinoM.My.Resources.Resources.add
+        Me.ButtonX1.ImageFixedSize = New System.Drawing.Size(25, 23)
+        Me.ButtonX1.Location = New System.Drawing.Point(482, 8)
+        Me.ButtonX1.Margin = New System.Windows.Forms.Padding(4)
+        Me.ButtonX1.Name = "ButtonX1"
+        Me.ButtonX1.Size = New System.Drawing.Size(37, 28)
+        Me.ButtonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.ButtonX1.TabIndex = 257
+        Me.ButtonX1.Visible = False
+        '
+        'MultiColumnCombo1
+        '
+        MultiColumnCombo1_DesignTimeLayout.LayoutString = resources.GetString("MultiColumnCombo1_DesignTimeLayout.LayoutString")
+        Me.MultiColumnCombo1.DesignTimeLayout = MultiColumnCombo1_DesignTimeLayout
+        Me.MultiColumnCombo1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MultiColumnCombo1.Location = New System.Drawing.Point(188, 8)
+        Me.MultiColumnCombo1.Margin = New System.Windows.Forms.Padding(4)
+        Me.MultiColumnCombo1.Name = "MultiColumnCombo1"
+        Me.MultiColumnCombo1.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.MultiColumnCombo1.Office2007CustomColor = System.Drawing.Color.DodgerBlue
+        Me.MultiColumnCombo1.SelectedIndex = -1
+        Me.MultiColumnCombo1.SelectedItem = Nothing
+        Me.MultiColumnCombo1.Size = New System.Drawing.Size(270, 26)
+        Me.MultiColumnCombo1.TabIndex = 256
+        Me.MultiColumnCombo1.TabStop = False
+        Me.MultiColumnCombo1.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'LabelX13
+        '
+        Me.LabelX13.AutoSize = True
+        Me.LabelX13.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX13.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX13.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX13.Location = New System.Drawing.Point(14, 8)
+        Me.LabelX13.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX13.Name = "LabelX13"
+        Me.LabelX13.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX13.Size = New System.Drawing.Size(121, 20)
+        Me.LabelX13.TabIndex = 258
+        Me.LabelX13.Text = "Act. Comercial:"
+        '
+        'LabelX14
+        '
+        Me.LabelX14.AutoSize = True
+        Me.LabelX14.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX14.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX14.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX14.Location = New System.Drawing.Point(14, 211)
+        Me.LabelX14.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX14.Name = "LabelX14"
+        Me.LabelX14.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX14.Size = New System.Drawing.Size(118, 20)
+        Me.LabelX14.TabIndex = 261
+        Me.LabelX14.Text = "Cond. Entrega:"
+        '
+        'ButtonX2
+        '
+        Me.ButtonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.ButtonX2.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
+        Me.ButtonX2.Image = Global.DinoM.My.Resources.Resources.add
+        Me.ButtonX2.ImageFixedSize = New System.Drawing.Size(25, 23)
+        Me.ButtonX2.Location = New System.Drawing.Point(482, 211)
+        Me.ButtonX2.Margin = New System.Windows.Forms.Padding(4)
+        Me.ButtonX2.Name = "ButtonX2"
+        Me.ButtonX2.Size = New System.Drawing.Size(37, 28)
+        Me.ButtonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.ButtonX2.TabIndex = 260
+        Me.ButtonX2.Visible = False
+        '
+        'MultiColumnCombo2
+        '
+        MultiColumnCombo2_DesignTimeLayout.LayoutString = resources.GetString("MultiColumnCombo2_DesignTimeLayout.LayoutString")
+        Me.MultiColumnCombo2.DesignTimeLayout = MultiColumnCombo2_DesignTimeLayout
+        Me.MultiColumnCombo2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MultiColumnCombo2.Location = New System.Drawing.Point(188, 211)
+        Me.MultiColumnCombo2.Margin = New System.Windows.Forms.Padding(4)
+        Me.MultiColumnCombo2.Name = "MultiColumnCombo2"
+        Me.MultiColumnCombo2.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.MultiColumnCombo2.Office2007CustomColor = System.Drawing.Color.DodgerBlue
+        Me.MultiColumnCombo2.SelectedIndex = -1
+        Me.MultiColumnCombo2.SelectedItem = Nothing
+        Me.MultiColumnCombo2.Size = New System.Drawing.Size(270, 26)
+        Me.MultiColumnCombo2.TabIndex = 259
+        Me.MultiColumnCombo2.TabStop = False
+        Me.MultiColumnCombo2.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
         'F1_ClientesEmpresas
         '
@@ -950,6 +1222,8 @@ Partial Class F1_ClientesEmpresas
         Me.GroupPanel2.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
+        CType(Me.MultiColumnCombo1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MultiColumnCombo2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -988,4 +1262,18 @@ Partial Class F1_ClientesEmpresas
     Friend WithEvents LabelX6 As DevComponents.DotNetBar.LabelX
     Friend WithEvents LabelX7 As DevComponents.DotNetBar.LabelX
     Friend WithEvents TextBoxX1 As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents LabelX13 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents ButtonX1 As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents MultiColumnCombo1 As Janus.Windows.GridEX.EditControls.MultiColumnCombo
+    Friend WithEvents LabelX11 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents TextBoxX4 As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents LabelX12 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents TextBoxX5 As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents LabelX9 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents TextBoxX3 As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents LabelX8 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents TextBoxX2 As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents LabelX14 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents ButtonX2 As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents MultiColumnCombo2 As Janus.Windows.GridEX.EditControls.MultiColumnCombo
 End Class
