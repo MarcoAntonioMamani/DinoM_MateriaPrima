@@ -41,10 +41,12 @@ Public Class F1_ClientesEmpresas
         _prInicarMapa()
 
         _prMaxLength()
-        _prCargarComboLibreriaZona(cbZona)
-        _prCargarComboLibreriaFecuenciaVisita(cbVisita)
-        _prCargarComboLibreriaCategoriaPrecios(cbCatPrec)
-        _prCargarComboLibreria(cbTipoDoc, 2, 1)
+
+        _prCargarComboLibreria(cbDepartamento, 2, 3)
+        _prCargarComboLibreria(cbCiudad, 2, 4)
+        _prCargarComboLibreria(cbActividadComercial, 2, 5)
+        _prCargarComboLibreria(cbCondicionesEntrega, 2, 6)
+        _prCargarComboLibreria(cbTipoVenta, 2, 7)
         _prAsignarPermisos()
         _PMIniciarTodo()
 
@@ -52,7 +54,7 @@ Public Class F1_ClientesEmpresas
         Dim blah As New Bitmap(New Bitmap(My.Resources.man_18), 20, 20)
         Dim ico As Icon = Icon.FromHandle(blah.GetHicon())
         Me.Icon = ico
-        cbZona.ReadOnly = True
+
 
     End Sub
     Private Sub P_IniciarMap()
@@ -91,14 +93,11 @@ Public Class F1_ClientesEmpresas
     End Sub
 
     Public Sub _prMaxLength()
-        cbTipoDoc.MaxLength = 40
-        tbNombre.MaxLength = 50
+
         tbDireccion.MaxLength = 200
         tbTelefono01.MaxLength = 50
         tbEmail.MaxLength = 50
-        tbNdoc.MaxLength = 20
-        tbObs.MaxLength = 150
-        tbNombFac.MaxLength = 200
+
         tbNit.MaxLength = 20
     End Sub
 
@@ -116,6 +115,9 @@ Public Class F1_ClientesEmpresas
             .DataSource = dt
             .Refresh()
         End With
+        If (dt.Rows.Count > 0) Then
+            mCombo.SelectedIndex = 0
+        End If
     End Sub
     Private Sub _prCargarComboLibreriaZona(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
         Dim dt As New DataTable
@@ -133,36 +135,8 @@ Public Class F1_ClientesEmpresas
         End With
     End Sub
 
-    Private Sub _prCargarComboLibreriaFecuenciaVisita(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
-        Dim dt As New DataTable
-        dt = L_prLibreriaClienteLGeneralFrecVisita()
-        With mCombo
-            .DropDownList.Columns.Clear()
-            .DropDownList.Columns.Add("yccod3").Width = 60
-            .DropDownList.Columns("yccod3").Caption = "COD"
-            .DropDownList.Columns.Add("ycdes3").Width = 500
-            .DropDownList.Columns("ycdes3").Caption = "DESCRIPCION"
-            .ValueMember = "yccod3"
-            .DisplayMember = "ycdes3"
-            .DataSource = dt
-            .Refresh()
-        End With
-    End Sub
-    Private Sub _prCargarComboLibreriaCategoriaPrecios(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
-        Dim dt As New DataTable
-        dt = L_prLibreriaClienteLGeneralPrecios()
-        With mCombo
-            .DropDownList.Columns.Clear()
-            .DropDownList.Columns.Add("ygnumi").Width = 60
-            .DropDownList.Columns("ygnumi").Caption = "COD"
-            .DropDownList.Columns.Add("ygdesc").Width = 500
-            .DropDownList.Columns("ygdesc").Caption = "DESCRIPCION"
-            .ValueMember = "ygnumi"
-            .DisplayMember = "ygdesc"
-            .DataSource = dt
-            .Refresh()
-        End With
-    End Sub
+
+
     Private Sub _prAsignarPermisos()
 
         Dim dtRolUsu As DataTable = L_prRolDetalleGeneral(gi_userRol, _nameButton)
@@ -240,136 +214,121 @@ Public Class F1_ClientesEmpresas
 #Region "METODOS SOBRECARGADOS"
 
     Public Overrides Sub _PMOHabilitar()
-
+        tbCodigoOriginal.ReadOnly = False
         tbNombreEmpresa.ReadOnly = False
-        btnSearch.Visible = True
-        tbNombre.ReadOnly = False
         tbDireccion.ReadOnly = False
+        cbDepartamento.ReadOnly = False
+        cbCiudad.ReadOnly = False
         tbTelefono01.ReadOnly = False
         tbEmail.ReadOnly = False
-        tbObs.ReadOnly = False
-        cbCatPrec.ReadOnly = False
-        cbZona.ReadOnly = False
-        cbVisita.ReadOnly = False
-        cbTipoDoc.ReadOnly = False
-        tbNdoc.ReadOnly = False
-        tbNombFac.ReadOnly = False
-        tbFnac.Enabled = True
-        tbFIngr.Enabled = True
-        tbUltVenta.Enabled = True
+        tbPaginaWeb.ReadOnly = False
         tbNit.ReadOnly = False
-        Tbdias.ReadOnly = False
-        TbLCred.ReadOnly = False
-        swEstado.IsReadOnly = False
+        cbActividadComercial.ReadOnly = False
+        tbHorarioAtencion.ReadOnly = False
+        tbNombreContacto01.ReadOnly = False
+        tbTelefono02.ReadOnly = False
+        tbNombreContacto02.ReadOnly = False
+        tbTelefonoCelular.ReadOnly = False
+        cbCondicionesEntrega.ReadOnly = False
+        tbTiempoCredito.IsInputReadOnly = False
+        tbLimiteCredito.IsInputReadOnly = False
+        tbItemsHabilitados.IsInputReadOnly = False
+        cbTipoVenta.ReadOnly = False
+
+
+
+
+
         _prCrearCarpetaImagenes()
         _prCrearCarpetaTemporal()
 
-        tbCodCliente.ReadOnly = False
+
         tbNombreEmpresa.Focus()
         ''  SuperTabItem1.Visible =True 
     End Sub
 
     Public Overrides Sub _PMOInhabilitar()
+
         tbNombreEmpresa.ReadOnly = True
-        tbCodigoOriginal.ReadOnly = True
-        tbCodCliente.ReadOnly = True
-        tbNombre.ReadOnly = True
         tbDireccion.ReadOnly = True
+        cbDepartamento.ReadOnly = True
+        cbCiudad.ReadOnly = True
         tbTelefono01.ReadOnly = True
         tbEmail.ReadOnly = True
-        tbObs.ReadOnly = True
-        cbCatPrec.ReadOnly = True
-        cbZona.ReadOnly = True
-        cbVisita.ReadOnly = True
-        cbTipoDoc.ReadOnly = True
-        tbNdoc.ReadOnly = True
-        tbNombFac.ReadOnly = True
-        tbFnac.Enabled = False
-        tbFIngr.Enabled = False
-        tbUltVenta.Enabled = False
+        tbPaginaWeb.ReadOnly = True
         tbNit.ReadOnly = True
-        Tbdias.ReadOnly = True
-        TbLCred.ReadOnly = True
-        swEstado.IsReadOnly = True
+        cbActividadComercial.ReadOnly = True
+        tbHorarioAtencion.ReadOnly = True
+        tbNombreContacto01.ReadOnly = True
+        tbTelefono02.ReadOnly = True
+        tbNombreContacto02.ReadOnly = True
+        tbTelefonoCelular.ReadOnly = True
+        cbCondicionesEntrega.ReadOnly = True
+        tbTiempoCredito.IsInputReadOnly = True
+        tbLimiteCredito.IsInputReadOnly = True
+        tbItemsHabilitados.IsInputReadOnly = True
+        cbTipoVenta.ReadOnly = True
 
         _prStyleJanus()
         JGrM_Buscador.Focus()
-        btnSearch.Visible = False
+
         ' SuperTabItem1.Visible = False
     End Sub
 
     Public Overrides Sub _PMOLimpiar()
         tbCodigoOriginal.Clear()
-        tbCodCliente.Clear()
-        tbNombre.Clear()
-        tbDireccion.Clear()
-        tbTelefono01.Clear()
         tbNombreEmpresa.Clear()
-
+        tbDireccion.Clear()
+        'cbDepartamento.ReadOnly = True
+        'cbCiudad.ReadOnly = True
+        SeleccionarPrimerItem(cbDepartamento)
+        SeleccionarPrimerItem(cbCiudad)
+        tbTelefono01.Clear()
         tbEmail.Clear()
-        tbObs.Clear()
-        'cbCatPrec.SelectedIndex = -1
-        'cbZona.SelectedIndex = -1
-        'cbTipoDoc.SelectedIndex = -1
-        tbNdoc.Clear()
-        tbNombFac.Clear()
-        tbFnac.Value = Now.Date
-        tbFIngr.Value = Now.Date
-        tbUltVenta.Value = Now.Date
+        tbPaginaWeb.Clear()
         tbNit.Clear()
-        Tbdias.Text = 0
-        TbLCred.Text = 0
-        swEstado.Value = True
+        'cbActividadComercial.ReadOnly = True
+        SeleccionarPrimerItem(cbActividadComercial)
+        tbHorarioAtencion.Clear()
+        tbNombreContacto01.Clear()
+        tbTelefono02.Clear()
+        tbNombreContacto02.Clear()
+        tbTelefonoCelular.Clear()
+        SeleccionarPrimerItem(cbCondicionesEntrega)
+        ''cbCondicionesEntrega.ReadOnly = True
+        tbTiempoCredito.Value = 0
+        tbLimiteCredito.Value = 0
+        tbItemsHabilitados.Value = 0
+        SeleccionarPrimerItem(cbTipoVenta)
+        'cbTipoVenta.ReadOnly = True
+
+
 
         _Overlay.Markers.Clear()
         _latitud = 0
         _longitud = 0
-        If (cbCatPrec.SelectedIndex < 0) Then
 
-            If (CType(cbCatPrec.DataSource, DataTable).Rows.Count > 0) Then
-                cbCatPrec.SelectedIndex = 0
-            End If
-        End If
-        If (cbZona.SelectedIndex < 0) Then
-
-            If (CType(cbZona.DataSource, DataTable).Rows.Count > 0) Then
-                cbZona.SelectedIndex = 0
-            End If
-        End If
-        If (cbTipoDoc.SelectedIndex < 0) Then
-
-            If (CType(cbTipoDoc.DataSource, DataTable).Rows.Count > 0) Then
-                cbTipoDoc.SelectedIndex = 0
-            End If
-        End If
-        If (cbVisita.SelectedIndex < 0) Then
-
-            If (CType(cbVisita.DataSource, DataTable).Rows.Count > 0) Then
-                cbVisita.SelectedIndex = 0
-            End If
-        End If
         NumiVendedor = 0
-        tbVendedor.Clear()
 
+
+    End Sub
+    Public Sub SeleccionarPrimerItem(Mcombo As EditControls.MultiColumnCombo)
+        If (CType(Mcombo.DataSource, DataTable).Rows.Count > 0) Then
+            Mcombo.SelectedIndex = 0
+        End If
     End Sub
 
     Public Overrides Sub _PMOLimpiarErrores()
         MEP.Clear()
-        tbNombre.BackColor = Color.White
+        tbNombreEmpresa.BackColor = Color.White
         tbDireccion.BackColor = Color.White
     End Sub
 
     Public Overrides Function _PMOGrabarRegistro() As Boolean
 
-        'ByRef _ydnumi As String, _ydcod As String,
-        '                                       _yddesc As String, _ydzona As Integer,
-        '                                       _yddct As Integer, _yddctnum As String,
-        '                                       _yddirec As String, _ydtelf1 As String,
-        '                                       _ydtelf2 As String, _ydcat As Integer, _ydest As Integer, _ydlat As Double, _ydlongi As Double, _ydobs As String,
-        '                                       _ydfnac As String, _ydnomfac As String,
-        '                                       _ydtip As Integer, _ydnit As String, _ydfecing As String, _ydultvent As String, _ydimg As String
+        'ByRef Id As String, NombreEmpresa As String, Direccion As String, Departamento As Integer, Ciudad As Integer, Telefono01 As String, Email As String, PaginaWeb As String, Nit As String, ActividadComercial As Integer, HorarioAtencion As String, NombreContacto01 As String, Telefono02 As String, NombreContacto02 As String, TelefonoCelular As String, CondicionesEntrega As Integer, TiempoCredito As Integer, ItemsHabilitado As Integer, LimiteCredito As Double, TipoVenta As Integer, Latitud As Double, Longitud As Double
 
-        Dim res As Boolean = L_fnGrabarCLiente(tbCodigoOriginal.Text, tbCodCliente.Text, tbNombreEmpresa.Text, tbNombre.Text, NumiVendedor, cbZona.Value, cbTipoDoc.Value, tbNdoc.Text, tbDireccion.Text, tbTelefono01.Text, tbEmail.Text, cbCatPrec.Value, IIf(swEstado.Value = True, 1, 0), _latitud, _longitud, tbObs.Text, tbFnac.Value.ToString("yyyy/MM/dd"), tbNombFac.Text, _Tipo, tbNit.Text, Tbdias.Text, TbLCred.Text, tbFIngr.Value.ToString("yyyy/MM/dd"), tbUltVenta.Value.ToString("yyyy/MM/dd"), nameImg, cbVisita.Value)
+        Dim res As Boolean = L_fnGrabarCLienteEmpresa(tbCodigoOriginal.Text, tbNombreEmpresa.Text, tbDireccion.Text, cbDepartamento.Value, cbCiudad.Value, tbTelefono01.Text, tbEmail.Text, tbPaginaWeb.Text, tbNit.Text, cbActividadComercial.Value, tbHorarioAtencion.Text, tbNombreContacto01.Text, tbTelefono02.Text, tbNombreContacto02.Text, tbTelefonoCelular.Text, cbCondicionesEntrega.Value, tbTiempoCredito.Value, tbItemsHabilitados.Value, tbLimiteCredito.Value, cbTipoVenta.Value, _latitud, _longitud)
 
 
         If res Then
@@ -381,7 +340,7 @@ Public Class F1_ClientesEmpresas
                                       eToastGlowColor.Green,
                                       eToastPosition.TopCenter
                                       )
-            tbNombre.Focus()
+            tbNombreEmpresa.Focus()
 
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
@@ -393,16 +352,10 @@ Public Class F1_ClientesEmpresas
     End Function
 
     Public Overrides Function _PMOModificarRegistro() As Boolean
-        Dim res As Boolean
 
-        Dim nameImage As String = JGrM_Buscador.GetValue("ydimg")
-        If (Modificado = False) Then
-            res = L_fnModificarClientes(tbCodigoOriginal.Text, tbCodCliente.Text, tbNombreEmpresa.Text, tbNombre.Text, NumiVendedor, cbZona.Value, cbTipoDoc.Value, tbNdoc.Text, tbDireccion.Text, tbTelefono01.Text, tbEmail.Text, cbCatPrec.Value, IIf(swEstado.Value = True, 1, 0), _latitud, _longitud, tbObs.Text, tbFnac.Value.ToString("yyyy/MM/dd"), tbNombFac.Text, _Tipo, tbNit.Text, Tbdias.Text, TbLCred.Text, tbFIngr.Value.ToString("yyyy/MM/dd"), tbUltVenta.Value.ToString("yyyy/MM/dd"), nameImage, cbVisita.Value)
 
-        Else
-            res = L_fnModificarClientes(tbCodigoOriginal.Text, tbCodCliente.Text, tbNombreEmpresa.Text, tbNombre.Text, NumiVendedor, cbZona.Value, cbTipoDoc.Value, tbNdoc.Text, tbDireccion.Text, tbTelefono01.Text, tbEmail.Text, cbCatPrec.Value, IIf(swEstado.Value = True, 1, 0), _latitud, _longitud, tbObs.Text, tbFnac.Value.ToString("yyyy/MM/dd"), tbNombFac.Text, _Tipo, tbNit.Text, Tbdias.Text, TbLCred.Text, tbFIngr.Value.ToString("yyyy/MM/dd"), tbUltVenta.Value.ToString("yyyy/MM/dd"), nameImg, cbVisita.Value)
 
-        End If
+        Dim res As Boolean = L_fnModificarCLienteEmpresa(tbCodigoOriginal.Text, tbNombreEmpresa.Text, tbDireccion.Text, cbDepartamento.Value, cbCiudad.Value, tbTelefono01.Text, tbEmail.Text, tbPaginaWeb.Text, tbNit.Text, cbActividadComercial.Value, tbHorarioAtencion.Text, tbNombreContacto01.Text, tbTelefono02.Text, tbNombreContacto02.Text, tbTelefonoCelular.Text, cbCondicionesEntrega.Value, tbTiempoCredito.Value, tbItemsHabilitados.Value, tbLimiteCredito.Value, cbTipoVenta.Value, _latitud, _longitud)
         If res Then
 
 
@@ -466,37 +419,43 @@ Public Class F1_ClientesEmpresas
         Dim _ok As Boolean = True
         MEP.Clear()
 
-        If tbNombre.Text = String.Empty Then
-            tbNombre.BackColor = Color.Red
-            MEP.SetError(tbNombre, "ingrese el nombre del Usuario!".ToUpper)
+        If tbNombreEmpresa.Text = String.Empty Then
+            tbNombreEmpresa.BackColor = Color.Red
+            MEP.SetError(tbNombreEmpresa, "ingrese el nombre del Usuario!".ToUpper)
             _ok = False
         Else
-            tbNombre.BackColor = Color.White
-            MEP.SetError(tbNombre, "")
+            tbNombreEmpresa.BackColor = Color.White
+            MEP.SetError(tbNombreEmpresa, "")
         End If
-        If (cbCatPrec.SelectedIndex < 0) Then
+        If (cbDepartamento.SelectedIndex < 0) Then
 
-            If (CType(cbCatPrec.DataSource, DataTable).Rows.Count > 0) Then
-                cbCatPrec.SelectedIndex = 0
+            If (CType(cbDepartamento.DataSource, DataTable).Rows.Count > 0) Then
+                cbDepartamento.SelectedIndex = 0
             End If
         End If
-        If (cbZona.SelectedIndex < 0) Then
+        If (cbCiudad.SelectedIndex < 0) Then
 
-            If (CType(cbZona.DataSource, DataTable).Rows.Count > 0) Then
-                cbZona.SelectedIndex = 0
+            If (CType(cbCiudad.DataSource, DataTable).Rows.Count > 0) Then
+                cbCiudad.SelectedIndex = 0
             End If
         End If
-        If (cbTipoDoc.SelectedIndex < 0) Then
+        If (cbActividadComercial.SelectedIndex < 0) Then
 
-            If (CType(cbTipoDoc.DataSource, DataTable).Rows.Count > 0) Then
-                cbTipoDoc.SelectedIndex = 0
+            If (CType(cbActividadComercial.DataSource, DataTable).Rows.Count > 0) Then
+                cbActividadComercial.SelectedIndex = 0
             End If
         End If
 
-        If (cbVisita.SelectedIndex < 0) Then
+        If (cbCondicionesEntrega.SelectedIndex < 0) Then
 
-            If (CType(cbVisita.DataSource, DataTable).Rows.Count > 0) Then
-                cbVisita.SelectedIndex = 0
+            If (CType(cbCondicionesEntrega.DataSource, DataTable).Rows.Count > 0) Then
+                cbCondicionesEntrega.SelectedIndex = 0
+            End If
+        End If
+        If (cbTipoVenta.SelectedIndex < 0) Then
+
+            If (CType(cbTipoVenta.DataSource, DataTable).Rows.Count > 0) Then
+                cbTipoVenta.SelectedIndex = 0
             End If
         End If
         MHighlighterFocus.UpdateHighlights()
@@ -504,98 +463,90 @@ Public Class F1_ClientesEmpresas
     End Function
 
     Public Overrides Function _PMOGetTablaBuscador() As DataTable
-        Dim dtBuscador As DataTable = L_fnGeneralClientes(_Tipo)
+        Dim dtBuscador As DataTable = L_fnGeneralClientesEmpresa()
         Return dtBuscador
     End Function
 
     Public Overrides Function _PMOGetListEstructuraBuscador() As List(Of Modelo.Celda)
         Dim listEstCeldas As New List(Of Modelo.Celda)
-        'a.ydnumi, a.ydcod, a.yddesc, a.ydzona, a.yddct, a.yddctnum, a.yddirec, a.ydtelf1, a.ydtelf2, a.ydcat,
-        'a.ydest, a.ydlat, a.ydlongi, a.ydprconsu, a.ydobs, a.ydfnac, a.ydnomfac, a.ydtip, a.ydnit, a.ydfecing, a.ydultvent,
-        'a.ydimg,
-        'a.ydfact, a.ydhact, a.yduact
+        'a.id, a.NombreEmpresa, a.Direccion, a.Departamento, a.Ciudad, a.Telefono01, a.Email,
+        'a.PaginaWeb, a.Nit, a.ActividadComercial, a.HorariosAtencion, a.NombreContacto01, a.Telefono02, a.NombreContacto02,
+        'a.TelefonoCelular, a.CondicionesEntrega, a.TiempoCredito, a.ItemsHabilitados, a.LimiteCredito, a.TipoVenta,
+        'a.Latitud, a.Longitud 
 
-        listEstCeldas.Add(New Modelo.Celda("ydnumi", True, "Código".ToUpper, 80))
-        listEstCeldas.Add(New Modelo.Celda("ydcod", False, "Codigo".ToUpper, 80))
-        listEstCeldas.Add(New Modelo.Celda("ydrazonsocial", True, "Razon Social".ToUpper, 180))
-        listEstCeldas.Add(New Modelo.Celda("yddesc", True, "Nombres".ToUpper, 250))
-        listEstCeldas.Add(New Modelo.Celda("ydzona", False))
-        listEstCeldas.Add(New Modelo.Celda("yddct", False))
-        listEstCeldas.Add(New Modelo.Celda("yddctnum", True, "N. Documento".ToUpper, 150))
-        listEstCeldas.Add(New Modelo.Celda("yddirec", True, "Direccion".ToUpper, 180))
-        listEstCeldas.Add(New Modelo.Celda("ydtelf1", False))
-        listEstCeldas.Add(New Modelo.Celda("ydtelf2", False))
-        listEstCeldas.Add(New Modelo.Celda("ydcat", False))
-        listEstCeldas.Add(New Modelo.Celda("ydest", False))
-        listEstCeldas.Add(New Modelo.Celda("ydlat", False))
-        listEstCeldas.Add(New Modelo.Celda("ydlongi", False))
-        listEstCeldas.Add(New Modelo.Celda("ydprconsu", False))
-        listEstCeldas.Add(New Modelo.Celda("ydobs", True, "Observacion".ToUpper, 180))
-        listEstCeldas.Add(New Modelo.Celda("ydfnac", True, "Fecha Nacimiento".ToUpper, 150))
-        listEstCeldas.Add(New Modelo.Celda("ydnomfac", True, "Factura".ToUpper, 200))
-        listEstCeldas.Add(New Modelo.Celda("ydtip", False))
-        listEstCeldas.Add(New Modelo.Celda("ydnit", True, "Nit".ToUpper, 120))
-        listEstCeldas.Add(New Modelo.Celda("ydfecing", False))
-        listEstCeldas.Add(New Modelo.Celda("ydultvent", False))
-        listEstCeldas.Add(New Modelo.Celda("ydimg", False))
-        listEstCeldas.Add(New Modelo.Celda("ydfact", False))
-        listEstCeldas.Add(New Modelo.Celda("ydhact", False))
-        listEstCeldas.Add(New Modelo.Celda("yduact", False))
-        listEstCeldas.Add(New Modelo.Celda("ydrut", False))
-        listEstCeldas.Add(New Modelo.Celda("visita", True, "FRECUENCIA DE VISITA", 120))
-        listEstCeldas.Add(New Modelo.Celda("zona", True, "ZONA".ToUpper, 150))
-        listEstCeldas.Add(New Modelo.Celda("documento".ToUpper, True, "Tipo Documento".ToUpper, 150))
-        listEstCeldas.Add(New Modelo.Celda("ydnumivend", False))
-        listEstCeldas.Add(New Modelo.Celda("vendedor", False))
-        listEstCeldas.Add(New Modelo.Celda("yddias", False))
-        listEstCeldas.Add(New Modelo.Celda("ydlcred", False))
+        listEstCeldas.Add(New Modelo.Celda("id", True, "Código".ToUpper, 80))
+
+        listEstCeldas.Add(New Modelo.Celda("NombreEmpresa", True, "Empresa".ToUpper, 200))
+        listEstCeldas.Add(New Modelo.Celda("Direccion", True, "Direccion".ToUpper, 150))
+        listEstCeldas.Add(New Modelo.Celda("Departamento", False))
+        listEstCeldas.Add(New Modelo.Celda("Ciudad", False))
+        listEstCeldas.Add(New Modelo.Celda("Telefono01", True, "Telefono".ToUpper, 80))
+
+        listEstCeldas.Add(New Modelo.Celda("Email", False))
+        listEstCeldas.Add(New Modelo.Celda("PaginaWeb", False))
+        listEstCeldas.Add(New Modelo.Celda("Nit", False))
+        listEstCeldas.Add(New Modelo.Celda("ActividadComercial", False))
+        listEstCeldas.Add(New Modelo.Celda("HorariosAtencion", False))
+        listEstCeldas.Add(New Modelo.Celda("NombreContacto01", False))
+        listEstCeldas.Add(New Modelo.Celda("Telefono02", False))
+        listEstCeldas.Add(New Modelo.Celda("NombreContacto02", False))
+
+
+        listEstCeldas.Add(New Modelo.Celda("TelefonoCelular", False))
+        listEstCeldas.Add(New Modelo.Celda("CondicionesEntrega", False))
+        listEstCeldas.Add(New Modelo.Celda("TiempoCredito", False))
+        listEstCeldas.Add(New Modelo.Celda("ItemsHabilitados", False))
+        listEstCeldas.Add(New Modelo.Celda("LimiteCredito", False))
+        listEstCeldas.Add(New Modelo.Celda("TipoVenta", False))
+
+
+        listEstCeldas.Add(New Modelo.Celda("Latitud", False))
+        listEstCeldas.Add(New Modelo.Celda("Longitud", False))
+
         Return listEstCeldas
     End Function
 
     Public Overrides Sub _PMOMostrarRegistro(_N As Integer)
         JGrM_Buscador.Row = _MPos
-        'a.ydnumi, a.ydcod, a.yddesc, a.ydzona, a.yddct, a.yddctnum, a.yddirec, a.ydtelf1, a.ydtelf2, a.ydcat,
-        'a.ydest, a.ydlat, a.ydlongi, a.ydprconsu, a.ydobs, a.ydfnac, a.ydnomfac, a.ydtip, a.ydnit, a.ydfecing, a.ydultvent,
-        'a.ydimg,
-        'a.ydfact, a.ydhact, a.yduact ,a.ydrut ,visita
+        'a.id, a.NombreEmpresa, a.Direccion, a.Departamento, a.Ciudad, a.Telefono01, a.Email,
+        'a.PaginaWeb, a.Nit, a.ActividadComercial, a.HorariosAtencion, a.NombreContacto01, a.Telefono02, a.NombreContacto02,
+        'a.TelefonoCelular, a.CondicionesEntrega, a.TiempoCredito, a.ItemsHabilitados, a.LimiteCredito, a.TipoVenta,
+        'a.Latitud, a.Longitud 
         Dim dt As DataTable = CType(JGrM_Buscador.DataSource, DataTable)
         Try
-            tbCodigoOriginal.Text = JGrM_Buscador.GetValue("ydnumi").ToString
+            tbCodigoOriginal.Text = JGrM_Buscador.GetValue("Id").ToString
         Catch ex As Exception
             Exit Sub
         End Try
         With JGrM_Buscador
-            tbCodigoOriginal.Text = .GetValue("ydnumi").ToString
-            tbCodCliente.Text = .GetValue("ydcod").ToString
-            tbNombre.Text = .GetValue("yddesc").ToString
-            cbZona.Value = .GetValue("ydzona")
-            tbNombreEmpresa.Text = IIf(IsDBNull(.GetValue("ydrazonsocial")), "", .GetValue("ydrazonsocial"))
-            cbTipoDoc.Value = .GetValue("yddct")
-            tbNdoc.Text = .GetValue("yddctnum").ToString
-            tbDireccion.Text = .GetValue("yddirec").ToString
-            tbTelefono01.Text = .GetValue("ydtelf1").ToString
-            tbEmail.Text = .GetValue("ydtelf2").ToString
-            cbCatPrec.Value = .GetValue("ydcat")
-            swEstado.Value = .GetValue("ydest")
-            _latitud = .GetValue("ydlat")
-            _longitud = .GetValue("ydlongi")
-            tbObs.Text = .GetValue("ydobs").ToString
-            tbFnac.Value = .GetValue("ydfnac")
-            tbNombFac.Text = .GetValue("ydnomfac").ToString
-            tbNit.Text = .GetValue("ydnit").ToString
-            Tbdias.Text = .GetValue("yddias").ToString
-            TbLCred.Text = .GetValue("ydlcred").ToString
-            tbFIngr.Value = .GetValue("ydfecing")
-            tbUltVenta.Value = .GetValue("ydultvent")
-            cbVisita.Value = .GetValue("ydrut")
-            lbFecha.Text = CType(.GetValue("ydfact"), Date).ToString("dd/MM/yyyy")
-            lbHora.Text = .GetValue("ydhact").ToString
-            lbUsuario.Text = .GetValue("yduact").ToString
-            NumiVendedor = IIf(IsDBNull(.GetValue("ydnumivend")), 0, .GetValue("ydnumivend"))
-            tbVendedor.Text = IIf(IsDBNull(.GetValue("vendedor")), "", .GetValue("vendedor"))
+            tbCodigoOriginal.Text = .GetValue("Id").ToString
+            tbNombreEmpresa.Text = .GetValue("NombreEmpresa").ToString
+            tbDireccion.Text = .GetValue("Direccion").ToString
+            cbDepartamento.Value = .GetValue("Departamento")
+            cbCiudad.Value = .GetValue("Ciudad")
+            tbTelefono01.Text = .GetValue("Telefono01").ToString
+            tbEmail.Text = .GetValue("Email").ToString
+            tbPaginaWeb.Text = .GetValue("PaginaWeb").ToString
+            tbNit.Text = .GetValue("Nit").ToString
+            cbActividadComercial.Value = .GetValue("ActividadComercial")
+            tbHorarioAtencion.Text = .GetValue("HorariosAtencion").ToString
+            tbNombreContacto01.Text = .GetValue("NombreContacto01").ToString
+            tbTelefono02.Text = .GetValue("Telefono02").ToString
+            tbNombreContacto02.Text = .GetValue("NombreContacto02").ToString
+            tbTelefonoCelular.Text = .GetValue("TelefonoCelular").ToString
+            cbCondicionesEntrega.Value = .GetValue("CondicionesEntrega")
+            tbTiempoCredito.Value = .GetValue("TiempoCredito")
+            tbItemsHabilitados.Value = .GetValue("ItemsHabilitados")
+            tbLimiteCredito.Value = .GetValue("LimiteCredito")
+            cbTipoVenta.Value = .GetValue("TipoVenta")
+            _latitud = .GetValue("Latitud")
+            _longitud = .GetValue("Longitud")
+
+
+
         End With
 
-        _dibujarUbicacion(JGrM_Buscador.GetValue("yddesc").ToString, JGrM_Buscador.GetValue("yddctnum").ToString)
+        _dibujarUbicacion(JGrM_Buscador.GetValue("NombreEmpresa").ToString, JGrM_Buscador.GetValue("Id").ToString)
         LblPaginacion.Text = Str(_MPos + 1) + "/" + JGrM_Buscador.RowCount.ToString
 
     End Sub
@@ -699,21 +650,9 @@ Public Class F1_ClientesEmpresas
 
 
 
-    Private Sub cbTipoDoc_ValueChanged(sender As Object, e As EventArgs)
-        If cbTipoDoc.SelectedIndex < 0 And cbTipoDoc.Text <> String.Empty Then
-            btTipoDoc.Visible = True
-        Else
-            btTipoDoc.Visible = False
-        End If
-    End Sub
 
-    Private Sub btTipoDoc_Click(sender As Object, e As EventArgs)
-        Dim numi As String = ""
-        If L_prLibreriaGrabar(numi, "2", "1", cbTipoDoc.Text, "") Then
-            _prCargarComboLibreria(cbTipoDoc, "2", "1")
-            cbTipoDoc.SelectedIndex = CType(cbTipoDoc.DataSource, DataTable).Rows.Count - 1
-        End If
-    End Sub
+
+
 
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
 
@@ -750,102 +689,10 @@ Public Class F1_ClientesEmpresas
         End If
     End Sub
     Function _fnAccesible() As Boolean
-        Return tbNombre.ReadOnly = False
+        Return tbNombreEmpresa.ReadOnly = False
 
     End Function
-    Private Sub tbVendedor_KeyDown(sender As Object, e As KeyEventArgs)
-        If (_fnAccesible()) Then
-            If e.KeyData = Keys.Control + Keys.Enter Then
 
-                Dim dt As DataTable
-
-                dt = L_fnListarEmpleado()
-                '              a.ydnumi, a.ydcod, a.yddesc, a.yddctnum, a.yddirec
-                ',a.ydtelf1 ,a.ydfnac 
-
-                Dim listEstCeldas As New List(Of Modelo.Celda)
-                listEstCeldas.Add(New Modelo.Celda("ydnumi,", False, "ID", 50))
-                listEstCeldas.Add(New Modelo.Celda("ydcod", True, "ID", 50))
-                listEstCeldas.Add(New Modelo.Celda("yddesc", True, "NOMBRE", 280))
-                listEstCeldas.Add(New Modelo.Celda("yddctnum", True, "N. Documento".ToUpper, 150))
-                listEstCeldas.Add(New Modelo.Celda("yddirec", True, "DIRECCION", 220))
-                listEstCeldas.Add(New Modelo.Celda("ydtelf1", True, "Telefono".ToUpper, 200))
-                listEstCeldas.Add(New Modelo.Celda("ydfnac", True, "F.Nacimiento".ToUpper, 150, "MM/dd,YYYY"))
-                Dim ef = New Efecto
-                ef.tipo = 3
-                ef.dt = dt
-                ef.SeleclCol = 1
-                ef.listEstCeldas = listEstCeldas
-                ef.alto = 50
-                ef.ancho = 350
-                ef.Context = "Seleccione Vendedor".ToUpper
-                ef.ShowDialog()
-                Dim bandera As Boolean = False
-                bandera = ef.band
-                If (bandera = True) Then
-                    Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
-                    If (IsNothing(Row)) Then
-                        tbVendedor.Focus()
-                        Return
-
-                    End If
-                    NumiVendedor = Row.Cells("ydnumi").Value
-                    tbVendedor.Text = Row.Cells("yddesc").Value
-                    tbDireccion.Focus()
-
-                End If
-
-            End If
-
-        End If
-    End Sub
-
-    Private Sub ButtonX1_Click(sender As Object, e As EventArgs)
-        If (_fnAccesible()) Then
-
-
-            Dim dt As DataTable
-
-            dt = L_fnListarEmpleado()
-            '              a.ydnumi, a.ydcod, a.yddesc, a.yddctnum, a.yddirec
-            ',a.ydtelf1 ,a.ydfnac 
-
-            Dim listEstCeldas As New List(Of Modelo.Celda)
-            listEstCeldas.Add(New Modelo.Celda("ydnumi,", True, "ID", 50))
-            listEstCeldas.Add(New Modelo.Celda("ydcod", False, "ID", 50))
-            listEstCeldas.Add(New Modelo.Celda("yddesc", True, "NOMBRE", 280))
-            listEstCeldas.Add(New Modelo.Celda("yddctnum", True, "N. Documento".ToUpper, 150))
-            listEstCeldas.Add(New Modelo.Celda("yddirec", True, "DIRECCION", 220))
-            listEstCeldas.Add(New Modelo.Celda("ydtelf1", True, "Telefono".ToUpper, 200))
-            listEstCeldas.Add(New Modelo.Celda("ydfnac", True, "F.Nacimiento".ToUpper, 150, "MM/dd,YYYY"))
-            Dim ef = New Efecto
-            ef.tipo = 3
-            ef.dt = dt
-            ef.SeleclCol = 1
-            ef.listEstCeldas = listEstCeldas
-            ef.alto = 50
-            ef.ancho = 350
-            ef.Context = "Seleccione Vendedor".ToUpper
-            ef.ShowDialog()
-            Dim bandera As Boolean = False
-            bandera = ef.band
-            If (bandera = True) Then
-                Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
-                If (IsNothing(Row)) Then
-                    tbVendedor.Focus()
-                    Return
-
-                End If
-                NumiVendedor = Row.Cells("ydnumi").Value
-                tbVendedor.Text = Row.Cells("yddesc").Value
-                tbDireccion.Focus()
-
-            End If
-
-
-
-        End If
-    End Sub
 
     Private Sub TextBoxX1_TextChanged(sender As Object, e As EventArgs)
 

@@ -736,25 +736,23 @@ Public Class AccesoLogica
 
     Public Shared Function L_fnEliminarClientes(numi As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
-        If L_fnbValidarEliminacion(numi, "TY004", "ydnumi", mensaje) = True Then
-            Dim _Tabla As DataTable
+
+        Dim _Tabla As DataTable
             Dim _listParam As New List(Of Datos.DParametro)
 
             _listParam.Add(New Datos.DParametro("@tipo", -1))
-            _listParam.Add(New Datos.DParametro("@ydnumi", numi))
-            _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@Id", numi))
+        _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
 
-            _Tabla = D_ProcedimientoConParam("sp_Mam_TY004", _listParam)
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Clientes", _listParam)
 
-            If _Tabla.Rows.Count > 0 Then
+        If _Tabla.Rows.Count > 0 Then
                 _resultado = True
             Else
                 _resultado = False
             End If
-        Else
-            _resultado = False
-        End If
-        Return _resultado
+
+            Return _resultado
     End Function
     Public Shared Function L_fnEliminarClientesConDetalleZona(numi As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
@@ -829,6 +827,92 @@ Public Class AccesoLogica
 
         If _Tabla.Rows.Count > 0 Then
             _ydnumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnGrabarCLienteEmpresa(ByRef Id As String, NombreEmpresa As String, Direccion As String, Departamento As Integer, Ciudad As Integer, Telefono01 As String, Email As String, PaginaWeb As String, Nit As String, ActividadComercial As Integer, HorarioAtencion As String, NombreContacto01 As String, Telefono02 As String, NombreContacto02 As String, TelefonoCelular As String, CondicionesEntrega As Integer, TiempoCredito As Integer, ItemsHabilitado As Integer, LimiteCredito As Double, TipoVenta As Integer, Latitud As Double, Longitud As Double) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        ' (@Id ,@NombreEmpresa ,@Direccion ,@Departamento ,@Ciudad ,@Telefono01 ,@Email ,@PaginaWeb ,@Nit ,@ActividadComercial ,@HorarioAtencion ,@NombreContacto01 ,
+        '@Telefono02 ,@NombreContracto02 ,@TelefonoCelular ,@CondicionesEntrega ,@TiempoCredito ,@ItemsHabilitado ,@LimiteCredito ,@TipoVenta ,@Latitud ,@Longitud , @newFecha,@Usuario)
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@Id", Id))
+        _listParam.Add(New Datos.DParametro("@NombreEmpresa", NombreEmpresa))
+        _listParam.Add(New Datos.DParametro("@Direccion", Direccion))
+        _listParam.Add(New Datos.DParametro("@Departamento", Departamento))
+        _listParam.Add(New Datos.DParametro("@Ciudad", Ciudad))
+        _listParam.Add(New Datos.DParametro("@Telefono01", Telefono01))
+        _listParam.Add(New Datos.DParametro("@Email", Email))
+        _listParam.Add(New Datos.DParametro("@PaginaWeb", PaginaWeb))
+        _listParam.Add(New Datos.DParametro("@Nit", Nit))
+        _listParam.Add(New Datos.DParametro("@ActividadComercial", ActividadComercial))
+        _listParam.Add(New Datos.DParametro("@HorarioAtencion", HorarioAtencion))
+        _listParam.Add(New Datos.DParametro("@NombreContacto01", NombreContacto01))
+        _listParam.Add(New Datos.DParametro("@Telefono02", Telefono02))
+        _listParam.Add(New Datos.DParametro("@NombreContacto02", NombreContacto02))
+        _listParam.Add(New Datos.DParametro("@TelefonoCelular", TelefonoCelular))
+        _listParam.Add(New Datos.DParametro("@CondicionesEntrega", CondicionesEntrega))
+        _listParam.Add(New Datos.DParametro("@TiempoCredito", TiempoCredito))
+        _listParam.Add(New Datos.DParametro("@ItemsHabilitado", ItemsHabilitado))
+        _listParam.Add(New Datos.DParametro("@LimiteCredito", LimiteCredito))
+        _listParam.Add(New Datos.DParametro("@TipoVenta", TipoVenta))
+        _listParam.Add(New Datos.DParametro("@Latitud", Latitud))
+        _listParam.Add(New Datos.DParametro("@Longitud", Longitud))
+        _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Clientes", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            Id = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnModificarCLienteEmpresa(ByRef Id As String, NombreEmpresa As String, Direccion As String, Departamento As Integer, Ciudad As Integer, Telefono01 As String, Email As String, PaginaWeb As String, Nit As String, ActividadComercial As Integer, HorarioAtencion As String, NombreContacto01 As String, Telefono02 As String, NombreContacto02 As String, TelefonoCelular As String, CondicionesEntrega As Integer, TiempoCredito As Integer, ItemsHabilitado As Integer, LimiteCredito As Double, TipoVenta As Integer, Latitud As Double, Longitud As Double) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        ' (@Id ,@NombreEmpresa ,@Direccion ,@Departamento ,@Ciudad ,@Telefono01 ,@Email ,@PaginaWeb ,@Nit ,@ActividadComercial ,@HorarioAtencion ,@NombreContacto01 ,
+        '@Telefono02 ,@NombreContracto02 ,@TelefonoCelular ,@CondicionesEntrega ,@TiempoCredito ,@ItemsHabilitado ,@LimiteCredito ,@TipoVenta ,@Latitud ,@Longitud , @newFecha,@Usuario)
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@Id", Id))
+        _listParam.Add(New Datos.DParametro("@NombreEmpresa", NombreEmpresa))
+        _listParam.Add(New Datos.DParametro("@Direccion", Direccion))
+        _listParam.Add(New Datos.DParametro("@Departamento", Departamento))
+        _listParam.Add(New Datos.DParametro("@Ciudad", Ciudad))
+        _listParam.Add(New Datos.DParametro("@Telefono01", Telefono01))
+        _listParam.Add(New Datos.DParametro("@Email", Email))
+        _listParam.Add(New Datos.DParametro("@PaginaWeb", PaginaWeb))
+        _listParam.Add(New Datos.DParametro("@Nit", Nit))
+        _listParam.Add(New Datos.DParametro("@ActividadComercial", ActividadComercial))
+        _listParam.Add(New Datos.DParametro("@HorarioAtencion", HorarioAtencion))
+        _listParam.Add(New Datos.DParametro("@NombreContacto01", NombreContacto01))
+        _listParam.Add(New Datos.DParametro("@Telefono02", Telefono02))
+        _listParam.Add(New Datos.DParametro("@NombreContacto02", NombreContacto02))
+        _listParam.Add(New Datos.DParametro("@TelefonoCelular", TelefonoCelular))
+        _listParam.Add(New Datos.DParametro("@CondicionesEntrega", CondicionesEntrega))
+        _listParam.Add(New Datos.DParametro("@TiempoCredito", TiempoCredito))
+        _listParam.Add(New Datos.DParametro("@ItemsHabilitado", ItemsHabilitado))
+        _listParam.Add(New Datos.DParametro("@LimiteCredito", LimiteCredito))
+        _listParam.Add(New Datos.DParametro("@TipoVenta", TipoVenta))
+        _listParam.Add(New Datos.DParametro("@Latitud", Latitud))
+        _listParam.Add(New Datos.DParametro("@Longitud", Longitud))
+        _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Clientes", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            Id = _Tabla.Rows(0).Item(0)
             _resultado = True
         Else
             _resultado = False
@@ -1051,6 +1135,17 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@ydtip", tipo))
         _listParam.Add(New Datos.DParametro("@yduact", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TY004", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnGeneralClientesEmpresa() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Clientes", _listParam)
 
         Return _Tabla
     End Function
