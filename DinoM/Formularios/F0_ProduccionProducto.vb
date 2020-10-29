@@ -1517,24 +1517,43 @@ Public Class F0_ProduccionProducto
 
 
         Dim dt As DataTable
-            'dt = L_fnListarClientes()
-            dt = L_fnListarClientesVenta()
+        'dt = L_fnListarClientes()
+        dt = L_fnGeneralClientesEmpresa()
+        'a.id, a.NombreEmpresa, a.Direccion, a.Departamento, a.Ciudad, a.Telefono01, a.Email,
+        'a.PaginaWeb, a.Nit, a.ActividadComercial, a.HorariosAtencion, a.NombreContacto01, a.Telefono02, a.NombreContacto02,
+        'a.TelefonoCelular, a.CondicionesEntrega, a.TiempoCredito, a.ItemsHabilitados, a.LimiteCredito, a.TipoVenta,
+        'a.Latitud, a.Longitud 
 
-            Dim listEstCeldas As New List(Of Modelo.Celda)
-            listEstCeldas.Add(New Modelo.Celda("ydnumi,", True, "ID", 50))
-            listEstCeldas.Add(New Modelo.Celda("ydcod", False, "ID", 50))
-            listEstCeldas.Add(New Modelo.Celda("ydrazonsocial", False, "RAZÓN SOCIAL", 180))
-            listEstCeldas.Add(New Modelo.Celda("yddesc", True, "NOMBRE", 280))
-            listEstCeldas.Add(New Modelo.Celda("yddctnum", True, "N. Documento".ToUpper, 150))
-            listEstCeldas.Add(New Modelo.Celda("yddirec", True, "DIRECCIÓN", 220))
-            listEstCeldas.Add(New Modelo.Celda("ydtelf1", True, "Teléfono".ToUpper, 200))
-            listEstCeldas.Add(New Modelo.Celda("ydfnac", False, "F.Nacimiento".ToUpper, 150, "MM/dd,YYYY"))
-            listEstCeldas.Add(New Modelo.Celda("ydnumivend,", False, "ID", 50))
-            listEstCeldas.Add(New Modelo.Celda("vendedor,", False, "ID", 50))
-            listEstCeldas.Add(New Modelo.Celda("yddias", False, "CRED", 50))
-            listEstCeldas.Add(New Modelo.Celda("ydnomfac", False, "Nombre Factura", 50))
-            listEstCeldas.Add(New Modelo.Celda("ydnit", False, "Nit/CI", 50))
-            Dim ef = New Efecto
+        Dim listEstCeldas As New List(Of Modelo.Celda)
+        listEstCeldas.Add(New Modelo.Celda("id", True, "Código".ToUpper, 80))
+
+        listEstCeldas.Add(New Modelo.Celda("NombreEmpresa", True, "Empresa".ToUpper, 200))
+        listEstCeldas.Add(New Modelo.Celda("Direccion", True, "Direccion".ToUpper, 350))
+        listEstCeldas.Add(New Modelo.Celda("Departamento", False))
+        listEstCeldas.Add(New Modelo.Celda("Ciudad", False))
+        listEstCeldas.Add(New Modelo.Celda("Telefono01", True, "Telefono".ToUpper, 150))
+
+        listEstCeldas.Add(New Modelo.Celda("Email", False))
+        listEstCeldas.Add(New Modelo.Celda("PaginaWeb", False))
+        listEstCeldas.Add(New Modelo.Celda("Nit", False))
+        listEstCeldas.Add(New Modelo.Celda("ActividadComercial", False))
+        listEstCeldas.Add(New Modelo.Celda("HorariosAtencion", False))
+        listEstCeldas.Add(New Modelo.Celda("NombreContacto01", False))
+        listEstCeldas.Add(New Modelo.Celda("Telefono02", False))
+        listEstCeldas.Add(New Modelo.Celda("NombreContacto02", False))
+
+
+        listEstCeldas.Add(New Modelo.Celda("TelefonoCelular", False))
+        listEstCeldas.Add(New Modelo.Celda("CondicionesEntrega", False))
+        listEstCeldas.Add(New Modelo.Celda("TiempoCredito", False))
+        listEstCeldas.Add(New Modelo.Celda("ItemsHabilitados", False))
+        listEstCeldas.Add(New Modelo.Celda("LimiteCredito", False))
+        listEstCeldas.Add(New Modelo.Celda("TipoVenta", False))
+
+
+        listEstCeldas.Add(New Modelo.Celda("Latitud", False))
+        listEstCeldas.Add(New Modelo.Celda("Longitud", False))
+        Dim ef = New Efecto
             ef.tipo = 3
             ef.dt = dt
             ef.SeleclCol = 2
@@ -1548,8 +1567,8 @@ Public Class F0_ProduccionProducto
             If (bandera = True) Then
                 Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
 
-                ClienteId = Row.Cells("ydnumi").Value
-                tbCliente.Text = Row.Cells("yddesc").Value
+            ClienteId = Row.Cells("id").Value
+            tbCliente.Text = Row.Cells("NombreEmpresa").Value
             tbDescripcion.Focus()
 
 
