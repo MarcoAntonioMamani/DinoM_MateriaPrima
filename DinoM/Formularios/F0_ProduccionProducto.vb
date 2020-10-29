@@ -1558,16 +1558,27 @@ Public Class F0_ProduccionProducto
     End Sub
 
     Private Sub btnCrearCliente_Click(sender As Object, e As EventArgs) Handles btnCrearCliente.Click
-        Dim ef = New Efecto
-        ef.tipo = 5
-        ef.ShowDialog()
-        Dim bandera As Boolean = False
-        bandera = ef.Bandera
-        If (bandera = True) Then
-            ClienteId = ef.ClienteId
-            tbCliente.Text = ef.Nombrecliente
-            tbDescripcion.Focus()
+        'Dim ef = New Efecto
+        'ef.tipo = 5
+        'ef.ShowDialog()
+        'Dim bandera As Boolean = False
+        'bandera = ef.Bandera
+        'If (bandera = True) Then
+        '    ClienteId = ef.ClienteId
+        '    tbCliente.Text = ef.Nombrecliente
+        '    tbDescripcion.Focus()
 
+        'End If
+        prof_venta = True
+        Dim ef = New F1_ClientesEmpresas
+        ef._nameButton = "btConfCliente"
+        ef._Tipo = 1
+        ef.ShowDialog()
+
+        If (ef.bandera = True) Then
+            ClienteId = codcli
+            tbCliente.Text = nomcli
+            tbDescripcion.Focus()
         End If
     End Sub
 #End Region

@@ -3,6 +3,17 @@ Imports Janus.Windows.GridEX.EditControls
 
 Module P_Global
 
+
+#Region "Proforma"
+    Public prof_venta As Boolean = False
+
+    Public codcli As Integer
+    Public nomcli As String
+    Public codvend As Integer
+    Public nomvend As String
+    Public codobra As Integer
+    Public nomobra As String
+#End Region
 #Region "Global"
 
     Private Declare Auto Function SetProcessWorkingSetSize Lib "kernel32.dll" (ByVal procHandle As IntPtr, ByVal min As Int32, ByVal max As Int32) As Boolean

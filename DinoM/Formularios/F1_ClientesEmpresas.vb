@@ -2,6 +2,7 @@
 Imports Logica.AccesoLogica
 Imports DevComponents.DotNetBar
 Imports Janus.Windows.GridEX
+Imports Modelo.MGlobal
 
 Imports System.IO
 Imports DevComponents.DotNetBar.SuperGrid
@@ -12,6 +13,8 @@ Imports GMap.NET.WindowsForms.Markers
 Imports GMap.NET.WindowsForms
 Imports GMap.NET.WindowsForms.ToolTips
 Imports DevComponents.DotNetBar.Controls
+Imports Modelo
+
 Public Class F1_ClientesEmpresas
 
     Dim _Inter As Integer = 0
@@ -23,6 +26,7 @@ Public Class F1_ClientesEmpresas
     Dim _latitud As Double = 0
     Dim _longitud As Double = 0
 #End Region
+    Public bandera As Boolean = False
     Dim RutaGlobal As String = gs_CarpetaRaiz
     Dim RutaTemporal As String = "C:\Temporal"
     Dim Modificado As Boolean = False
@@ -327,8 +331,9 @@ Public Class F1_ClientesEmpresas
     Public Overrides Function _PMOGrabarRegistro() As Boolean
 
         'ByRef Id As String, NombreEmpresa As String, Direccion As String, Departamento As Integer, Ciudad As Integer, Telefono01 As String, Email As String, PaginaWeb As String, Nit As String, ActividadComercial As Integer, HorarioAtencion As String, NombreContacto01 As String, Telefono02 As String, NombreContacto02 As String, TelefonoCelular As String, CondicionesEntrega As Integer, TiempoCredito As Integer, ItemsHabilitado As Integer, LimiteCredito As Double, TipoVenta As Integer, Latitud As Double, Longitud As Double
-
-        Dim res As Boolean = L_fnGrabarCLienteEmpresa(tbCodigoOriginal.Text, tbNombreEmpresa.Text, tbDireccion.Text, cbDepartamento.Value, cbCiudad.Value, tbTelefono01.Text, tbEmail.Text, tbPaginaWeb.Text, tbNit.Text, cbActividadComercial.Value, tbHorarioAtencion.Text, tbNombreContacto01.Text, tbTelefono02.Text, tbNombreContacto02.Text, tbTelefonoCelular.Text, cbCondicionesEntrega.Value, tbTiempoCredito.Value, tbItemsHabilitados.Value, tbLimiteCredito.Value, cbTipoVenta.Value, _latitud, _longitud)
+        Dim id As String = ""
+        Dim res As Boolean = L_fnGrabarCLienteEmpresa(id, tbNombreEmpresa.Text, tbDireccion.Text, cbDepartamento.Value, cbCiudad.Value, tbTelefono01.Text, tbEmail.Text, tbPaginaWeb.Text, tbNit.Text, cbActividadComercial.Value, tbHorarioAtencion.Text, tbNombreContacto01.Text, tbTelefono02.Text, tbNombreContacto02.Text, tbTelefonoCelular.Text, cbCondicionesEntrega.Value, tbTiempoCredito.Value, tbItemsHabilitados.Value, tbLimiteCredito.Value, cbTipoVenta.Value, _latitud, _longitud)
+        tbCodigoOriginal.Text = id
 
 
         If res Then
@@ -346,6 +351,15 @@ Public Class F1_ClientesEmpresas
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
             ToastNotification.Show(Me, "El producto no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
 
+        End If
+        If prof_venta = True Then
+            codcli = tbCodigoOriginal.Text
+            nomcli = tbNombreEmpresa.Text
+
+            bandera = True
+            prof_venta = False
+            Me.Close()
+            Return res = False
         End If
         Return res
 
