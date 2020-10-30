@@ -6041,7 +6041,7 @@ Public Class AccesoLogica
 
 #Region "PRODUCTO DE MATERIA PRIMA"
     Public Shared Function L_GuardarProductosMateriaPrima(ByRef Id As Integer, Estado As Integer, Descripcion As String, Grupo1 As Integer,
-                                                          Grupo2 As Integer, detalle As DataTable, TipoEvento As Integer) As Boolean
+                                                          Grupo2 As Integer, detalle As DataTable, TipoEvento As Integer, Imagen As String) As Boolean
         Try
             Dim _Tabla As DataTable
             Dim _listParam As New List(Of Datos.DParametro)
@@ -6052,6 +6052,7 @@ Public Class AccesoLogica
             _listParam.Add(New Datos.DParametro("@Grupo1", Grupo1))
             _listParam.Add(New Datos.DParametro("@Grupo2", Grupo2))
             _listParam.Add(New Datos.DParametro("@detalle", "", detalle))
+            _listParam.Add(New Datos.DParametro("@imagen", Imagen))
             _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
             _Tabla = D_ProcedimientoConParam("sp_ProductoMateriaPrima", _listParam)
             If _Tabla.Rows.Count > 0 Then

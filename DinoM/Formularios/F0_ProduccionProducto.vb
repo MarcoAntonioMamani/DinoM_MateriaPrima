@@ -1600,6 +1600,10 @@ Public Class F0_ProduccionProducto
             tbDescripcion.Focus()
         End If
     End Sub
+
+    Private Sub LabelX11_Click(sender As Object, e As EventArgs) Handles LabelX11.Click
+
+    End Sub
 #End Region
 
 

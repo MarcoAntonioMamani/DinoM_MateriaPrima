@@ -13,6 +13,7 @@ Public Class F0_ProductoMateriaPrima
     Public _nameButton As String
     Public _tab As SuperTabItem
     Public _modulo As SideNavItem
+    Dim gs_RutaImg As String = ""
     Public Limpiar As Boolean = False  'Bandera para indicar si limpiar todos los datos o mantener datos ya registrados
     Dim _Inter As Integer = 0
 #End Region
@@ -72,6 +73,9 @@ Public Class F0_ProductoMateriaPrima
             .Visible = False
         End With
         With grProductos.RootTable.Columns("Usuario")
+            .Visible = False
+        End With
+        With grProductos.RootTable.Columns("imagen")
             .Visible = False
         End With
         With grProductos
@@ -211,6 +215,9 @@ Public Class F0_ProductoMateriaPrima
         tbValor.ReadOnly = False
         btnImprimir.Visible = False
         grdetalle.Enabled = True
+        BtAdicionar.Enabled = True
+        _prCrearCarpetaImagenes("ProductosTodos")
+        _prCrearCarpetaTemporal()
     End Sub
 
     Public Sub Inhabilitar()
@@ -224,6 +231,7 @@ Public Class F0_ProductoMateriaPrima
         tbValor.ReadOnly = True
         btnImprimir.Visible = True
         grdetalle.Enabled = False
+        BtAdicionar.Enabled = False
     End Sub
     Public Sub habilitarMenu()
         btnNuevo.Enabled = False
@@ -251,11 +259,30 @@ Public Class F0_ProductoMateriaPrima
             'ADD
             CargarGrillaDetalle(0)
             LimpiarErrores()
+            UsImg.pbImage.Image = My.Resources.pantalla
+            _prEliminarContenidoImage()
         Catch ex As Exception
             MostrarMensajeError(ex.Message)
         End Try
     End Sub
+    Private Sub _prCrearCarpetaTemporal()
 
+        If System.IO.Directory.Exists(RutaTemporal) = False Then
+            System.IO.Directory.CreateDirectory(RutaTemporal)
+        Else
+            Try
+                My.Computer.FileSystem.DeleteDirectory(RutaTemporal, FileIO.DeleteDirectoryOption.DeleteAllContents)
+                My.Computer.FileSystem.CreateDirectory(RutaTemporal)
+                'My.Computer.FileSystem.DeleteDirectory(RutaTemporal, FileIO.UIOption.AllDialogs, FileIO.RecycleOption.SendToRecycleBin)
+                'System.IO.Directory.CreateDirectory(RutaTemporal)
+
+            Catch ex As Exception
+
+            End Try
+
+        End If
+
+    End Sub
 
     Private Sub MostrarMensajeError(mensaje As String)
         ToastNotification.Show(Me,
@@ -289,8 +316,45 @@ Public Class F0_ProductoMateriaPrima
             mCombo.SelectedIndex = -1
         End If
     End Sub
+    Private Sub _fnMoverImagenRuta(Folder As String, name As String)
+        'copio la imagen en la carpeta del sistema
+        If (Not name.Equals("Default.jpg") And File.Exists(RutaTemporal + name)) Then
 
+            Dim img As New Bitmap(New Bitmap(RutaTemporal + name), 500, 300)
 
+            UsImg.pbImage.Image.Dispose()
+            UsImg.pbImage.Image = Nothing
+            Try
+                My.Computer.FileSystem.CopyFile(RutaTemporal + name,
+     Folder + name, overwrite:=True)
+
+            Catch ex As System.IO.IOException
+            End Try
+        End If
+    End Sub
+    Private Sub _prCrearCarpetaImagenes(carpetaFinal As String)
+        Dim rutaDestino As String = RutaGlobal + "\Imagenes\Imagenes Productos\" + carpetaFinal + "\"
+
+        If System.IO.Directory.Exists(RutaGlobal + "\Imagenes\Imagenes Productos\" + carpetaFinal) = False Then
+            If System.IO.Directory.Exists(RutaGlobal + "\Imagenes") = False Then
+                System.IO.Directory.CreateDirectory(RutaGlobal + "\Imagenes")
+                If System.IO.Directory.Exists(RutaGlobal + "\Imagenes\Imagenes Productos") = False Then
+                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Imagenes\Imagenes Productos")
+                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Imagenes\Imagenes Productos\" + carpetaFinal + "\")
+                End If
+            Else
+                If System.IO.Directory.Exists(RutaGlobal + "\Imagenes\Imagenes Productos") = False Then
+                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Imagenes\Imagenes Productos")
+                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Imagenes\Imagenes Productos\" + carpetaFinal + "\")
+                Else
+                    If System.IO.Directory.Exists(RutaGlobal + "\Imagenes\Imagenes Productos\" + carpetaFinal) = False Then
+                        System.IO.Directory.CreateDirectory(RutaGlobal + "\Imagenes\Imagenes Productos\" + carpetaFinal + "\")
+                    End If
+
+                End If
+            End If
+        End If
+    End Sub
     Public Sub LimpiarErrores()
         MEP.Clear()
         tbDescPro.BackColor = Color.White
@@ -303,7 +367,7 @@ Public Class F0_ProductoMateriaPrima
     Public Sub _PMOGrabarRegistro()
         Dim resultado As Boolean = False
         Try
-
+            Dim nameImage As String = grProductos.GetValue("imagen")
             Dim nuevo, modificar As Integer
             nuevo = 1
             modificar = 2
@@ -314,22 +378,37 @@ Public Class F0_ProductoMateriaPrima
             Using ts As New Transactions.TransactionScope
 
                 resultado = L_GuardarProductosMateriaPrima(id, IIf(swEstado.Value = 0, 1, 2), tbDescPro.Text, cbgrupo1.Value,
-                                               cbgrupo2.Value, CType(grdetalle.DataSource, DataTable), tipoEvento)
+                                               cbgrupo2.Value, CType(grdetalle.DataSource, DataTable), tipoEvento, IIf(nuevo = 1, nameImg, IIf(Modificado = False, nameImage, nameImg)))
                 ts.Complete()
             End Using
             If resultado Then
                 Dim mensaje = "Código de Materia Prima ".ToUpper + id.ToString() + IIf(tipoEvento = 1, " GRABADO", " MODIFICADO") + " con Exito.".ToUpper
                 MostrarMensajeOk(mensaje)
-                _prFiltrar()
+
+
                 If tipoEvento = nuevo Then
+                    'Imagen
+                    _prFiltrar()
+                    Modificado = False
+                    _fnMoverImagenRuta(RutaGlobal + "\Imagenes\Imagenes Productos", nameImg)
                     Limpiar = True
                     _LimpiarDatos()
                     habilitarMenu()
+
                 Else
+                    'Imagen
+                    If (Modificado = True) Then
+                        _fnMoverImagenRuta(RutaGlobal + "\Imagenes\Imagenes Productos", nameImg)
+                        Modificado = False
+                    End If
                     Inhabilitar()
                     inHabilitarMenu()
                     _prCargarComboLibreria(cbgrupo3, 20, 3)
+                    _prFiltrar()
                 End If
+                _prCrearCarpetaImagenes("ProductosTodos")
+
+                nameImg = "Default.jpg"
             Else
                 Throw New Exception("Ocurrio un error inesperado, no se Grabo el registro")
             End If
@@ -369,6 +448,7 @@ Public Class F0_ProductoMateriaPrima
                     ts.Complete()
                 End Using
                 If res Then
+                    _PrEliminarImage()
                     MostrarMensajeOk("Código de Producto ".ToUpper + tbCodigo.Text + " eliminado con Exito.".ToUpper)
                     _prFiltrar()
                 Else
@@ -377,6 +457,24 @@ Public Class F0_ProductoMateriaPrima
             End If
         Catch ex As Exception
             MostrarMensajeError(ex.Message)
+        End Try
+    End Sub
+
+    Public Sub _PrEliminarImage()
+        If (Not (_fnActionNuevo()) And (File.Exists(RutaGlobal + "\Imagenes\Imagenes Productos" + tbCodigo.Text + ".jpg"))) Then
+            UsImg.pbImage.Image.Dispose()
+            UsImg.pbImage.Image = Nothing
+            Try
+                My.Computer.FileSystem.DeleteFile(RutaGlobal + "\Imagenes\Imagenes Productos" + tbCodigo.Text + ".jpg")
+            Catch ex As Exception
+            End Try
+        End If
+    End Sub
+    Sub _prEliminarContenidoImage()
+        Try
+            My.Computer.FileSystem.DeleteDirectory(gs_RutaImg, FileIO.DeleteDirectoryOption.DeleteAllContents)
+        Catch ex As Exception
+
         End Try
     End Sub
     Public Function _PMOValidarCampos() As Boolean
@@ -427,6 +525,23 @@ Public Class F0_ProductoMateriaPrima
             lbFecha.Text = CType(.GetValue("Fecha"), Date).ToString("dd/MM/yyyy")
             lbHora.Text = .GetValue("Hora").ToString
             lbUsuario.Text = .GetValue("Usuario").ToString
+
+            Dim name As String = grProductos.GetValue("imagen")
+            If name.Equals("Default.jpg") Or Not File.Exists(RutaGlobal + "\Imagenes\Imagenes Productos" + name) Then
+
+                Dim im As New Bitmap(My.Resources.pantalla)
+                UsImg.pbImage.Image = im
+            Else
+                If (File.Exists(RutaGlobal + "\Imagenes\Imagenes Productos" + name)) Then
+                    Dim Bin As New MemoryStream
+                    Dim im As New Bitmap(New Bitmap(RutaGlobal + "\Imagenes\Imagenes Productos" + name))
+                    im.Save(Bin, System.Drawing.Imaging.ImageFormat.Jpeg)
+                    UsImg.pbImage.SizeMode = PictureBoxSizeMode.StretchImage
+                    UsImg.pbImage.Image = Image.FromStream(Bin)
+                    Bin.Dispose()
+
+                End If
+            End If
             CargarGrillaDetalle(tbCodigo.Text)
         End With
         LblPaginacion.Text = Str(grProductos.Row + 1) + "/" + grProductos.RowCount.ToString
@@ -694,5 +809,55 @@ Public Class F0_ProductoMateriaPrima
             MostrarMensajeError(ex.Message)
         End Try
     End Sub
+
+    Private Sub BtAdicionar_Click(sender As Object, e As EventArgs) Handles BtAdicionar.Click
+        _fnCopiarImagenRutaDefinida()
+        btnGrabar.Focus()
+    End Sub
+    Private Function _fnCopiarImagenRutaDefinida() As String
+        'copio la imagen en la carpeta del sistema
+
+        Dim file As New OpenFileDialog()
+        file.Filter = "Ficheros JPG o JPEG o PNG|*.jpg;*.jpeg;*.png" &
+                      "|Ficheros GIF|*.gif" &
+                      "|Ficheros BMP|*.bmp" &
+                      "|Ficheros PNG|*.png" &
+                      "|Ficheros TIFF|*.tif"
+        If file.ShowDialog() = DialogResult.OK Then
+            Dim ruta As String = file.FileName
+            If file.CheckFileExists = True Then
+                Dim img As New Bitmap(New Bitmap(ruta))
+                Dim imgM As New Bitmap(New Bitmap(ruta))
+                Dim Bin As New MemoryStream
+                imgM.Save(Bin, System.Drawing.Imaging.ImageFormat.Jpeg)
+                Dim a As Object = file.GetType.ToString
+                If (_fnActionNuevo()) Then
+
+                    Dim mayor As Integer
+                    mayor = grProductos.GetTotal(grProductos.RootTable.Columns("Id"), AggregateFunction.Max)
+                    nameImg = "\Imagen_" + Str(mayor + 1).Trim + ".jpg"
+                    UsImg.pbImage.SizeMode = PictureBoxSizeMode.StretchImage
+                    UsImg.pbImage.Image = Image.FromStream(Bin)
+
+                    img.Save(RutaTemporal + nameImg, System.Drawing.Imaging.ImageFormat.Jpeg)
+                    img.Dispose()
+                Else
+
+                    nameImg = "\Imagen_" + Str(tbCodigo.Text).Trim + ".jpg"
+
+
+                    UsImg.pbImage.Image = Image.FromStream(Bin)
+                    img.Save(RutaTemporal + nameImg, System.Drawing.Imaging.ImageFormat.Jpeg)
+                    Modificado = True
+                    img.Dispose()
+
+                End If
+            End If
+
+            Return nameImg
+        End If
+
+        Return "default.jpg"
+    End Function
 #End Region
 End Class
