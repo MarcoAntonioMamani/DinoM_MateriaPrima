@@ -678,9 +678,19 @@ Public Class F1_ClientesEmpresas
             _PMPrimerRegistro()
 
         Else
-            '  Public _modulo As SideNavItem
-            _modulo.Select()
-            Me.Close()
+
+            If prof_venta = True Then
+
+
+                bandera = False
+                prof_venta = False
+                Me.Close()
+            Else
+                '  Public _modulo As SideNavItem
+                _modulo.Select()
+                Me.Close()
+            End If
+
         End If
     End Sub
 

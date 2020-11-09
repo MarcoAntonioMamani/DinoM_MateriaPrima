@@ -265,6 +265,7 @@ Public Class F0_ProduccionProducto
         tbPrecioB.Value = 0
         tbPrecioC.Value = 0
         ClienteId = 0
+        tbCliente.Clear()
 
 
 
@@ -275,6 +276,7 @@ Public Class F0_ProduccionProducto
         _prCargarHerramental(-1)
         _prCargarCaracterisiticaCalidad(-1)
         _prCargarCaracterisiticaFisica(-1)
+
         MSuperTabControl.SelectedTabIndex = 0
         TablaImagenes = L_fnDetalleImagenes(-1)
         _prCargarImagen()
@@ -758,7 +760,10 @@ Public Class F0_ProduccionProducto
                                       eToastGlowColor.Green,
                                       eToastPosition.TopCenter
                                       )
-            tbCodigo.Focus()
+            _prCargarCompra()
+
+
+            _Limpiar()
 
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
