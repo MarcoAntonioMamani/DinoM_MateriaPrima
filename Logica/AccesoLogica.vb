@@ -465,7 +465,7 @@ Public Class AccesoLogica
         Return _resultado
     End Function
 
-    Public Shared Function L_fnGrabarProductoNew(id As String, Codigo As String, Descripcion As String, Unidad As Integer, Grupo As Integer, SubGrupo As Integer, Peso As Double, Observaciones As String, PrecioA As Double, PrecioB As Double, PRecioC As Double, Imagen As String, grmaquinari As DataTable, grEmpaque As DataTable, grdosificacion As DataTable, grMolde As DataTable, grHerramental As DataTable, grCalidad As DataTable, grfisica As DataTable, grImagen As DataTable, ClienteId As Integer) As Boolean
+    Public Shared Function L_fnGrabarProductoNew(id As String, Codigo As String, Descripcion As String, Unidad As Integer, Grupo As Integer, SubGrupo As Integer, Peso As Double, Observaciones As String, PrecioA As Double, PrecioB As Double, PRecioC As Double, Imagen As String, grmaquinari As DataTable, grEmpaque As DataTable, grdosificacion As DataTable, grMolde As DataTable, grHerramental As DataTable, grCalidad As DataTable, grfisica As DataTable, grImagen As DataTable, ClienteId As Integer, dtEquipo As DataTable) As Boolean
         Dim _resultado As Boolean
         '     (@Id ,@Codigo ,@Descripcion ,@Unidad ,@Grupo ,@SubGrupo ,@Peso ,@Observaciones ,
         '@PrecioA ,@PrecioB ,@PrecioC ,@Imagen ,@Usuario ,@newFecha ,@newHor
@@ -498,7 +498,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@ProductoProduccionDosificacionMateria", "", grdosificacion))
         _listParam.Add(New Datos.DParametro("@ProductoProduccionEmpaque", "", grEmpaque))
         _listParam.Add(New Datos.DParametro("@ProductoProduccionMaquinariaRequerida", "", grmaquinari))
-
+        _listParam.Add(New Datos.DParametro("@ProductoEquipo", "", dtEquipo))
         _Tabla = D_ProcedimientoConParam("sp_Mam_Productos", _listParam)
 
         If _Tabla.Rows.Count > 0 Then
@@ -511,7 +511,7 @@ Public Class AccesoLogica
         Return _resultado
     End Function
 
-    Public Shared Function L_fnModificarProductoNew(id As String, Codigo As String, Descripcion As String, Unidad As Integer, Grupo As Integer, SubGrupo As Integer, Peso As Double, Observaciones As String, PrecioA As Double, PrecioB As Double, PRecioC As Double, Imagen As String, grmaquinari As DataTable, grEmpaque As DataTable, grdosificacion As DataTable, grMolde As DataTable, grHerramental As DataTable, grCalidad As DataTable, grfisica As DataTable, grImagen As DataTable, ClienteId As Integer) As Boolean
+    Public Shared Function L_fnModificarProductoNew(id As String, Codigo As String, Descripcion As String, Unidad As Integer, Grupo As Integer, SubGrupo As Integer, Peso As Double, Observaciones As String, PrecioA As Double, PrecioB As Double, PRecioC As Double, Imagen As String, grmaquinari As DataTable, grEmpaque As DataTable, grdosificacion As DataTable, grMolde As DataTable, grHerramental As DataTable, grCalidad As DataTable, grfisica As DataTable, grImagen As DataTable, ClienteId As Integer, dtEquipo As DataTable) As Boolean
         Dim _resultado As Boolean
         '     (@Id ,@Codigo ,@Descripcion ,@Unidad ,@Grupo ,@SubGrupo ,@Peso ,@Observaciones ,
         '@PrecioA ,@PrecioB ,@PrecioC ,@Imagen ,@Usuario ,@newFecha ,@newHor
@@ -542,7 +542,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@ProductoProduccionDosificacionMateria", "", grdosificacion))
         _listParam.Add(New Datos.DParametro("@ProductoProduccionEmpaque", "", grEmpaque))
         _listParam.Add(New Datos.DParametro("@ProductoProduccionMaquinariaRequerida", "", grmaquinari))
-
+        _listParam.Add(New Datos.DParametro("@ProductoEquipo", "", dtEquipo))
         _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
         '_listParam.Add(New Datos.DParametro("@yfgr5", _yfgr5))
         '_listParam.Add(New Datos.DParametro("@TY0051", "", TY0051))
@@ -2030,6 +2030,19 @@ Public Class AccesoLogica
         Dim _listParam As New List(Of Datos.DParametro)
 
         _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@Id", _IdProducto))
+        _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Productos", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnProductosEquipos(_IdProducto As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 12))
         _listParam.Add(New Datos.DParametro("@Id", _IdProducto))
         _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_Productos", _listParam)

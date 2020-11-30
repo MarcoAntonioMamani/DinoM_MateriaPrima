@@ -24,6 +24,8 @@ Public Class F0_ProduccionProducto
     Dim nameImg As String = "Default.jpg"
     Dim gs_RutaImg As String = ""
     Dim ClienteId As Integer = 0
+
+    Dim EquipoId As Integer = 0
 #End Region
 
 #Region "Metodos Privados"
@@ -175,6 +177,8 @@ Public Class F0_ProduccionProducto
         btnHerramentalAgregar.Visible = False
         BtAdicionar.Visible = False
 
+        btnMaquinariaAgregar.Visible = False
+        btnEquipoBuscar.Visible = False
 
         btnDelete.Visible = False
         btnImagen.Visible = False
@@ -212,6 +216,10 @@ Public Class F0_ProduccionProducto
         btnMaquinariaAgregar.Visible = True
         btnMoldeAgregar.Visible = True
         btnHerramentalAgregar.Visible = True
+
+
+        btnMaquinariaAgregar.Visible = True
+        btnEquipoBuscar.Visible = True
 
         btnDelete.Visible = True
         btnImagen.Visible = True
@@ -267,6 +275,8 @@ Public Class F0_ProduccionProducto
         ClienteId = 0
         tbCliente.Clear()
 
+        tbEquipoCantidad.Clear()
+        tbMaquina.Clear()
 
 
         _prCargarMaquinaria(-1)
@@ -276,7 +286,7 @@ Public Class F0_ProduccionProducto
         _prCargarHerramental(-1)
         _prCargarCaracterisiticaCalidad(-1)
         _prCargarCaracterisiticaFisica(-1)
-
+        _prCargarProductosEquipos(-1)
         MSuperTabControl.SelectedTabIndex = 0
         TablaImagenes = L_fnDetalleImagenes(-1)
         _prCargarImagen()
@@ -328,6 +338,7 @@ Public Class F0_ProduccionProducto
         _prCargarHerramental(grCompra.GetValue("Id"))
         _prCargarCaracterisiticaCalidad(grCompra.GetValue("Id"))
         _prCargarCaracterisiticaFisica(grCompra.GetValue("Id"))
+        _prCargarProductosEquipos(grCompra.GetValue("Id"))
         TablaImagenes = L_fnDetalleImagenes(tbId.Text)
         _prCargarImagen()
         LblPaginacion.Text = Str(grCompra.Row + 1) + "/" + grCompra.RowCount.ToString
@@ -368,6 +379,52 @@ Public Class F0_ProduccionProducto
         End With
 
         With grCaracterisiticaFisicas
+            .GroupByBoxVisible = False
+            'diseño de la grilla
+            .VisualStyle = VisualStyle.Office2007
+
+        End With
+    End Sub
+
+
+    Private Sub _prCargarProductosEquipos(_numi As String)
+        Dim dt As New DataTable
+        dt = L_fnProductosEquipos(_numi)
+        grMaquina.DataSource = dt
+        grMaquina.RetrieveStructure()
+        grMaquina.AlternatingColors = True
+        'p.Id ,p.ProductoId ,p.EquiposId ,e.Nombre as Equipo,p.Cantidad,1 as estado
+        With grMaquina.RootTable.Columns("Id")
+            .Width = 100
+            .Caption = "Id"
+            .Visible = True
+        End With
+        With grMaquina.RootTable.Columns("ProductoId")
+            .Width = 100
+            .Visible = False
+        End With
+        With grMaquina.RootTable.Columns("EquiposId")
+            .Width = 100
+            .Visible = False
+        End With
+
+
+        With grMaquina.RootTable.Columns("Equipo")
+            .Width = 400
+            .Caption = "Equipo"
+            .Visible = True
+        End With
+        With grMaquina.RootTable.Columns("Cantidad")
+            .Width = 200
+            .Caption = "Cantidad"
+            .Visible = True
+        End With
+        With grMaquina.RootTable.Columns("estado")
+            .Width = 100
+            .Visible = False
+        End With
+
+        With grMaquina
             .GroupByBoxVisible = False
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
@@ -745,7 +802,7 @@ Public Class F0_ProduccionProducto
 
         'L_fnGrabarProductoNew(id As String, Codigo As String, Descripcion As String, Unidad As Integer, Grupo As Integer, SubGrupo As Integer, Peso As Double, Observaciones As String, PrecioA As Double, PrecioB As Double, PRecioC As Double, Imagen As String)
         'grmaquinari As DataTable, grEmpaque As DataTable, grDosificacion As DataTable, grMolde As DataTable, grHerramental As DataTable, grCalidad As DataTable, grfisica As DataTable, grImagen As DataTable
-        Dim res As Boolean = L_fnGrabarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value, cbGrupo.Value, cbSubGrupo.Value, tbPeso.Value, tbObservacion.Text, tbPrecioA.Value, tbPrecioB.Value, tbPrecioC.Value, nameImg, CType(grMaquinaria.DataSource, DataTable), CType(grEmpaque.DataSource, DataTable), CType(grDosificacion.DataSource, DataTable), CType(grMolde.DataSource, DataTable), CType(grHerramental.DataSource, DataTable), CType(grCaracteristicaCalidad.DataSource, DataTable), CType(grCaracterisiticaFisicas.DataSource, DataTable), TablaImagenes, ClienteId)
+        Dim res As Boolean = L_fnGrabarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value, cbGrupo.Value, cbSubGrupo.Value, tbPeso.Value, tbObservacion.Text, tbPrecioA.Value, tbPrecioB.Value, tbPrecioC.Value, nameImg, CType(grMaquinaria.DataSource, DataTable), CType(grEmpaque.DataSource, DataTable), CType(grDosificacion.DataSource, DataTable), CType(grMolde.DataSource, DataTable), CType(grHerramental.DataSource, DataTable), CType(grCaracteristicaCalidad.DataSource, DataTable), CType(grCaracterisiticaFisicas.DataSource, DataTable), TablaImagenes, ClienteId, CType(grMaquina.DataSource, DataTable))
 
 
         If res Then
@@ -781,9 +838,9 @@ Public Class F0_ProduccionProducto
 
         Dim nameImage As String = grCompra.GetValue("Imagen")
         If (Modificado = False) Then
-            res = L_fnModificarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value, cbGrupo.Value, cbSubGrupo.Value, tbPeso.Value, tbObservacion.Text, tbPrecioA.Value, tbPrecioB.Value, tbPrecioC.Value, nameImage, CType(grMaquinaria.DataSource, DataTable), CType(grEmpaque.DataSource, DataTable), CType(grDosificacion.DataSource, DataTable), CType(grMolde.DataSource, DataTable), CType(grHerramental.DataSource, DataTable), CType(grCaracteristicaCalidad.DataSource, DataTable), CType(grCaracterisiticaFisicas.DataSource, DataTable), TablaImagenes, ClienteId)
+            res = L_fnModificarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value, cbGrupo.Value, cbSubGrupo.Value, tbPeso.Value, tbObservacion.Text, tbPrecioA.Value, tbPrecioB.Value, tbPrecioC.Value, nameImage, CType(grMaquinaria.DataSource, DataTable), CType(grEmpaque.DataSource, DataTable), CType(grDosificacion.DataSource, DataTable), CType(grMolde.DataSource, DataTable), CType(grHerramental.DataSource, DataTable), CType(grCaracteristicaCalidad.DataSource, DataTable), CType(grCaracterisiticaFisicas.DataSource, DataTable), TablaImagenes, ClienteId, CType(grMaquina.DataSource, DataTable))
         Else
-            res = L_fnModificarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value, cbGrupo.Value, cbSubGrupo.Value, tbPeso.Value, tbObservacion.Text, tbPrecioA.Value, tbPrecioB.Value, tbPrecioC.Value, nameImg, CType(grMaquinaria.DataSource, DataTable), CType(grEmpaque.DataSource, DataTable), CType(grDosificacion.DataSource, DataTable), CType(grMolde.DataSource, DataTable), CType(grHerramental.DataSource, DataTable), CType(grCaracteristicaCalidad.DataSource, DataTable), CType(grCaracterisiticaFisicas.DataSource, DataTable), TablaImagenes, ClienteId)
+            res = L_fnModificarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value, cbGrupo.Value, cbSubGrupo.Value, tbPeso.Value, tbObservacion.Text, tbPrecioA.Value, tbPrecioB.Value, tbPrecioC.Value, nameImg, CType(grMaquinaria.DataSource, DataTable), CType(grEmpaque.DataSource, DataTable), CType(grDosificacion.DataSource, DataTable), CType(grMolde.DataSource, DataTable), CType(grHerramental.DataSource, DataTable), CType(grCaracteristicaCalidad.DataSource, DataTable), CType(grCaracterisiticaFisicas.DataSource, DataTable), TablaImagenes, ClienteId, CType(grMaquina.DataSource, DataTable))
         End If
 
 
@@ -1559,18 +1616,18 @@ Public Class F0_ProduccionProducto
         listEstCeldas.Add(New Modelo.Celda("Latitud", False))
         listEstCeldas.Add(New Modelo.Celda("Longitud", False))
         Dim ef = New Efecto
-            ef.tipo = 3
-            ef.dt = dt
-            ef.SeleclCol = 2
-            ef.listEstCeldas = listEstCeldas
-            ef.alto = 50
-            ef.ancho = 350
-            ef.Context = "Seleccione Cliente".ToUpper
-            ef.ShowDialog()
-            Dim bandera As Boolean = False
-            bandera = ef.band
-            If (bandera = True) Then
-                Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
+        ef.tipo = 3
+        ef.dt = dt
+        ef.SeleclCol = 2
+        ef.listEstCeldas = listEstCeldas
+        ef.alto = 50
+        ef.ancho = 350
+        ef.Context = "Seleccione Cliente".ToUpper
+        ef.ShowDialog()
+        Dim bandera As Boolean = False
+        bandera = ef.band
+        If (bandera = True) Then
+            Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
 
             ClienteId = Row.Cells("id").Value
             tbCliente.Text = Row.Cells("NombreEmpresa").Value
@@ -1609,6 +1666,134 @@ Public Class F0_ProduccionProducto
     Private Sub LabelX11_Click(sender As Object, e As EventArgs) Handles LabelX11.Click
 
     End Sub
+
+    Private Sub btnEquipoBuscar_Click(sender As Object, e As EventArgs) Handles btnEquipoBuscar.Click
+        Dim dt As DataTable
+        'dt = L_fnListarClientes()
+        dt = L_fnGeneralEquipos()
+        'a.id, a.NombreEmpresa, a.Direccion, a.Departamento, a.Ciudad, a.Telefono01, a.Email,
+        'a.PaginaWeb, a.Nit, a.ActividadComercial, a.HorariosAtencion, a.NombreContacto01, a.Telefono02, a.NombreContacto02,
+        'a.TelefonoCelular, a.CondicionesEntrega, a.TiempoCredito, a.ItemsHabilitados, a.LimiteCredito, a.TipoVenta,
+        'a.Latitud, a.Longitud 
+
+        Dim listEstCeldas As New List(Of Modelo.Celda)
+        listEstCeldas.Add(New Modelo.Celda("id", True, "Código".ToUpper, 80))
+
+        listEstCeldas.Add(New Modelo.Celda("Nombre", True, "Nombre".ToUpper, 200))
+        listEstCeldas.Add(New Modelo.Celda("DescripcionGrupo", False, "Grupo".ToUpper, 150))
+        listEstCeldas.Add(New Modelo.Celda("Grupo", False))
+        listEstCeldas.Add(New Modelo.Celda("ParametrosTecnicos", False))
+        listEstCeldas.Add(New Modelo.Celda("DescripcionParametros", True, "Parametros Tecnicos".ToUpper, 120))
+        listEstCeldas.Add(New Modelo.Celda("Notas", True, "Notas", 120))
+        Dim ef = New Efecto
+        ef.tipo = 3
+        ef.dt = dt
+        ef.SeleclCol = 2
+        ef.listEstCeldas = listEstCeldas
+        ef.alto = 50
+        ef.ancho = 350
+        ef.Context = "Seleccione Equipos".ToUpper
+        ef.ShowDialog()
+        Dim bandera As Boolean = False
+        bandera = ef.band
+        If (bandera = True) Then
+            Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
+
+            EquipoId = Row.Cells("id").Value
+            tbMaquina.Text = Row.Cells("Nombre").Value
+            tbEquipoCantidad.Focus()
+
+
+        End If
+    End Sub
+
+
+    Public Function ExisteEquipo(EquipoId As Integer) As Boolean
+
+
+        Dim dt As DataTable = CType(grMaquina.DataSource, DataTable)
+        For i As Integer = 0 To dt.Rows.Count - 1 Step 1
+            If (dt.Rows(i).Item("EquiposId") = EquipoId) Then
+                Return True
+            End If
+
+
+        Next
+        Return False
+    End Function
+
+    Private Sub btnEquipoAgregar_Click(sender As Object, e As EventArgs) Handles btnEquipoAgregar.Click
+        If (tbEquipoCantidad.Text <> "" And EquipoId <> 0) Then
+
+            If (Not ExisteEquipo(EquipoId)) Then
+                'p.Id ,p.ProductoId ,p.EquiposId ,e.Nombre as Equipo,p.Cantidad,1 as estado
+                CType(grMaquina.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grMaquina) + 1, 0, EquipoId, tbMaquina.Text, tbEquipoCantidad.Text, 0)
+                tbMaquina.Clear()
+                tbEquipoCantidad.Clear()
+
+                EquipoId = 0
+
+            Else
+                ToastNotification.Show(Me, "El equipo ya esta registrado en el detalle",
+                                   My.Resources.WARNING, 2000,
+                                   eToastGlowColor.Red,
+                                   eToastPosition.BottomLeft)
+            End If
+
+
+
+
+        Else
+            ToastNotification.Show(Me, "Debe Seleccionar una Maquina y Colocar una cantidad",
+                                    My.Resources.WARNING, 2000,
+                                    eToastGlowColor.Red,
+                                    eToastPosition.BottomLeft)
+        End If
+    End Sub
+
+    Private Sub tbMaquina_KeyDown(sender As Object, e As KeyEventArgs) Handles tbMaquina.KeyDown
+        If (e.KeyData = Keys.Control + Keys.Enter) Then
+            Dim dt As DataTable
+            'dt = L_fnListarClientes()
+            dt = L_fnGeneralEquipos()
+            'a.id, a.NombreEmpresa, a.Direccion, a.Departamento, a.Ciudad, a.Telefono01, a.Email,
+            'a.PaginaWeb, a.Nit, a.ActividadComercial, a.HorariosAtencion, a.NombreContacto01, a.Telefono02, a.NombreContacto02,
+            'a.TelefonoCelular, a.CondicionesEntrega, a.TiempoCredito, a.ItemsHabilitados, a.LimiteCredito, a.TipoVenta,
+            'a.Latitud, a.Longitud 
+
+            Dim listEstCeldas As New List(Of Modelo.Celda)
+            listEstCeldas.Add(New Modelo.Celda("id", True, "Código".ToUpper, 80))
+
+            listEstCeldas.Add(New Modelo.Celda("Nombre", True, "Nombre".ToUpper, 200))
+            listEstCeldas.Add(New Modelo.Celda("DescripcionGrupo", False, "Grupo".ToUpper, 150))
+            listEstCeldas.Add(New Modelo.Celda("Grupo", False))
+            listEstCeldas.Add(New Modelo.Celda("ParametrosTecnicos", False))
+            listEstCeldas.Add(New Modelo.Celda("DescripcionParametros", True, "Parametros Tecnicos".ToUpper, 120))
+            listEstCeldas.Add(New Modelo.Celda("Notas", True, "Notas", 120))
+            Dim ef = New Efecto
+            ef.tipo = 3
+            ef.dt = dt
+            ef.SeleclCol = 2
+            ef.listEstCeldas = listEstCeldas
+            ef.alto = 50
+            ef.ancho = 350
+            ef.Context = "Seleccione Equipos".ToUpper
+            ef.ShowDialog()
+            Dim bandera As Boolean = False
+            bandera = ef.band
+            If (bandera = True) Then
+                Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
+
+                EquipoId = Row.Cells("id").Value
+                tbMaquina.Text = Row.Cells("Nombre").Value
+                tbEquipoCantidad.Focus()
+
+
+            End If
+        End If
+    End Sub
+
+
 #End Region
 
 
