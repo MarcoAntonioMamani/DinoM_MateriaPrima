@@ -1,5 +1,4 @@
 ﻿
-
 Imports Logica.AccesoLogica
 Imports DevComponents.DotNetBar
 Imports Janus.Windows.GridEX
@@ -13,7 +12,8 @@ Imports GMap.NET.WindowsForms.Markers
 Imports GMap.NET.WindowsForms
 Imports GMap.NET.WindowsForms.ToolTips
 Imports DevComponents.DotNetBar.Controls
-Public Class F1_Equipos
+Public Class F1_Equipos02
+
     Dim _Inter As Integer = 0
 #Region "Variables Locales"
 #Region "MApas"
@@ -205,13 +205,14 @@ Public Class F1_Equipos
 
     Public Overrides Sub _PMOHabilitar()
         tbCodigoOriginal.ReadOnly = False
-        cbGrupo.ReadOnly = False
+        cbGrupo.ComboStyle = ComboStyle.Combo
         cbParametroTecnico.ReadOnly = False
         tbNota.ReadOnly = False
 
 
 
         PanelDetalle.Visible = True
+        PanelParametrosTecnicos.Visible = True
         tbNombre.ReadOnly = False
 
         btnDelete.Visible = True
@@ -219,8 +220,8 @@ Public Class F1_Equipos
         _prCrearCarpetaImagenes()
         _prCrearCarpetaTemporal()
 
-
-
+        grParametroTecnico.ContextMenuStrip = MenuEliminarParametros
+        grDetalle.ContextMenuStrip = MenuEliminarDetalle
 
 
         cbGrupo.Focus()
@@ -231,16 +232,18 @@ Public Class F1_Equipos
     Public Overrides Sub _PMOInhabilitar()
         btnDelete.Visible = False
         btnImagen.Visible = False
+        PanelParametrosTecnicos.Visible = False
 
-        cbGrupo.ReadOnly = True
         cbParametroTecnico.ReadOnly = True
         tbNota.ReadOnly = True
         tbNombre.ReadOnly = True
-
+        cbGrupo.ComboStyle = ComboStyle.DropDownList
         PanelDetalle.Visible = False
 
         _prStyleJanus()
         JGrM_Buscador.Focus()
+        grDetalle.ContextMenuStrip = Nothing
+        grParametroTecnico.ContextMenuStrip = Nothing
 
         ' SuperTabItem1.Visible = False
     End Sub
@@ -259,7 +262,7 @@ Public Class F1_Equipos
         _prCargarImagen()
         _prEliminarContenidoImage()
         _prCargarDetalle(-1)
-
+        _prCargarDetalleParametrosTecnicos(-1)
 
         _latitud = 0
         _longitud = 0
@@ -267,6 +270,17 @@ Public Class F1_Equipos
         NumiVendedor = 0
         tbNombre.Focus()
 
+        Dim dt As DataTable = L_fnGeneralEquipos()
+
+        If (dt.Rows.Count > 0) Then
+            Dim Id As Integer = dt.Rows(dt.Rows.Count - 1).Item("Id")
+            _prCargarDetalleParametrosTecnicos(Str(Id))
+            cbGrupo.Value = dt.Rows(dt.Rows.Count - 1).Item("Grupo")
+            FiltrarParametros()
+            _prCargarDetalle(Str(Id))
+            FiltrarParametros()
+
+        End If
     End Sub
     Public Sub _prCargarImagen()
         PanelListImagenes.Controls.Clear()
@@ -391,7 +405,7 @@ Public Class F1_Equipos
         ''(ByRef Id As String, Nombre As String, Grupo As Integer,
         'ParametrosTecnico As Integer, Notas As String, dtImagenes As DataTable, dtDetalle As DataTable)
 
-        Dim res As Boolean = L_fnGrabarEquipo(tbCodigoOriginal.Text, tbNombre.Text, cbGrupo.Value, cbParametroTecnico.Value, tbNota.Text, TablaImagenes, CType(grDetalle.DataSource, DataTable), CType(grDetalle.DataSource, DataTable))
+        Dim res As Boolean = L_fnGrabarEquipo(tbCodigoOriginal.Text, tbNombre.Text, cbGrupo.Value, cbParametroTecnico.Value, tbNota.Text, TablaImagenes, CType(grDetalle.DataSource, DataTable), CType(grParametroTecnico.DataSource, DataTable))
 
 
         If res Then
@@ -419,7 +433,7 @@ Public Class F1_Equipos
 
 
 
-        Dim res As Boolean = L_fnModificarEquipo(tbCodigoOriginal.Text, tbNombre.Text, cbGrupo.Value, cbParametroTecnico.Value, tbNota.Text, TablaImagenes, CType(grDetalle.DataSource, DataTable), CType(grDetalle.DataSource, DataTable))
+        Dim res As Boolean = L_fnModificarEquipo(tbCodigoOriginal.Text, tbNombre.Text, cbGrupo.Value, cbParametroTecnico.Value, tbNota.Text, TablaImagenes, CType(grDetalle.DataSource, DataTable), CType(grParametroTecnico.DataSource, DataTable))
         If res Then
 
 
@@ -515,12 +529,12 @@ Public Class F1_Equipos
 
         listEstCeldas.Add(New Modelo.Celda("id", True, "Código".ToUpper, 80))
 
-        listEstCeldas.Add(New Modelo.Celda("Nombre", True, "Nombre".ToUpper, 200))
+        listEstCeldas.Add(New Modelo.Celda("Nombre", True, "Nombre".ToUpper, 400))
         listEstCeldas.Add(New Modelo.Celda("DescripcionGrupo", True, "Grupo".ToUpper, 150))
         listEstCeldas.Add(New Modelo.Celda("Grupo", False))
         listEstCeldas.Add(New Modelo.Celda("ParametrosTecnicos", False))
         listEstCeldas.Add(New Modelo.Celda("DescripcionParametros", True, "Parametros Tecnicos".ToUpper, 120))
-        listEstCeldas.Add(New Modelo.Celda("Notas", True, "Notas"))
+        listEstCeldas.Add(New Modelo.Celda("Notas", True, "Notas", 250))
 
 
 
@@ -539,16 +553,25 @@ Public Class F1_Equipos
         End Try
         With JGrM_Buscador
             tbCodigoOriginal.Text = .GetValue("Id").ToString
-
+            _prCargarDetalleParametrosTecnicos(tbCodigoOriginal.Text)
             cbGrupo.Value = .GetValue("Grupo")
-            cbParametroTecnico.Value = .GetValue("ParametrosTecnicos")
+            FiltrarParametros()
+            _prCargarDetalle(tbCodigoOriginal.Text)
+            FiltrarParametros()
             tbNombre.Text = .GetValue("Nombre").ToString
             tbNota.Text = .GetValue("Notas").ToString
 
         End With
+        If (grParametroTecnico.RowCount > 0) Then
+            grParametroTecnico.Row = 0
+            FiltrarDetalle(grParametroTecnico.GetValue("Id"))
+
+
+        End If
         TablaImagenes = L_fnDetalleImagenes(tbCodigoOriginal.Text)
         _prCargarImagen()
-        _prCargarDetalle(tbCodigoOriginal.Text)
+
+
         LblPaginacion.Text = Str(_MPos + 1) + "/" + JGrM_Buscador.RowCount.ToString
 
     End Sub
@@ -652,7 +675,9 @@ Public Class F1_Equipos
         If cbGrupo.SelectedIndex < 0 And cbGrupo.Text <> String.Empty Then
             btGrupo.Visible = True
         Else
+            gpTecnico.Text = "P.Tecnicos De " + cbGrupo.Text
             btGrupo.Visible = False
+            FiltrarParametros()
         End If
     End Sub
 
@@ -729,8 +754,68 @@ Public Class F1_Equipos
         End With
     End Sub
 
+    Private Sub _prCargarDetalleParametrosTecnicos(_numi As String)
+        Dim dt As New DataTable
+        dt = L_fnDetalleParametrosTenicos(_numi)
+        grParametroTecnico.DataSource = dt
+        grParametroTecnico.RetrieveStructure()
+        grParametroTecnico.AlternatingColors = True
+        'a.Id ,a.EquipoId,a.GrupoId,a.Parametro ,isnull((select ycdes3  from TY0031 where yccod1 =22 and yccod2 =2 and yccod3 =a.Parametro  ),'') as NombreParametro ,1 as Estado
+        With grParametroTecnico.RootTable.Columns("Id")
+            .Width = 100
+            .Caption = "Id"
+            .Visible = True
+        End With
+        With grParametroTecnico.RootTable.Columns("EquipoId")
+            .Width = 100
+            .Caption = "EquiposId"
+            .Visible = False
+        End With
+        With grParametroTecnico.RootTable.Columns("GrupoId")
+            .Width = 100
+            .Caption = "EquiposId"
+            .Visible = False
+        End With
+        With grParametroTecnico.RootTable.Columns("Parametro")
+            .Width = 100
+            .Caption = "EquiposId"
+            .Visible = False
+        End With
+
+
+        With grParametroTecnico.RootTable.Columns("NombreParametro")
+            .Width = 300
+            .Caption = "Parametro Tenico"
+            .Visible = True
+        End With
+
+
+        With grParametroTecnico.RootTable.Columns("estado")
+            .Width = 100
+            .Caption = "estado"
+            .Visible = False
+        End With
+
+        With grParametroTecnico
+            .GroupByBoxVisible = False
+            'diseño de la grilla
+            .VisualStyle = VisualStyle.Office2007
+
+        End With
+    End Sub
+
     Private Sub btnDetalleAgregar_Click(sender As Object, e As EventArgs) Handles btnDetalleAgregar.Click
-        _prAddDetalleVenta()
+        If (grParametroTecnico.Row >= 0) Then
+            _prAddDetalleVenta()
+
+        Else
+            ToastNotification.Show(Me, "Seleccione un Parametro Tecnico..!!!",
+                                  My.Resources.WARNING, 2000,
+                                  eToastGlowColor.Red,
+                                  eToastPosition.BottomLeft)
+        End If
+
+
     End Sub
 
     Private Sub _prAddDetalleVenta()
@@ -738,7 +823,7 @@ Public Class F1_Equipos
         If (tbAtributo.Text <> "" And tbdescripcion.Text <> "") Then
 
 
-            CType(grDetalle.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grDetalle) + 1, tbAtributo.Text, tbdescripcion.Text, 0, cbParametroTecnico.Value, 0)
+            CType(grDetalle.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grDetalle) + 1, tbAtributo.Text, tbdescripcion.Text, 0, grParametroTecnico.GetValue("Id"), 0)
             tbAtributo.Clear()
             tbdescripcion.Clear()
             tbAtributo.Focus()
@@ -826,6 +911,190 @@ Public Class F1_Equipos
         If (pos >= 0 And TablaImagenes.Rows.Count > 0) Then
             TablaImagenes.Rows(pos).Item("estado") = -1
             _prCargarImagen()
+        End If
+    End Sub
+
+    Public Function ExisteParametro(GrupoId As Integer, ParametroId As Integer) As Boolean
+        Dim dt As DataTable = CType(grParametroTecnico.DataSource, DataTable)
+
+        For i As Integer = 0 To dt.Rows.Count - 1 Step 1
+
+            If (dt.Rows(i).Item("GrupoId") = GrupoId And dt.Rows(i).Item("Parametro") = ParametroId And dt.Rows(i).Item("estado") >= 0) Then
+
+                Return True
+
+            End If
+
+        Next
+        Return False
+
+    End Function
+    Public Sub FiltrarParametros()
+
+        If (Not IsNothing(grParametroTecnico.DataSource)) Then
+            Dim filter As GridEXFilterCondition = New Janus.Windows.GridEX.GridEXFilterCondition(grParametroTecnico.RootTable.Columns("estado"), Janus.Windows.GridEX.ConditionOperator.GreaterThanOrEqualTo, 0)
+
+            filter.AddCondition(LogicalOperator.And, New Janus.Windows.GridEX.GridEXFilterCondition(grParametroTecnico.RootTable.Columns("GrupoId"), Janus.Windows.GridEX.ConditionOperator.Equal, cbGrupo.Value))
+
+
+            grParametroTecnico.RootTable.FilterCondition = filter
+
+            If (grParametroTecnico.RowCount > 0) Then
+                grParametroTecnico.Row = 0
+                FiltrarDetalle(grParametroTecnico.GetValue("Id"))
+            Else
+                FiltrarDetalle(-1)
+
+            End If
+        End If
+
+
+
+
+    End Sub
+    Private Sub btnParametroTecnicoAgregar_Click(sender As Object, e As EventArgs) Handles btnParametroTecnicoAgregar.Click
+
+        If (cbGrupo.SelectedIndex < 0 Or cbGrupo.SelectedIndex < 0) Then
+            Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+            ToastNotification.Show(Me, "Debe Seleccionar un Grupo y un Parametro Tenico".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+
+            Return
+
+        End If
+
+        If (Not ExisteParametro(cbGrupo.Value, cbParametroTecnico.Value)) Then
+
+            'a.Id , a.EquipoId, a.GrupoId, a.Parametro, isnull((select ycdes3  from TY0031 where yccod1 =22 And yccod2 =2 And yccod3 =a.Parametro  ),'') as NombreParametro ,1 as Estado
+
+            If (tbCodigoOriginal.Text.Trim <> String.Empty) Then
+                CType(grParametroTecnico.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grParametroTecnico) + 1, CInt(tbCodigoOriginal.Text), cbGrupo.Value, cbParametroTecnico.Value, cbParametroTecnico.Text, 0)
+
+            Else
+                CType(grParametroTecnico.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grParametroTecnico) + 1, 0, cbParametroTecnico.Value, cbGrupo.Value, cbParametroTecnico.Text, 0)
+            End If
+
+
+
+
+        Else
+            Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+            ToastNotification.Show(Me, "El Parametro Tecnico " + cbParametroTecnico.Text + " Del Grupo " + cbGrupo.Text + "  Ya esta Registrada".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+
+            Return
+        End If
+
+    End Sub
+
+    Private Sub grParametroTecnico_SelectionChanged(sender As Object, e As EventArgs) Handles grParametroTecnico.SelectionChanged
+        If (grParametroTecnico.Row >= 0) Then
+            GroupPanel2.Text = "Información " + grParametroTecnico.GetValue("NombreParametro")
+
+            FiltrarDetalle(grParametroTecnico.GetValue("Id"))
+        End If
+    End Sub
+    Public Sub FiltrarDetalle(ParametroId As Integer)
+        If (Not IsNothing(grDetalle.DataSource)) Then
+            Dim filter As GridEXFilterCondition = New Janus.Windows.GridEX.GridEXFilterCondition(grDetalle.RootTable.Columns("estado"), Janus.Windows.GridEX.ConditionOperator.GreaterThanOrEqualTo, 0)
+
+            filter.AddCondition(LogicalOperator.And, New Janus.Windows.GridEX.GridEXFilterCondition(grDetalle.RootTable.Columns("ParametroTecnicoId"), Janus.Windows.GridEX.ConditionOperator.Equal, ParametroId))
+
+
+            grDetalle.RootTable.FilterCondition = filter
+        End If
+
+    End Sub
+
+    Public Sub _fnObtenerFilaDetalle(ByRef pos As Integer, numi As Integer)
+        For i As Integer = 0 To CType(grParametroTecnico.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim _numi As Integer = CType(grParametroTecnico.DataSource, DataTable).Rows(i).Item("Id")
+            If (_numi = numi) Then
+                pos = i
+                Return
+            End If
+        Next
+
+    End Sub
+
+    Public Sub _fnObtenerFilaDetalle02(ByRef pos As Integer, numi As Integer)
+        For i As Integer = 0 To CType(grDetalle.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim _numi As Integer = CType(grDetalle.DataSource, DataTable).Rows(i).Item("Id")
+            If (_numi = numi) Then
+                pos = i
+                Return
+            End If
+        Next
+
+    End Sub
+    Private Sub EliminarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EliminarToolStripMenuItem.Click
+
+        If (grParametroTecnico.Row >= 0) Then
+            Dim estado As Integer = grParametroTecnico.GetValue("estado")
+            Dim pos As Integer = -1
+            Dim lin As Integer = grParametroTecnico.GetValue("Id")
+            _fnObtenerFilaDetalle(pos, lin)
+            If (estado = 0) Then
+                CType(grParametroTecnico.DataSource, DataTable).Rows(pos).Item("estado") = -2
+            End If
+            If (estado = 1) Then
+                CType(grParametroTecnico.DataSource, DataTable).Rows(pos).Item("estado") = -1
+            End If
+
+            Dim dt As DataTable = CType(grDetalle.DataSource, DataTable)
+
+            For i As Integer = 0 To dt.Rows.Count - 1 Step 1
+
+                If (dt.Rows(i).Item("ParametroTecnicoId") = CType(grParametroTecnico.DataSource, DataTable).Rows(pos).Item("Id")) Then
+                    CType(grDetalle.DataSource, DataTable).Rows(i).Item("estado") = -1
+                End If
+
+            Next
+
+
+
+            FiltrarParametros()
+            If (grParametroTecnico.RowCount > 0) Then
+
+                grParametroTecnico.Row = 0
+                FiltrarDetalle(grParametroTecnico.GetValue("Id"))
+
+            Else
+                FiltrarDetalle(-1)
+            End If
+
+
+
+        End If
+
+    End Sub
+
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        If (grDetalle.Row >= 0) Then
+            Dim estado As Integer = grDetalle.GetValue("estado")
+            Dim pos As Integer = -1
+            Dim lin As Integer = grDetalle.GetValue("Id")
+            _fnObtenerFilaDetalle02(pos, lin)
+            If (estado = 0) Then
+                CType(grDetalle.DataSource, DataTable).Rows(pos).Item("estado") = -2
+            End If
+            If (estado = 1) Then
+                CType(grDetalle.DataSource, DataTable).Rows(pos).Item("estado") = -1
+            End If
+
+
+
+
+
+            If (grParametroTecnico.Row >= 0) Then
+
+
+                FiltrarDetalle(grParametroTecnico.GetValue("Id"))
+
+            Else
+                FiltrarDetalle(-1)
+            End If
+
+
+
         End If
     End Sub
 End Class

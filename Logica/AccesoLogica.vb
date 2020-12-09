@@ -857,7 +857,7 @@ Public Class AccesoLogica
     End Function
 
     Public Shared Function L_fnGrabarEquipo(ByRef Id As String, Nombre As String, Grupo As Integer,
-                                            ParametrosTecnico As Integer, Notas As String, dtImagenes As DataTable, dtDetalle As DataTable) As Boolean
+                                            ParametrosTecnico As Integer, Notas As String, dtImagenes As DataTable, dtDetalle As DataTable, dtParametros As DataTable) As Boolean
         Dim _resultado As Boolean
 
         Dim _Tabla As DataTable
@@ -871,6 +871,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@Notas", Notas))
         _listParam.Add(New Datos.DParametro("@ProductoImagenes", "", dtImagenes))
         _listParam.Add(New Datos.DParametro("@EquipoDetalle", "", dtDetalle))
+        _listParam.Add(New Datos.DParametro("@EquipoParametros", "", dtParametros))
 
 
         _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
@@ -887,7 +888,7 @@ Public Class AccesoLogica
     End Function
 
     Public Shared Function L_fnModificarEquipo(ByRef Id As String, Nombre As String, Grupo As Integer,
-                                            ParametrosTecnico As Integer, Notas As String, dtImagenes As DataTable, dtDetalle As DataTable) As Boolean
+                                            ParametrosTecnico As Integer, Notas As String, dtImagenes As DataTable, dtDetalle As DataTable, dtParametros As DataTable) As Boolean
         Dim _resultado As Boolean
 
         Dim _Tabla As DataTable
@@ -901,7 +902,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@Notas", Notas))
         _listParam.Add(New Datos.DParametro("@EquipoDetalle", "", dtDetalle))
         _listParam.Add(New Datos.DParametro("@ProductoImagenes", "", dtImagenes))
-
+        _listParam.Add(New Datos.DParametro("@EquipoParametros", "", dtParametros))
         _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_Equipos", _listParam)
 
@@ -1940,6 +1941,19 @@ Public Class AccesoLogica
         Dim _listParam As New List(Of Datos.DParametro)
 
         _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@Id", _IdProducto))
+        _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Equipos", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnDetalleParametrosTenicos(_IdProducto As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
         _listParam.Add(New Datos.DParametro("@Id", _IdProducto))
         _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_Equipos", _listParam)

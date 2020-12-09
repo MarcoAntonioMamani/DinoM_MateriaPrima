@@ -1083,7 +1083,7 @@ Public Class P_Principal
     Private Sub btConfEquipos_Click(sender As Object, e As EventArgs) Handles btConfEquipos.Click
         SideNav1.IsMenuExpanded = False
         Ventana.Select()
-        Dim frm As New F1_Equipos
+        Dim frm As New F1_Equipos02
         frm._nameButton = btConfEquipos.Name
         frm._modulo = FP_Configuracion
         Dim tab3 As SuperTabItem = superTabControl3.CreateTab(frm.Text)

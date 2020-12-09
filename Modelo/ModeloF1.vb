@@ -124,6 +124,7 @@ Public Class ModeloF1
         JGrM_Buscador.Enabled = True
         MRlAccion.Text = ""
 
+
         _PMOLimpiarErrores()
 
         _PMOInhabilitar()
