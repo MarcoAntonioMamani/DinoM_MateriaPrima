@@ -970,7 +970,7 @@ Public Class F1_Equipos02
                 CType(grParametroTecnico.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grParametroTecnico) + 1, CInt(tbCodigoOriginal.Text), cbGrupo.Value, cbParametroTecnico.Value, cbParametroTecnico.Text, 0)
 
             Else
-                CType(grParametroTecnico.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grParametroTecnico) + 1, 0, cbParametroTecnico.Value, cbGrupo.Value, cbParametroTecnico.Text, 0)
+                CType(grParametroTecnico.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grParametroTecnico) + 1, 0, cbGrupo.Value, cbParametroTecnico.Value, cbParametroTecnico.Text, 0)
             End If
 
 

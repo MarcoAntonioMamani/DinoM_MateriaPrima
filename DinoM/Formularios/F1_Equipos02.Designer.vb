@@ -29,6 +29,8 @@ Partial Class F1_Equipos02
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.gpTecnico = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.grParametroTecnico = New Janus.Windows.GridEX.GridEX()
+        Me.MenuEliminarParametros = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EliminarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PanelParametrosTecnicos = New System.Windows.Forms.Panel()
         Me.btnParametroTecnicoAgregar = New DevComponents.DotNetBar.ButtonX()
         Me.LabelX8 = New DevComponents.DotNetBar.LabelX()
@@ -65,8 +67,6 @@ Partial Class F1_Equipos02
         Me.tbAtributo = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
-        Me.MenuEliminarParametros = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.EliminarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuEliminarDetalle = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,6 +88,7 @@ Partial Class F1_Equipos02
         Me.TableLayoutPanel1.SuspendLayout()
         Me.gpTecnico.SuspendLayout()
         CType(Me.grParametroTecnico, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.MenuEliminarParametros.SuspendLayout()
         Me.PanelParametrosTecnicos.SuspendLayout()
         CType(Me.cbParametroTecnico, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupPanel1.SuspendLayout()
@@ -103,7 +104,6 @@ Partial Class F1_Equipos02
         Me.GroupPanel2.SuspendLayout()
         CType(Me.grDetalle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelDetalle.SuspendLayout()
-        Me.MenuEliminarParametros.SuspendLayout()
         Me.MenuEliminarDetalle.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -345,6 +345,21 @@ Partial Class F1_Equipos02
         Me.grParametroTecnico.Size = New System.Drawing.Size(427, 165)
         Me.grParametroTecnico.TabIndex = 254
         Me.grParametroTecnico.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'MenuEliminarParametros
+        '
+        Me.MenuEliminarParametros.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.MenuEliminarParametros.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EliminarToolStripMenuItem})
+        Me.MenuEliminarParametros.Name = "ContextMenuStrip1"
+        Me.MenuEliminarParametros.Size = New System.Drawing.Size(155, 34)
+        '
+        'EliminarToolStripMenuItem
+        '
+        Me.EliminarToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.EliminarToolStripMenuItem.Image = Global.DinoM.My.Resources.Resources._051_prohibition
+        Me.EliminarToolStripMenuItem.Name = "EliminarToolStripMenuItem"
+        Me.EliminarToolStripMenuItem.Size = New System.Drawing.Size(154, 30)
+        Me.EliminarToolStripMenuItem.Text = "Eliminar"
         '
         'PanelParametrosTecnicos
         '
@@ -625,9 +640,9 @@ Partial Class F1_Equipos02
         Me.LabelX1.Margin = New System.Windows.Forms.Padding(4)
         Me.LabelX1.Name = "LabelX1"
         Me.LabelX1.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX1.Size = New System.Drawing.Size(111, 20)
+        Me.LabelX1.Size = New System.Drawing.Size(107, 20)
         Me.LabelX1.TabIndex = 224
-        Me.LabelX1.Text = "Cód. Original:"
+        Me.LabelX1.Text = "Cód.Original:"
         '
         'tbCodigoOriginal
         '
@@ -638,7 +653,7 @@ Partial Class F1_Equipos02
         Me.tbCodigoOriginal.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbCodigoOriginal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbCodigoOriginal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.tbCodigoOriginal.Location = New System.Drawing.Point(134, 12)
+        Me.tbCodigoOriginal.Location = New System.Drawing.Point(135, 12)
         Me.tbCodigoOriginal.Margin = New System.Windows.Forms.Padding(4)
         Me.tbCodigoOriginal.Name = "tbCodigoOriginal"
         Me.tbCodigoOriginal.PreventEnterBeep = True
@@ -1008,21 +1023,6 @@ Partial Class F1_Equipos02
         Me.LabelX4.TabIndex = 229
         Me.LabelX4.Text = "Atributo:"
         '
-        'MenuEliminarParametros
-        '
-        Me.MenuEliminarParametros.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.MenuEliminarParametros.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EliminarToolStripMenuItem})
-        Me.MenuEliminarParametros.Name = "ContextMenuStrip1"
-        Me.MenuEliminarParametros.Size = New System.Drawing.Size(155, 34)
-        '
-        'EliminarToolStripMenuItem
-        '
-        Me.EliminarToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.EliminarToolStripMenuItem.Image = Global.DinoM.My.Resources.Resources._051_prohibition
-        Me.EliminarToolStripMenuItem.Name = "EliminarToolStripMenuItem"
-        Me.EliminarToolStripMenuItem.Size = New System.Drawing.Size(154, 30)
-        Me.EliminarToolStripMenuItem.Text = "Eliminar"
-        '
         'MenuEliminarDetalle
         '
         Me.MenuEliminarDetalle.ImageScalingSize = New System.Drawing.Size(20, 20)
@@ -1070,6 +1070,7 @@ Partial Class F1_Equipos02
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.gpTecnico.ResumeLayout(False)
         CType(Me.grParametroTecnico, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.MenuEliminarParametros.ResumeLayout(False)
         Me.PanelParametrosTecnicos.ResumeLayout(False)
         Me.PanelParametrosTecnicos.PerformLayout()
         CType(Me.cbParametroTecnico, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1087,7 +1088,6 @@ Partial Class F1_Equipos02
         Me.GroupPanel2.ResumeLayout(False)
         CType(Me.grDetalle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelDetalle.ResumeLayout(False)
-        Me.MenuEliminarParametros.ResumeLayout(False)
         Me.MenuEliminarDetalle.ResumeLayout(False)
         Me.ResumeLayout(False)
 
