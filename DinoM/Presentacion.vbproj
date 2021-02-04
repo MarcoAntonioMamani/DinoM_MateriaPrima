@@ -74,6 +74,10 @@
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.DotNetBar.Design, Version=12.5.0.2, Culture=neutral, PublicKeyToken=2c9ff1fddc42653c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar.Design.dll</HintPath>
+    </Reference>
     <Reference Include="DevComponents.DotNetBar.Keyboard, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.DotNetBar.Keyboard.dll</HintPath>
@@ -102,6 +106,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.Instrumentation.dll</HintPath>
     </Reference>
+    <Reference Include="DevComponents.Instrumentation.Design, Version=12.5.0.2, Culture=neutral, PublicKeyToken=30cefae8f341f577, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.Instrumentation.Design.dll</HintPath>
+    </Reference>
     <Reference Include="DevComponents.SuperGrid.Design, Version=12.5.0.2, Culture=neutral, PublicKeyToken=1fea3f5d8d482bff, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.SuperGrid.Design.dll</HintPath>
@@ -122,23 +130,29 @@
     <Reference Include="GMap.NET.WindowsForms">
       <HintPath>C:\librerias\GMap.NET.WindowsForms.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Data.v3">
-      <HintPath>C:\librerias\Janus.Data.v3.dll</HintPath>
+    <Reference Include="Janus.Data.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\librerias\librerias\Janus.Data.v3.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Windows.CalendarCombo.v3">
-      <HintPath>C:\librerias\Janus.Windows.CalendarCombo.v3.dll</HintPath>
+    <Reference Include="Janus.Windows.CalendarCombo.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\librerias\librerias\Janus.Windows.CalendarCombo.v3.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Windows.Common.v3">
-      <HintPath>C:\librerias\Janus.Windows.Common.v3.dll</HintPath>
+    <Reference Include="Janus.Windows.Common.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\librerias\librerias\Janus.Windows.Common.v3.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Windows.GridEX.v3">
-      <HintPath>C:\librerias\Janus.Windows.GridEX.v3.dll</HintPath>
+    <Reference Include="Janus.Windows.GridEX.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\librerias\librerias\Janus.Windows.GridEX.v3.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Windows.Ribbon.v3">
-      <HintPath>C:\librerias\Janus.Windows.Ribbon.v3.dll</HintPath>
+    <Reference Include="Janus.Windows.Ribbon.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\librerias\librerias\Janus.Windows.Ribbon.v3.dll</HintPath>
     </Reference>
-    <Reference Include="Janus.Windows.UI.v3">
-      <HintPath>C:\librerias\Janus.Windows.UI.v3.dll</HintPath>
+    <Reference Include="Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\librerias\librerias\Janus.Windows.UI.v3.dll</HintPath>
     </Reference>
     <Reference Include="OnBarcode.Barcode.WinForms">
       <HintPath>C:\librerias\OnBarcode.Barcode.WinForms.dll</HintPath>

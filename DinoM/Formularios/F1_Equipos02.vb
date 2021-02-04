@@ -35,6 +35,7 @@ Public Class F1_Equipos02
     Public _Tipo As Integer
     Dim TablaImagenes As DataTable
     Dim NumiVendedor As Integer
+    Dim EsNuevo As Boolean = False
 #End Region
 #Region "Metodos Privados"
 
@@ -208,7 +209,7 @@ Public Class F1_Equipos02
         cbGrupo.ComboStyle = ComboStyle.Combo
         cbParametroTecnico.ReadOnly = False
         tbNota.ReadOnly = False
-
+        cbGrupo.ReadOnly = False
 
 
         PanelDetalle.Visible = True
@@ -239,7 +240,7 @@ Public Class F1_Equipos02
         tbNombre.ReadOnly = True
         cbGrupo.ComboStyle = ComboStyle.DropDownList
         PanelDetalle.Visible = False
-
+        cbGrupo.ReadOnly = True
         _prStyleJanus()
         JGrM_Buscador.Focus()
         grDetalle.ContextMenuStrip = Nothing
@@ -281,6 +282,11 @@ Public Class F1_Equipos02
             FiltrarParametros()
 
         End If
+        If EsNuevo = True Then
+            FiltrarParametros2(-1)
+            FiltrarDetalle(-1)
+        End If
+        EsNuevo = False
     End Sub
     Public Sub _prCargarImagen()
         PanelListImagenes.Controls.Clear()
@@ -669,6 +675,7 @@ Public Class F1_Equipos02
 
 
         tbNombre.Focus()
+        EsNuevo = True
     End Sub
 
     Private Sub cbGrupo_ValueChanged(sender As Object, e As EventArgs) Handles cbGrupo.ValueChanged
@@ -677,7 +684,16 @@ Public Class F1_Equipos02
         Else
             gpTecnico.Text = "P.Tecnicos De " + cbGrupo.Text
             btGrupo.Visible = False
-            FiltrarParametros()
+            If (Not IsNothing(grParametroTecnico.DataSource)) Then
+                If EsNuevo Then
+                    FiltrarParametros2(-1)
+                    FiltrarDetalle(-1)
+                Else
+                    FiltrarParametros()
+                End If
+
+            End If
+
         End If
     End Sub
 
@@ -720,13 +736,13 @@ Public Class F1_Equipos02
 
         With grDetalle.RootTable.Columns("Atributo")
             .Width = 300
-            .Caption = "Atributo"
+            .Caption = "Caracteristíca"
             .Visible = True
         End With
 
         With grDetalle.RootTable.Columns("Descripcion")
             .Width = 400
-            .Caption = "Descripcion"
+            .Caption = "Valor"
             .Visible = True
         End With
         With grDetalle.RootTable.Columns("EquiposId")
@@ -932,13 +948,8 @@ Public Class F1_Equipos02
     Public Sub FiltrarParametros()
 
         If (Not IsNothing(grParametroTecnico.DataSource)) Then
-            Dim filter As GridEXFilterCondition = New Janus.Windows.GridEX.GridEXFilterCondition(grParametroTecnico.RootTable.Columns("estado"), Janus.Windows.GridEX.ConditionOperator.GreaterThanOrEqualTo, 0)
 
-            filter.AddCondition(LogicalOperator.And, New Janus.Windows.GridEX.GridEXFilterCondition(grParametroTecnico.RootTable.Columns("GrupoId"), Janus.Windows.GridEX.ConditionOperator.Equal, cbGrupo.Value))
-
-
-            grParametroTecnico.RootTable.FilterCondition = filter
-
+            FiltrarParametros2(cbGrupo.Value)
             If (grParametroTecnico.RowCount > 0) Then
                 grParametroTecnico.Row = 0
                 FiltrarDetalle(grParametroTecnico.GetValue("Id"))
@@ -951,6 +962,14 @@ Public Class F1_Equipos02
 
 
 
+    End Sub
+    Public Sub FiltrarParametros2(grupo As Integer)
+        Dim filter As GridEXFilterCondition = New Janus.Windows.GridEX.GridEXFilterCondition(grParametroTecnico.RootTable.Columns("estado"), Janus.Windows.GridEX.ConditionOperator.GreaterThanOrEqualTo, 0)
+
+        filter.AddCondition(LogicalOperator.And, New Janus.Windows.GridEX.GridEXFilterCondition(grParametroTecnico.RootTable.Columns("GrupoId"), Janus.Windows.GridEX.ConditionOperator.Equal, grupo))
+
+
+        grParametroTecnico.RootTable.FilterCondition = filter
     End Sub
     Private Sub btnParametroTecnicoAgregar_Click(sender As Object, e As EventArgs) Handles btnParametroTecnicoAgregar.Click
 
@@ -1096,5 +1115,9 @@ Public Class F1_Equipos02
 
 
         End If
+    End Sub
+
+    Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
+        EsNuevo = False
     End Sub
 End Class

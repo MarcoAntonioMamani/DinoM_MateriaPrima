@@ -31,21 +31,25 @@ Public Class F0_ProduccionProducto
 #Region "Metodos Privados"
     Private Sub _IniciarTodo()
         'L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
-
-        _prCargarComboLibreria(cbGrupo, 20, 1)
-        _prCargarComboLibreria(cbSubGrupo, 20, 2)
-        _prCargarComboLibreria(cbUnidad, 20, 3)
-
-        _prCargarComboLibreria(cbUnidad, 20, 3)
-        _prCargarComboLibreria(cbEmpaqueUnidad, 20, 3)
-        _prCargarComboLibreria(cbMateriaUnidad, 20, 3)
-
-
         ' Me.WindowState = FormWindowState.Maximized
+        ArmarCombos()
+
         _prCargarCompra()
         _prInhabiliitar()
-
         _prAsignarPermisos()
+    End Sub
+    Private Sub ArmarCombos()
+        _prCargarComboLibreria(cbGrupo, 21, 1)
+        _prCargarComboLibreria(cbSubGrupo, 21, 2)
+        _prCargarComboLibreria(cbUnidad, 21, 3)
+        _prCargarComboLibreria(cbUnidadPeso, 21, 4)
+
+        'Detalle de Producto
+        _prCargarComboLibreria(cbFisicaUnidad, 21, 3)
+        _prCargarComboLibreria(cbCalidadUnidad, 21, 3)
+        _prCargarComboLibreria(cbMateriaUnidad, 21, 3)
+        _prCargarComboLibreria(cbEmpaqueValor, 21, 5)
+        _prCargarComboLibreria(cbEmpaqueUnidad, 21, 3)
     End Sub
     Private Sub _prCargarComboLibreria(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo, cod1 As String, cod2 As String)
         Dim dt As New DataTable
@@ -172,12 +176,12 @@ Public Class F0_ProduccionProducto
         btnCalidadAgregar.Visible = False
         btnMaquinariaAgregar.Visible = False
         btnEmpaqueAgregar.Visible = False
-        btnMaquinariaAgregar.Visible = False
+
         btnMoldeAgregar.Visible = False
         btnHerramentalAgregar.Visible = False
         BtAdicionar.Visible = False
 
-        btnMaquinariaAgregar.Visible = False
+
         btnEquipoBuscar.Visible = False
 
         btnDelete.Visible = False
@@ -188,8 +192,51 @@ Public Class F0_ProduccionProducto
         btnNuevo.Enabled = True
         btnEliminar.Enabled = True
         PanelNavegacion.Enabled = True
+        cbUnidadPeso.ReadOnly = True
+        TbValorMaximo.IsInputReadOnly = True
+        TbValorMinimo.IsInputReadOnly = True
+        cbUnidadPeso.ReadOnly = True
+
+        '**** Caracteristica Calidad****
+        tbCalidadValorMax.IsInputReadOnly = True
+        tbCalidadValorMin.IsInputReadOnly = True
+        cbCalidadUnidad.ReadOnly = True
+        tbCalidadAtributo.ReadOnly = True
+
+        '**** Caracteristica Fisica****\
+        tbFisicaValor.ReadOnly = True
+        tbFisicaCaracteristica.ReadOnly = True
+        cbFisicaUnidad.ReadOnly = True
+
+        '**** Caracteristica Materia****\
+        tbMateriaCantidad.ReadOnly = True
+        tbMateriaDescripcion.ReadOnly = True
+        cbMateriaUnidad.ReadOnly = True
+
+        '**** Caracteristica Empaque****\
+        tbEmpaqueCantidad.IsInputReadOnly = True
+        tbEmpaqueMedida.ReadOnly = True
+        tbEmpaqueCantidad.IsInputReadOnly = True
+        cbEmpaqueUnidad.ReadOnly = True
+
+        '**** Caracteristica Empaque****\
+        tbMaquina.ReadOnly = True
+        tbMaquinariaMedida.ReadOnly = True
+        btnEquipoBuscar.Enabled = False
+
+        '**** Caracteristica Molde****\
+        tbMoldeCaracteristica.ReadOnly = True
+        tbMoldeCodigo.ReadOnly = True
+        tbMoldeDescripcion.ReadOnly = True
+
+        '**** Caracteristica Molde****\
+        tbHerramentalCampo.ReadOnly = True
+        tbHerramentalCodigo.ReadOnly = True
+        tbHerramentalMedida.ReadOnly = True
+        cbHerramentalUnidad.ReadOnly = True
 
 
+        btnEmpaqueUnidad.Visible = False
     End Sub
     Private Sub _prhabilitar()
         btnCrearCliente.Visible = True
@@ -203,6 +250,7 @@ Public Class F0_ProduccionProducto
         btUnidad.Visible = False
         btGrupo.Visible = False
         btSubGrupo.Visible = False
+        btUnidadPeso.Visible = False
         tbPeso.IsInputReadOnly = False
         tbObservacion.ReadOnly = False
         tbPrecioA.IsInputReadOnly = False
@@ -216,7 +264,7 @@ Public Class F0_ProduccionProducto
         btnMaquinariaAgregar.Visible = True
         btnMoldeAgregar.Visible = True
         btnHerramentalAgregar.Visible = True
-
+        btnEmpaqueUnidad.Visible = True
 
         btnMaquinariaAgregar.Visible = True
         btnEquipoBuscar.Visible = True
@@ -226,9 +274,49 @@ Public Class F0_ProduccionProducto
         _prCrearCarpetaImagenes()
         _prCrearCarpetaTemporal()
         btMateriaUnidad.Visible = False
-
+        TbValorMaximo.IsInputReadOnly = False
+        TbValorMinimo.IsInputReadOnly = False
+        cbUnidadPeso.ReadOnly = False
 
         btnGrabar.Enabled = True
+
+        '**** Caracteristica Calidad****
+        tbCalidadValorMax.IsInputReadOnly = False
+        tbCalidadValorMin.IsInputReadOnly = False
+        cbCalidadUnidad.ReadOnly = False
+        tbCalidadAtributo.ReadOnly = False
+
+        '**** Caracteristica Fisica****\
+        tbFisicaValor.ReadOnly = False
+        tbFisicaCaracteristica.ReadOnly = False
+        cbFisicaUnidad.ReadOnly = False
+
+        '**** Caracteristica Materia****\
+        tbMateriaCantidad.ReadOnly = False
+        tbMateriaDescripcion.ReadOnly = False
+        cbMateriaUnidad.ReadOnly = False
+
+        '**** Caracteristica Empaque****\
+        tbEmpaqueCantidad.IsInputReadOnly = False
+        tbEmpaqueMedida.ReadOnly = False
+        tbEmpaqueCantidad.IsInputReadOnly = False
+        cbEmpaqueUnidad.ReadOnly = False
+
+        '**** Caracteristica Empaque****\
+        tbMaquina.ReadOnly = False
+        tbMaquinariaMedida.ReadOnly = False
+        btnEquipoBuscar.Enabled = False
+
+        '**** Caracteristica Molde****\
+        tbMoldeCaracteristica.ReadOnly = False
+        tbMoldeCodigo.ReadOnly = False
+        tbMoldeDescripcion.ReadOnly = False
+
+        '**** Caracteristica Molde****\
+        tbHerramentalCampo.ReadOnly = False
+        tbHerramentalCodigo.ReadOnly = False
+        tbHerramentalMedida.ReadOnly = False
+        cbHerramentalUnidad.ReadOnly = False
     End Sub
     Private Sub _prCrearCarpetaTemporal()
 
@@ -274,12 +362,14 @@ Public Class F0_ProduccionProducto
         tbPrecioC.Value = 0
         ClienteId = 0
         tbCliente.Clear()
+        TbValorMaximo.Value = 0
+        TbValorMinimo.Value = 0
 
         tbEquipoCantidad.Clear()
         tbMaquina.Clear()
 
 
-        _prCargarMaquinaria(-1)
+        ' _prCargarMaquinaria(-1)
         _prCargarEmpaque(-1)
         _prCargarDosificacion(-1)
         _prCargarMolde(-1)
@@ -313,6 +403,9 @@ Public Class F0_ProduccionProducto
             tbPrecioC.Value = .GetValue("PrecioC")
             tbCliente.Text = .GetValue("Cliente").ToString
             ClienteId = .GetValue("ClienteId")
+            TbValorMaximo.Value = .GetValue("ValorMaximo")
+            TbValorMinimo.Value = .GetValue("ValorMinimo")
+            cbUnidadPeso.Value = .GetValue("UnidadPeso")
 
         End With
         Dim name As String = grCompra.GetValue("Imagen")
@@ -331,7 +424,7 @@ Public Class F0_ProduccionProducto
 
             End If
         End If
-        _prCargarMaquinaria(grCompra.GetValue("Id"))
+        '_prCargarMaquinaria(grCompra.GetValue("Id"))
         _prCargarEmpaque(grCompra.GetValue("Id"))
         _prCargarDosificacion(grCompra.GetValue("Id"))
         _prCargarMolde(grCompra.GetValue("Id"))
@@ -368,6 +461,15 @@ Public Class F0_ProduccionProducto
             .Width = 400
             .Caption = "Valor"
             .Visible = True
+        End With
+        With grCaracterisiticaFisicas.RootTable.Columns("UnidadDescripcion")
+            .Width = 200
+            .Caption = "Unidad"
+            .Visible = True
+        End With
+        With grCaracterisiticaFisicas.RootTable.Columns("Unidad")
+            .Width = 100
+            .Visible = False
         End With
         With grCaracterisiticaFisicas.RootTable.Columns("ProductoId")
             .Width = 100
@@ -445,17 +547,34 @@ Public Class F0_ProduccionProducto
             .Visible = True
         End With
 
-        With grCaracteristicaCalidad.RootTable.Columns("Atributo")
-            .Width = 500
-            .Caption = "Atributo"
-            .Visible = True
-        End With
-
         With grCaracteristicaCalidad.RootTable.Columns("Descripcion")
-            .Width = 400
+            .Width = 300
             .Caption = "Descripcion"
             .Visible = True
         End With
+        With grCaracteristicaCalidad.RootTable.Columns("ValorMaximo")
+            .Width = 150
+            .Caption = "Valor MAX."
+            .FormatString = "0.00"
+            .Visible = True
+        End With
+        With grCaracteristicaCalidad.RootTable.Columns("ValorMinimo")
+            .Width = 150
+            .Caption = "Valor Min."
+            .FormatString = "0.00"
+            .Visible = True
+        End With
+
+        With grCaracteristicaCalidad.RootTable.Columns("UnidadDescripcion")
+            .Width = 200
+            .Caption = "Unidad"
+            .Visible = True
+        End With
+        With grCaracteristicaCalidad.RootTable.Columns("Unidad")
+            .Width = 100
+            .Visible = False
+        End With
+
         With grCaracteristicaCalidad.RootTable.Columns("ProductoId")
             .Width = 100
             .Visible = False
@@ -486,15 +605,29 @@ Public Class F0_ProduccionProducto
         End With
 
         With grHerramental.RootTable.Columns("Campo")
-            .Width = 500
+            .Width = 400
             .Caption = "Campo"
             .Visible = True
         End With
 
         With grHerramental.RootTable.Columns("Codigo")
-            .Width = 400
+            .Width = 200
             .Caption = "Codigo"
             .Visible = True
+        End With
+        With grHerramental.RootTable.Columns("Medida")
+            .Width = 200
+            .Caption = "Medida"
+            .Visible = True
+        End With
+        With grHerramental.RootTable.Columns("UnidadDescripcion")
+            .Width = 200
+            .Caption = "Unidad"
+            .Visible = True
+        End With
+        With grHerramental.RootTable.Columns("Unidad")
+            .Width = 100
+            .Visible = False
         End With
         With grHerramental.RootTable.Columns("ProductoId")
             .Width = 100
@@ -528,8 +661,18 @@ Public Class F0_ProduccionProducto
             .Visible = True
         End With
         With grMolde.RootTable.Columns("CodigoMolde")
-            .Width = 500
+            .Width = 150
             .Caption = "CodigoMolde"
+            .Visible = True
+        End With
+        With grMolde.RootTable.Columns("Descripcion")
+            .Width = 200
+            .Caption = "Descripcion"
+            .Visible = True
+        End With
+        With grMolde.RootTable.Columns("Caracteristica")
+            .Width = 150
+            .Caption = "Caracteristica"
             .Visible = True
         End With
         With grMolde.RootTable.Columns("ProductoId")
@@ -563,8 +706,13 @@ Public Class F0_ProduccionProducto
             .Caption = "Id"
             .Visible = True
         End With
+        With grDosificacion.RootTable.Columns("Descripcion")
+            .Width = 300
+            .Caption = "Descripcion"
+            .Visible = True
+        End With
         With grDosificacion.RootTable.Columns("Cantidad")
-            .Width = 500
+            .Width = 200
             .Caption = "Cantidad"
             .Visible = True
         End With
@@ -610,13 +758,23 @@ Public Class F0_ProduccionProducto
             .Caption = "Id"
             .Visible = True
         End With
-        With grEmpaque.RootTable.Columns("Medida")
+        With grEmpaque.RootTable.Columns("Valor")
             .Width = 500
             .Caption = "Medida"
+            .Visible = False
+        End With
+        With grEmpaque.RootTable.Columns("ValorDescripcion")
+            .Width = 380
+            .Caption = "Valor"
             .Visible = True
         End With
+        With grEmpaque.RootTable.Columns("Medida")
+            .Width = 100
+            .Caption = "Medida"
+            .Visible = False
+        End With
         With grEmpaque.RootTable.Columns("UnidadDescripcion")
-            .Width = 400
+            .Width = 300
             .Caption = "Unidad"
             .Visible = True
         End With
@@ -625,6 +783,12 @@ Public Class F0_ProduccionProducto
             .Width = 100
             .Caption = "CODIGO"
             .Visible = False
+        End With
+        With grEmpaque.RootTable.Columns("Cantidad")
+            .Width = 120
+            .Caption = "Cantidad"
+            .FormatString = "0.00"
+            .Visible = True
         End With
         With grEmpaque.RootTable.Columns("ProductoId")
             .Width = 100
@@ -658,16 +822,26 @@ Public Class F0_ProduccionProducto
             .Caption = "Id"
             .Visible = True
         End With
-
-        With grMaquinaria.RootTable.Columns("Medida")
-            .Width = 500
-            .Caption = "Medida"
-            .Visible = True
-        End With
         With grMaquinaria.RootTable.Columns("ProductoId")
             .Width = 0
             .Caption = "CODIGO"
             .Visible = False
+        End With
+
+        With grMaquinaria.RootTable.Columns("EquipoId")
+            .Width = 100
+            .Caption = "EquipoId"
+            .Visible = False
+        End With
+        With grMaquinaria.RootTable.Columns("EquipoDescripcion")
+            .Width = 300
+            .Caption = "EquipoDescripcion"
+            .Visible = True
+        End With
+        With grMaquinaria.RootTable.Columns("Medida")
+            .Width = 200
+            .Caption = "Medida"
+            .Visible = True
         End With
         With grMaquinaria.RootTable.Columns("estado")
             .Width = 0
@@ -802,7 +976,14 @@ Public Class F0_ProduccionProducto
 
         'L_fnGrabarProductoNew(id As String, Codigo As String, Descripcion As String, Unidad As Integer, Grupo As Integer, SubGrupo As Integer, Peso As Double, Observaciones As String, PrecioA As Double, PrecioB As Double, PRecioC As Double, Imagen As String)
         'grmaquinari As DataTable, grEmpaque As DataTable, grDosificacion As DataTable, grMolde As DataTable, grHerramental As DataTable, grCalidad As DataTable, grfisica As DataTable, grImagen As DataTable
-        Dim res As Boolean = L_fnGrabarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value, cbGrupo.Value, cbSubGrupo.Value, tbPeso.Value, tbObservacion.Text, tbPrecioA.Value, tbPrecioB.Value, tbPrecioC.Value, nameImg, CType(grMaquinaria.DataSource, DataTable), CType(grEmpaque.DataSource, DataTable), CType(grDosificacion.DataSource, DataTable), CType(grMolde.DataSource, DataTable), CType(grHerramental.DataSource, DataTable), CType(grCaracteristicaCalidad.DataSource, DataTable), CType(grCaracterisiticaFisicas.DataSource, DataTable), TablaImagenes, ClienteId, CType(grMaquina.DataSource, DataTable))
+        Dim res As Boolean = L_fnGrabarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value, cbGrupo.Value, cbSubGrupo.Value,
+                                                   tbPeso.Value, tbObservacion.Text, tbPrecioA.Value, tbPrecioB.Value, tbPrecioC.Value, nameImg,
+                                                   CType(grMaquinaria.DataSource, DataTable), CType(grEmpaque.DataSource, DataTable),
+                                                   CType(grDosificacion.DataSource, DataTable), CType(grMolde.DataSource, DataTable),
+                                                   CType(grHerramental.DataSource, DataTable), CType(grCaracteristicaCalidad.DataSource, DataTable),
+                                                   CType(grCaracterisiticaFisicas.DataSource, DataTable),
+                                                   TablaImagenes, ClienteId,
+                                                   TbValorMaximo.Value, TbValorMinimo.Value, cbUnidadPeso.Value)
 
 
         If res Then
@@ -838,9 +1019,22 @@ Public Class F0_ProduccionProducto
 
         Dim nameImage As String = grCompra.GetValue("Imagen")
         If (Modificado = False) Then
-            res = L_fnModificarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value, cbGrupo.Value, cbSubGrupo.Value, tbPeso.Value, tbObservacion.Text, tbPrecioA.Value, tbPrecioB.Value, tbPrecioC.Value, nameImage, CType(grMaquinaria.DataSource, DataTable), CType(grEmpaque.DataSource, DataTable), CType(grDosificacion.DataSource, DataTable), CType(grMolde.DataSource, DataTable), CType(grHerramental.DataSource, DataTable), CType(grCaracteristicaCalidad.DataSource, DataTable), CType(grCaracterisiticaFisicas.DataSource, DataTable), TablaImagenes, ClienteId, CType(grMaquina.DataSource, DataTable))
+            res = L_fnModificarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value,
+                                           cbGrupo.Value, cbSubGrupo.Value, tbPeso.Value, tbObservacion.Text,
+                                           tbPrecioA.Value, tbPrecioB.Value, tbPrecioC.Value, nameImage,
+                                           CType(grMaquinaria.DataSource, DataTable), CType(grEmpaque.DataSource, DataTable),
+                                           CType(grDosificacion.DataSource, DataTable), CType(grMolde.DataSource, DataTable),
+                                           CType(grHerramental.DataSource, DataTable), CType(grCaracteristicaCalidad.DataSource, DataTable),
+                                           CType(grCaracterisiticaFisicas.DataSource, DataTable), TablaImagenes, ClienteId,
+                                           TbValorMaximo.Value, TbValorMinimo.Value, cbUnidadPeso.Value)
         Else
-            res = L_fnModificarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value, cbGrupo.Value, cbSubGrupo.Value, tbPeso.Value, tbObservacion.Text, tbPrecioA.Value, tbPrecioB.Value, tbPrecioC.Value, nameImg, CType(grMaquinaria.DataSource, DataTable), CType(grEmpaque.DataSource, DataTable), CType(grDosificacion.DataSource, DataTable), CType(grMolde.DataSource, DataTable), CType(grHerramental.DataSource, DataTable), CType(grCaracteristicaCalidad.DataSource, DataTable), CType(grCaracterisiticaFisicas.DataSource, DataTable), TablaImagenes, ClienteId, CType(grMaquina.DataSource, DataTable))
+            res = L_fnModificarProductoNew(tbId.Text, tbCodigo.Text, tbDescripcion.Text, cbUnidad.Value, cbGrupo.Value,
+                                           cbSubGrupo.Value, tbPeso.Value, tbObservacion.Text, tbPrecioA.Value, tbPrecioB.Value,
+                                           tbPrecioC.Value, nameImg, CType(grMaquinaria.DataSource, DataTable),
+                                           CType(grEmpaque.DataSource, DataTable), CType(grDosificacion.DataSource, DataTable),
+                                           CType(grMolde.DataSource, DataTable), CType(grHerramental.DataSource, DataTable),
+                                           CType(grCaracteristicaCalidad.DataSource, DataTable), CType(grCaracterisiticaFisicas.DataSource, DataTable),
+                                           TablaImagenes, ClienteId, TbValorMaximo.Value, TbValorMinimo.Value, cbUnidadPeso.Value)
         End If
 
 
@@ -1070,6 +1264,13 @@ Public Class F0_ProduccionProducto
             btUnidad.Visible = False
         End If
     End Sub
+    Private Sub cbUnidadPeso_ValueChanged(sender As Object, e As EventArgs) Handles cbUnidadPeso.ValueChanged
+        If cbUnidadPeso.SelectedIndex < 0 And cbUnidadPeso.Text <> String.Empty Then
+            btUnidadPeso.Visible = True
+        Else
+            btUnidadPeso.Visible = False
+        End If
+    End Sub
 
     Private Sub cbGrupo_ValueChanged(sender As Object, e As EventArgs) Handles cbGrupo.ValueChanged
         If cbGrupo.SelectedIndex < 0 And cbGrupo.Text <> String.Empty Then
@@ -1090,24 +1291,24 @@ Public Class F0_ProduccionProducto
     Private Sub btUnidad_Click(sender As Object, e As EventArgs) Handles btUnidad.Click
         Dim numi As String = ""
 
-        If L_prLibreriaGrabar(numi, "20", "3", cbUnidad.Text, "") Then
-            _prCargarComboLibreria(cbUnidad, "20", "3")
+        If L_prLibreriaGrabar(numi, "21", "3", cbUnidad.Text, "") Then
+            _prCargarComboLibreria(cbUnidad, "21", "3")
             cbUnidad.SelectedIndex = CType(cbUnidad.DataSource, DataTable).Rows.Count - 1
         End If
     End Sub
 
     Private Sub btGrupo_Click(sender As Object, e As EventArgs) Handles btGrupo.Click
         Dim numi As String = ""
-        If L_prLibreriaGrabar(numi, "20", "1", cbGrupo.Text, "") Then
-            _prCargarComboLibreria(cbGrupo, "20", "1")
+        If L_prLibreriaGrabar(numi, "21", "1", cbGrupo.Text, "") Then
+            _prCargarComboLibreria(cbGrupo, "21", "1")
             cbGrupo.SelectedIndex = CType(cbGrupo.DataSource, DataTable).Rows.Count - 1
         End If
     End Sub
 
     Private Sub btSubGrupo_Click(sender As Object, e As EventArgs) Handles btSubGrupo.Click
         Dim numi As String = ""
-        If L_prLibreriaGrabar(numi, "20", "2", cbSubGrupo.Text, "") Then
-            _prCargarComboLibreria(cbSubGrupo, "20", "2")
+        If L_prLibreriaGrabar(numi, "21", "2", cbSubGrupo.Text, "") Then
+            _prCargarComboLibreria(cbSubGrupo, "21", "2")
             cbSubGrupo.SelectedIndex = CType(cbSubGrupo.DataSource, DataTable).Rows.Count - 1
         End If
     End Sub
@@ -1122,12 +1323,9 @@ Public Class F0_ProduccionProducto
 
     Private Sub btMateriaUnidad_Click(sender As Object, e As EventArgs) Handles btMateriaUnidad.Click
         Dim numi As String = ""
-
-        If L_prLibreriaGrabar(numi, "20", "3", cbMateriaUnidad.Text, "") Then
-            _prCargarComboLibreria(cbMateriaUnidad, "20", "3")
+        If L_prLibreriaGrabar(numi, "21", "3", cbMateriaUnidad.Text, "") Then
+            _prCargarComboLibreria(cbMateriaUnidad, "21", "3")
             cbMateriaUnidad.SelectedIndex = CType(cbMateriaUnidad.DataSource, DataTable).Rows.Count - 1
-
-
         End If
     End Sub
 
@@ -1142,8 +1340,8 @@ Public Class F0_ProduccionProducto
     Private Sub btnEmpaqueUnidad_Click(sender As Object, e As EventArgs) Handles btnEmpaqueUnidad.Click
         Dim numi As String = ""
 
-        If L_prLibreriaGrabar(numi, "20", "3", cbEmpaqueUnidad.Text, "") Then
-            _prCargarComboLibreria(cbEmpaqueUnidad, "20", "3")
+        If L_prLibreriaGrabar(numi, "21", "3", cbEmpaqueUnidad.Text, "") Then
+            _prCargarComboLibreria(cbEmpaqueUnidad, "21", "3")
             cbEmpaqueUnidad.SelectedIndex = CType(cbEmpaqueUnidad.DataSource, DataTable).Rows.Count - 1
 
 
@@ -1158,8 +1356,13 @@ Public Class F0_ProduccionProducto
         'From ProductoCaracteristicaCalidad As a
         If (tbFisicaCaracteristica.Text <> "" And tbFisicaValor.Text <> "") Then
 
-
-            CType(grCaracterisiticaFisicas.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grCaracterisiticaFisicas) + 1, 0, tbFisicaCaracteristica.Text, tbFisicaValor.Text, 0)
+            CType(grCaracterisiticaFisicas.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grCaracterisiticaFisicas) + 1,
+                                                                           0,
+                                                                           tbFisicaCaracteristica.Text,
+                                                                           tbFisicaValor.Text,
+                                                                           cbFisicaUnidad.Value,
+                                                                           cbFisicaUnidad.Text,
+                                                                           0)
             tbFisicaCaracteristica.Clear()
             tbFisicaValor.Clear()
             tbFisicaCaracteristica.Focus()
@@ -1174,12 +1377,16 @@ Public Class F0_ProduccionProducto
     End Sub
 
     Private Sub btnCalidadAgregar_Click(sender As Object, e As EventArgs) Handles btnCalidadAgregar.Click
-        If (tbCalidadAtributo.Text <> "" And tbCalidadDescripcion.Text <> "") Then
+        If (tbCalidadAtributo.Text <> "") Then
 
-
-
-
-            CType(grCaracteristicaCalidad.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grCaracteristicaCalidad) + 1, 0, tbCalidadAtributo.Text, tbCalidadDescripcion.Text, 0)
+            CType(grCaracteristicaCalidad.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grCaracteristicaCalidad) + 1,
+                                                                          0,
+                                                                          tbCalidadAtributo.Text,
+                                                                          tbCalidadValorMax.Value,
+                                                                          tbCalidadValorMin.Value,
+                                                                          cbCalidadUnidad.Value,
+                                                                          cbCalidadUnidad.Text,
+                                                                          0)
             tbCalidadAtributo.Clear()
             tbCalidadDescripcion.Clear()
             tbCalidadAtributo.Focus()
@@ -1198,7 +1405,11 @@ Public Class F0_ProduccionProducto
 
             'a.Id , a.ProductoId, a.Cantidad, a.Unidad, uni.ycdes3 As UnidadDescripcion , 1 as estado
 
-            CType(grDosificacion.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grDosificacion) + 1, 0, tbMateriaCantidad.Text, cbMateriaUnidad.Value, cbMateriaUnidad.Text, 0)
+            CType(grDosificacion.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grDosificacion) + 1,
+                                                                 0,
+                                                                 tbMateriaCantidad.Text,
+                                                                 cbMateriaUnidad.Value,
+                                                                 cbMateriaUnidad.Text, 0)
             tbMateriaCantidad.Clear()
             tbMateriaCantidad.Focus()
 
@@ -1211,18 +1422,26 @@ Public Class F0_ProduccionProducto
     End Sub
 
     Private Sub btnEmpaqueAgregar_Click(sender As Object, e As EventArgs) Handles btnEmpaqueAgregar.Click
-        If (tbEmpaqueMedida.Text <> "" And cbEmpaqueUnidad.Value > 0) Then
+        If (tbEmpaqueMedida.Text <> "" And cbEmpaqueUnidad.Value > 0 And cbEmpaqueValor.Value > 0) Then
 
 
             'a.Id , a.ProductoId, a.Cantidad, a.Unidad, uni.ycdes3 As UnidadDescripcion , 1 as estado
 
-            CType(grEmpaque.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grEmpaque) + 1, 0, tbEmpaqueMedida.Text, cbEmpaqueUnidad.Value, cbEmpaqueUnidad.Text, 0)
+            CType(grEmpaque.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grEmpaque) + 1,
+                                                            0,
+                                                            tbEmpaqueMedida.Text,
+                                                            cbEmpaqueUnidad.Value,
+                                                            cbEmpaqueUnidad.Text,
+                                                            cbEmpaqueValor.Value,
+                                                            cbEmpaqueValor.Text,
+                                                            tbEmpaqueCantidad.Value,
+                                                            0)
 
             tbEmpaqueMedida.Clear()
             tbEmpaqueMedida.Focus()
 
         Else
-            ToastNotification.Show(Me, "Rellenar todos los campos de Dosificacion Materia..!!!",
+            ToastNotification.Show(Me, "Rellenar todos los campos de Caracteristicas de Empaque..!!!",
                                     My.Resources.WARNING, 2000,
                                     eToastGlowColor.Red,
                                     eToastPosition.BottomLeft)
@@ -1230,18 +1449,23 @@ Public Class F0_ProduccionProducto
     End Sub
 
     Private Sub btnMaquinariaAgregar_Click(sender As Object, e As EventArgs) Handles btnMaquinariaAgregar.Click
-        If (tbMaquinariaMedida.Text <> "") Then
+        If (tbMaquinariaMedida.Text <> "" And tbMaquina.Text <> "") Then
 
 
             'a.Id , a.ProductoId, a.Cantidad, a.Unidad, uni.ycdes3 As UnidadDescripcion , 1 as estado
 
-            CType(grMaquinaria.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grMaquinaria) + 1, 0, tbMaquinariaMedida.Text, 0)
+            CType(grMaquinaria.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grMaquinaria) + 1,
+                                                               0,
+                                                               EquipoId,
+                                                               tbMaquina.Text,
+                                                               tbMaquinariaMedida.Text,
+                                                               0)
 
             tbMaquinariaMedida.Clear()
             tbMaquinariaMedida.Focus()
 
         Else
-            ToastNotification.Show(Me, "Rellenar todos los campos de Dosificacion Materia..!!!",
+            ToastNotification.Show(Me, "Rellenar todos los campos de Maquinaria Requerida..!!!",
                                     My.Resources.WARNING, 2000,
                                     eToastGlowColor.Red,
                                     eToastPosition.BottomLeft)
@@ -1249,12 +1473,17 @@ Public Class F0_ProduccionProducto
     End Sub
 
     Private Sub btnMoldeAgregar_Click(sender As Object, e As EventArgs) Handles btnMoldeAgregar.Click
-        If (tbMoldeCodigo.Text <> "") Then
+        If (tbMoldeCodigo.Text <> "" And tbMoldeDescripcion.Text <> "") Then
 
 
             'a.Id , a.ProductoId, a.Cantidad, a.Unidad, uni.ycdes3 As UnidadDescripcion , 1 as estado
 
-            CType(grMolde.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grMolde) + 1, 0, tbMoldeCodigo.Text, 0)
+            CType(grMolde.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grMolde) + 1,
+                                                          0,
+                                                          tbMoldeCodigo.Text,
+                                                          tbMoldeDescripcion.Text,
+                                                          tbMoldeCaracteristica.Text,
+                                                          0)
             tbMoldeCodigo.Clear()
 
             tbMoldeCodigo.Focus()
@@ -1272,7 +1501,14 @@ Public Class F0_ProduccionProducto
 
             'a.Id , a.ProductoId, a.Cantidad, a.Unidad, uni.ycdes3 As UnidadDescripcion , 1 as estado
 
-            CType(grHerramental.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grHerramental) + 1, 0, tbHerramentalCampo.Text, tbHerramentalCodigo.Text, 0)
+            CType(grHerramental.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grHerramental) + 1,
+                                                                0,
+                                                                tbHerramentalCampo.Text,
+                                                                tbHerramentalCodigo.Text,
+                                                                tbHerramentalMedida.Text,
+                                                                cbHerramentalUnidad.Value,
+                                                                cbHerramentalUnidad.Text,
+                                                                0)
 
             tbHerramentalCampo.Clear()
             tbHerramentalCodigo.Clear()
@@ -1792,6 +2028,54 @@ Public Class F0_ProduccionProducto
             End If
         End If
     End Sub
+
+    Private Sub btUnidadPeso_Click(sender As Object, e As EventArgs) Handles btUnidadPeso.Click
+        Dim numi As String = ""
+
+        If L_prLibreriaGrabar(numi, "21", "3", cbUnidadPeso.Text, "") Then
+            _prCargarComboLibreria(cbUnidadPeso, "21", "3")
+            cbUnidadPeso.SelectedIndex = CType(cbUnidadPeso.DataSource, DataTable).Rows.Count - 1
+
+
+        End If
+    End Sub
+
+    Private Sub btFisicaUnidad_Click(sender As Object, e As EventArgs) Handles btFisicaUnidad.Click
+        Dim numi As String = ""
+        If L_prLibreriaGrabar(numi, "21", "3", cbFisicaUnidad.Text, "") Then
+            _prCargarComboLibreria(cbFisicaUnidad, "21", "3")
+            cbFisicaUnidad.SelectedIndex = CType(cbFisicaUnidad.DataSource, DataTable).Rows.Count - 1
+        End If
+    End Sub
+
+    Private Sub btnCalidadUnidad_Click(sender As Object, e As EventArgs) Handles btnCalidadUnidad.Click
+        Dim numi As String = ""
+        If L_prLibreriaGrabar(numi, "21", "3", cbCalidadUnidad.Text, "") Then
+            _prCargarComboLibreria(cbCalidadUnidad, "21", "3")
+            cbCalidadUnidad.SelectedIndex = CType(cbCalidadUnidad.DataSource, DataTable).Rows.Count - 1
+        End If
+    End Sub
+
+    Private Sub btEmpaqueValor_Click(sender As Object, e As EventArgs) Handles btEmpaqueValor.Click
+        Dim numi As String = ""
+        If L_prLibreriaGrabar(numi, "21", "5", cbEmpaqueValor.Text, "") Then
+            _prCargarComboLibreria(cbEmpaqueValor, "21", "5")
+            cbEmpaqueValor.SelectedIndex = CType(cbEmpaqueValor.DataSource, DataTable).Rows.Count - 1
+        End If
+    End Sub
+
+    Private Sub BtHerramental_Click(sender As Object, e As EventArgs) Handles BtHerramental.Click
+        Dim numi As String = ""
+        If L_prLibreriaGrabar(numi, "21", "3", cbHerramentalUnidad.Text, "") Then
+            _prCargarComboLibreria(cbHerramentalUnidad, "21", "3")
+            cbHerramentalUnidad.SelectedIndex = CType(cbHerramentalUnidad.DataSource, DataTable).Rows.Count - 1
+        End If
+    End Sub
+
+
+
+
+
 
 
 #End Region
