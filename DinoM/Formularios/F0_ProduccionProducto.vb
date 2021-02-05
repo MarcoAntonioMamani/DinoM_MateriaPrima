@@ -37,12 +37,13 @@ Public Class F0_ProduccionProducto
         _prCargarCompra()
         _prInhabiliitar()
         _prAsignarPermisos()
+        SuperTabItem13.Visible = False
     End Sub
     Private Sub ArmarCombos()
         _prCargarComboLibreria(cbGrupo, 21, 1)
         _prCargarComboLibreria(cbSubGrupo, 21, 2)
         _prCargarComboLibreria(cbUnidad, 21, 3)
-        _prCargarComboLibreria(cbUnidadPeso, 21, 4)
+        _prCargarComboLibreria(cbUnidadPeso, 21, 3)
 
         'Detalle de Producto
         _prCargarComboLibreria(cbFisicaUnidad, 21, 3)
@@ -50,6 +51,8 @@ Public Class F0_ProduccionProducto
         _prCargarComboLibreria(cbMateriaUnidad, 21, 3)
         _prCargarComboLibreria(cbEmpaqueValor, 21, 5)
         _prCargarComboLibreria(cbEmpaqueUnidad, 21, 3)
+        _prCargarComboLibreria(cbHerramentalUnidad, 21, 3)
+
     End Sub
     Private Sub _prCargarComboLibreria(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo, cod1 As String, cod2 As String)
         Dim dt As New DataTable
@@ -220,9 +223,11 @@ Public Class F0_ProduccionProducto
         cbEmpaqueUnidad.ReadOnly = True
 
         '**** Caracteristica Empaque****\
-        tbMaquina.ReadOnly = True
-        tbMaquinariaMedida.ReadOnly = True
-        btnEquipoBuscar.Enabled = False
+        tbEmpaqueCantidad.IsInputReadOnly = True
+        tbEmpaqueMedida.ReadOnly = True
+        tbEmpaqueCantidad.IsInputReadOnly = True
+        cbEmpaqueUnidad.ReadOnly = True
+        cbEmpaqueValor.ReadOnly = True
 
         '**** Caracteristica Molde****\
         tbMoldeCaracteristica.ReadOnly = True
@@ -237,6 +242,16 @@ Public Class F0_ProduccionProducto
 
 
         btnEmpaqueUnidad.Visible = False
+
+
+        grCaracterisiticaFisicas.ContextMenuStrip = Nothing
+        grCaracteristicaCalidad.ContextMenuStrip = Nothing
+        grDosificacion.ContextMenuStrip = Nothing
+        grEmpaque.ContextMenuStrip = Nothing
+        grHerramental.ContextMenuStrip = Nothing
+
+        grMolde.ContextMenuStrip = Nothing
+        grMaquinaria.ContextMenuStrip = Nothing
     End Sub
     Private Sub _prhabilitar()
         btnCrearCliente.Visible = True
@@ -301,11 +316,11 @@ Public Class F0_ProduccionProducto
         tbEmpaqueMedida.ReadOnly = False
         tbEmpaqueCantidad.IsInputReadOnly = False
         cbEmpaqueUnidad.ReadOnly = False
-
+        cbEmpaqueValor.ReadOnly = False
         '**** Caracteristica Empaque****\
         tbMaquina.ReadOnly = False
         tbMaquinariaMedida.ReadOnly = False
-        btnEquipoBuscar.Enabled = False
+
 
         '**** Caracteristica Molde****\
         tbMoldeCaracteristica.ReadOnly = False
@@ -317,6 +332,16 @@ Public Class F0_ProduccionProducto
         tbHerramentalCodigo.ReadOnly = False
         tbHerramentalMedida.ReadOnly = False
         cbHerramentalUnidad.ReadOnly = False
+
+        'Habiliar ContextMenuStrip
+        grCaracterisiticaFisicas.ContextMenuStrip = MenuEliminarCaracFisica
+        grCaracteristicaCalidad.ContextMenuStrip = MenuEliminarCaracCalidad
+        grDosificacion.ContextMenuStrip = MenuEliminarDosificacionMateria
+        grEmpaque.ContextMenuStrip = MenuEliminarCaracEmpaque
+        grHerramental.ContextMenuStrip = MenuEliminarHerramental
+
+        grMolde.ContextMenuStrip = MenuEliminarMolde
+        grMaquinaria.ContextMenuStrip = MenuEliminarMaquinaria
     End Sub
     Private Sub _prCrearCarpetaTemporal()
 
@@ -369,14 +394,14 @@ Public Class F0_ProduccionProducto
         tbMaquina.Clear()
 
 
-        ' _prCargarMaquinaria(-1)
+        _prCargarMaquinaria(-1)
         _prCargarEmpaque(-1)
         _prCargarDosificacion(-1)
         _prCargarMolde(-1)
         _prCargarHerramental(-1)
         _prCargarCaracterisiticaCalidad(-1)
         _prCargarCaracterisiticaFisica(-1)
-        _prCargarProductosEquipos(-1)
+        '_prCargarProductosEquipos(-1)
         MSuperTabControl.SelectedTabIndex = 0
         TablaImagenes = L_fnDetalleImagenes(-1)
         _prCargarImagen()
@@ -424,14 +449,14 @@ Public Class F0_ProduccionProducto
 
             End If
         End If
-        '_prCargarMaquinaria(grCompra.GetValue("Id"))
+        _prCargarMaquinaria(grCompra.GetValue("Id"))
         _prCargarEmpaque(grCompra.GetValue("Id"))
         _prCargarDosificacion(grCompra.GetValue("Id"))
         _prCargarMolde(grCompra.GetValue("Id"))
         _prCargarHerramental(grCompra.GetValue("Id"))
         _prCargarCaracterisiticaCalidad(grCompra.GetValue("Id"))
         _prCargarCaracterisiticaFisica(grCompra.GetValue("Id"))
-        _prCargarProductosEquipos(grCompra.GetValue("Id"))
+        ' _prCargarProductosEquipos(grCompra.GetValue("Id"))
         TablaImagenes = L_fnDetalleImagenes(tbId.Text)
         _prCargarImagen()
         LblPaginacion.Text = Str(grCompra.Row + 1) + "/" + grCompra.RowCount.ToString
@@ -828,24 +853,24 @@ Public Class F0_ProduccionProducto
             .Visible = False
         End With
 
-        With grMaquinaria.RootTable.Columns("EquipoId")
+        With grMaquinaria.RootTable.Columns("EquiposId")
             .Width = 100
             .Caption = "EquipoId"
             .Visible = False
         End With
         With grMaquinaria.RootTable.Columns("EquipoDescripcion")
             .Width = 300
-            .Caption = "EquipoDescripcion"
-            .Visible = True
+            .Caption = "Equipo"
+            .Visible = 500
         End With
         With grMaquinaria.RootTable.Columns("Medida")
             .Width = 200
             .Caption = "Medida"
-            .Visible = True
+            .Visible = False
         End With
         With grMaquinaria.RootTable.Columns("estado")
             .Width = 0
-            .Caption = "CODIGO"
+            .Caption = "Estado"
             .Visible = False
         End With
 
@@ -1046,6 +1071,8 @@ Public Class F0_ProduccionProducto
             _prCrearCarpetaImagenes("ProductosTodos")
             _prGuardarImagenes(RutaGlobal + "\Imagenes\Imagenes Productos\" + "ProductosTodos" + "\")
             nameImg = "Default.jpg"
+
+            _prInhabiliitar()
 
             Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
             ToastNotification.Show(Me, "Código de Producto ".ToUpper + tbId.Text + " Grabado con Exito.".ToUpper,
@@ -1366,6 +1393,8 @@ Public Class F0_ProduccionProducto
             tbFisicaCaracteristica.Clear()
             tbFisicaValor.Clear()
             tbFisicaCaracteristica.Focus()
+            tbEmpaqueCantidad.Value = 0
+            cbFisicaUnidad.SelectedIndex = 0
 
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Caracteristica Fisica..!!!",
@@ -1390,6 +1419,9 @@ Public Class F0_ProduccionProducto
             tbCalidadAtributo.Clear()
             tbCalidadDescripcion.Clear()
             tbCalidadAtributo.Focus()
+            tbCalidadValorMax.Value = 0
+            tbCalidadValorMin.Value = 0
+            cbCalidadUnidad.SelectedIndex = 0
 
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Caracteristica Calidad..!!!",
@@ -1407,11 +1439,15 @@ Public Class F0_ProduccionProducto
 
             CType(grDosificacion.DataSource, DataTable).Rows.Add(_fnSiguienteNumi(grDosificacion) + 1,
                                                                  0,
+                                                                 tbMateriaDescripcion.Text,
                                                                  tbMateriaCantidad.Text,
                                                                  cbMateriaUnidad.Value,
-                                                                 cbMateriaUnidad.Text, 0)
+                                                                 cbMateriaUnidad.Text,
+                                                                 0)
             tbMateriaCantidad.Clear()
             tbMateriaCantidad.Focus()
+            tbMateriaDescripcion.Clear()
+            cbMateriaUnidad.SelectedIndex = 0
 
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Dosificacion Materia..!!!",
@@ -1439,6 +1475,9 @@ Public Class F0_ProduccionProducto
 
             tbEmpaqueMedida.Clear()
             tbEmpaqueMedida.Focus()
+            tbEmpaqueCantidad.Value = 0
+            cbEmpaqueUnidad.SelectedIndex = 0
+            cbEmpaqueValor.SelectedIndex = 0
 
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Caracteristicas de Empaque..!!!",
@@ -1449,7 +1488,7 @@ Public Class F0_ProduccionProducto
     End Sub
 
     Private Sub btnMaquinariaAgregar_Click(sender As Object, e As EventArgs) Handles btnMaquinariaAgregar.Click
-        If (tbMaquinariaMedida.Text <> "" And tbMaquina.Text <> "") Then
+        If (tbMaquina.Text <> "") Then
 
 
             'a.Id , a.ProductoId, a.Cantidad, a.Unidad, uni.ycdes3 As UnidadDescripcion , 1 as estado
@@ -1458,11 +1497,13 @@ Public Class F0_ProduccionProducto
                                                                0,
                                                                EquipoId,
                                                                tbMaquina.Text,
-                                                               tbMaquinariaMedida.Text,
+                                                               "0",
                                                                0)
 
             tbMaquinariaMedida.Clear()
             tbMaquinariaMedida.Focus()
+            EquipoId = 0
+            tbMaquinariaMedida.Clear()
 
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Maquinaria Requerida..!!!",
@@ -1487,6 +1528,8 @@ Public Class F0_ProduccionProducto
             tbMoldeCodigo.Clear()
 
             tbMoldeCodigo.Focus()
+            tbMoldeCaracteristica.Clear()
+            tbMoldeDescripcion.Clear()
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Dosificacion Materia..!!!",
                                     My.Resources.WARNING, 2000,
@@ -1513,7 +1556,8 @@ Public Class F0_ProduccionProducto
             tbHerramentalCampo.Clear()
             tbHerramentalCodigo.Clear()
             tbHerramentalCampo.Focus()
-
+            tbHerramentalMedida.Clear()
+            cbHerramentalUnidad.SelectedIndex = 0
 
         Else
             ToastNotification.Show(Me, "Rellenar todos los campos de Dosificacion Materia..!!!",
@@ -2072,12 +2116,118 @@ Public Class F0_ProduccionProducto
         End If
     End Sub
 
+    Private Sub cbEmpaqueValor_ValueChanged(sender As Object, e As EventArgs) Handles cbEmpaqueValor.ValueChanged
+        If cbEmpaqueValor.SelectedIndex < 0 And cbEmpaqueValor.Text <> String.Empty Then
+            btEmpaqueValor.Visible = True
+        Else
+            btEmpaqueValor.Visible = False
+        End If
+    End Sub
+
+    Private Sub cbHerramentalUnidad_ValueChanged(sender As Object, e As EventArgs) Handles cbHerramentalUnidad.ValueChanged
+        If cbHerramentalUnidad.SelectedIndex < 0 And cbHerramentalUnidad.Text <> String.Empty Then
+            BtHerramental.Visible = True
+        Else
+            BtHerramental.Visible = False
+        End If
+    End Sub
+
+    Private Sub cbFisicaUnidad_ValueChanged(sender As Object, e As EventArgs) Handles cbFisicaUnidad.ValueChanged
+        If cbFisicaUnidad.SelectedIndex < 0 And cbFisicaUnidad.Text <> String.Empty Then
+            btFisicaUnidad.Visible = True
+        Else
+            btFisicaUnidad.Visible = False
+        End If
+    End Sub
+    Public Sub _fnObtenerFilaDetalle(ByRef pos As Integer, numi As Integer, grilla As GridEX)
+        For i As Integer = 0 To CType(grilla.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim _numi As Integer = CType(grilla.DataSource, DataTable).Rows(i).Item("Id")
+            If (_numi = numi) Then
+                pos = i
+                Return
+            End If
+        Next
+
+    End Sub
+    Private Sub EliminarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EliminarToolStripMenuItem.Click
+        EliminarDetalle(grCaracterisiticaFisicas)
+    End Sub
 
 
+    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
+        EliminarDetalle(grCaracteristicaCalidad)
+    End Sub
 
+    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
+        EliminarDetalle(grDosificacion)
+    End Sub
+    Public Sub EliminarDetalle(grilla As GridEX)
+        Try
+            If (grilla.Row >= 0) Then
+                Dim estado As Integer = grilla.GetValue("estado")
+                Dim pos As Integer = -1
+                Dim lin As Integer = grilla.GetValue("Id")
+                _fnObtenerFilaDetalle(pos, lin, grilla)
+                If (estado = 0) Then
+                    CType(grilla.DataSource, DataTable).Rows(pos).Item("estado") = -2
+                End If
+                If (estado = 1) Then
+                    CType(grilla.DataSource, DataTable).Rows(pos).Item("estado") = -1
+                End If
+            End If
+            FiltrarDetalle(grilla)
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+        End Try
+    End Sub
+    Public Sub FiltrarDetalle(grilla As GridEX)
+        If (Not IsNothing(grilla.DataSource)) Then
+            Dim filter As GridEXFilterCondition = New Janus.Windows.GridEX.GridEXFilterCondition(grilla.RootTable.Columns("estado"), Janus.Windows.GridEX.ConditionOperator.GreaterThanOrEqualTo, 0)
+            grilla.RootTable.FilterCondition = filter
+        End If
 
+    End Sub
+    Private Sub MostrarMensajeError(mensaje As String)
+        ToastNotification.Show(Me,
+                               mensaje.ToUpper,
+                               My.Resources.WARNING,
+                               5000,
+                               eToastGlowColor.Red,
+                               eToastPosition.TopCenter)
 
+    End Sub
+    Private Sub MostrarMensajeOk(mensaje As String)
+        ToastNotification.Show(Me,
+                               mensaje.ToUpper,
+                               My.Resources.OK,
+                               5000,
+                               eToastGlowColor.Green,
+                               eToastPosition.TopCenter)
+    End Sub
 
+    Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem3.Click
+        EliminarDetalle(grEmpaque)
+    End Sub
+
+    Private Sub ToolStripMenuItem4_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem4.Click
+        EliminarDetalle(grMaquinaria)
+    End Sub
+
+    Private Sub ToolStripMenuItem5_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem5.Click
+        EliminarDetalle(grMolde)
+    End Sub
+
+    Private Sub ToolStripMenuItem6_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem6.Click
+        EliminarDetalle(grHerramental)
+    End Sub
+
+    Private Sub cbCalidadUnidad_ValueChanged(sender As Object, e As EventArgs) Handles cbCalidadUnidad.ValueChanged
+        If cbCalidadUnidad.SelectedIndex < 0 And cbCalidadUnidad.Text <> String.Empty Then
+            btnCalidadUnidad.Visible = True
+        Else
+            btnCalidadUnidad.Visible = False
+        End If
+    End Sub
 #End Region
 
 

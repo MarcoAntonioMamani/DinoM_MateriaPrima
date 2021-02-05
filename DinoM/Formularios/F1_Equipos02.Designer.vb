@@ -128,12 +128,12 @@ Partial Class F1_Equipos02
         'SuperTabControlPanelBuscador
         '
         Me.SuperTabControlPanelBuscador.Location = New System.Drawing.Point(0, 0)
-        Me.SuperTabControlPanelBuscador.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(1324, 729)
+        Me.SuperTabControlPanelBuscador.Margin = New System.Windows.Forms.Padding(2)
+        Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(1318, 729)
         '
         'SuperTabControlPanelRegistro
         '
-        Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(2)
         Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(1318, 729)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelSuperior, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelInferior, 0)
@@ -141,7 +141,7 @@ Partial Class F1_Equipos02
         '
         'PanelSuperior
         '
-        Me.PanelSuperior.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PanelSuperior.Margin = New System.Windows.Forms.Padding(2)
         Me.PanelSuperior.Size = New System.Drawing.Size(1318, 72)
         Me.PanelSuperior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelSuperior.Style.BackColor1.Color = System.Drawing.Color.DarkSlateGray
@@ -154,7 +154,7 @@ Partial Class F1_Equipos02
         '
         'PanelInferior
         '
-        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(2)
         Me.PanelInferior.Size = New System.Drawing.Size(1318, 36)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.DarkSlateGray
@@ -190,7 +190,7 @@ Partial Class F1_Equipos02
         '
         'TxtNombreUsu
         '
-        Me.TxtNombreUsu.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TxtNombreUsu.Margin = New System.Windows.Forms.Padding(2)
         Me.TxtNombreUsu.Size = New System.Drawing.Size(200, 36)
         '
         'btnSalir
@@ -211,25 +211,25 @@ Partial Class F1_Equipos02
         'PanelToolBar2
         '
         Me.PanelToolBar2.Location = New System.Drawing.Point(1238, 0)
-        Me.PanelToolBar2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PanelToolBar2.Margin = New System.Windows.Forms.Padding(2)
         '
         'MPanelSup
         '
         Me.MPanelSup.Controls.Add(Me.TableLayoutPanel1)
-        Me.MPanelSup.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.MPanelSup.Margin = New System.Windows.Forms.Padding(2)
         Me.MPanelSup.Size = New System.Drawing.Size(1318, 284)
         Me.MPanelSup.Controls.SetChildIndex(Me.PanelUsuario, 0)
         Me.MPanelSup.Controls.SetChildIndex(Me.TableLayoutPanel1, 0)
         '
         'PanelPrincipal
         '
-        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(2)
         Me.PanelPrincipal.Size = New System.Drawing.Size(1318, 621)
         '
         'GroupPanelBuscador
         '
         Me.GroupPanelBuscador.Location = New System.Drawing.Point(0, 284)
-        Me.GroupPanelBuscador.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupPanelBuscador.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupPanelBuscador.Size = New System.Drawing.Size(1318, 337)
         '
         '
@@ -266,7 +266,7 @@ Partial Class F1_Equipos02
         Me.JGrM_Buscador.ColumnAutoResize = True
         Me.JGrM_Buscador.HeaderFormatStyle.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.JGrM_Buscador.HeaderFormatStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
-        Me.JGrM_Buscador.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.JGrM_Buscador.Margin = New System.Windows.Forms.Padding(2)
         Me.JGrM_Buscador.SelectedFormatStyle.BackColor = System.Drawing.Color.DodgerBlue
         Me.JGrM_Buscador.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.JGrM_Buscador.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
@@ -279,7 +279,7 @@ Partial Class F1_Equipos02
         'MPanelUserAct
         '
         Me.MPanelUserAct.Location = New System.Drawing.Point(1118, 0)
-        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(2)
         '
         'TableLayoutPanel1
         '
@@ -353,7 +353,7 @@ Partial Class F1_Equipos02
         Me.grParametroTecnico.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grParametroTecnico.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight
         Me.grParametroTecnico.Location = New System.Drawing.Point(0, 122)
-        Me.grParametroTecnico.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grParametroTecnico.Margin = New System.Windows.Forms.Padding(2)
         Me.grParametroTecnico.Name = "grParametroTecnico"
         Me.grParametroTecnico.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.grParametroTecnico.Office2007CustomColor = System.Drawing.Color.DodgerBlue
@@ -378,7 +378,7 @@ Partial Class F1_Equipos02
         Me.EliminarToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.EliminarToolStripMenuItem.Image = Global.DinoM.My.Resources.Resources._051_prohibition
         Me.EliminarToolStripMenuItem.Name = "EliminarToolStripMenuItem"
-        Me.EliminarToolStripMenuItem.Size = New System.Drawing.Size(134, 26)
+        Me.EliminarToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
         Me.EliminarToolStripMenuItem.Text = "Eliminar"
         '
         'PanelParametrosTecnicos
@@ -390,7 +390,7 @@ Partial Class F1_Equipos02
         Me.PanelParametrosTecnicos.Controls.Add(Me.btnParametroTecnico)
         Me.PanelParametrosTecnicos.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelParametrosTecnicos.Location = New System.Drawing.Point(0, 0)
-        Me.PanelParametrosTecnicos.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PanelParametrosTecnicos.Margin = New System.Windows.Forms.Padding(2)
         Me.PanelParametrosTecnicos.Name = "PanelParametrosTecnicos"
         Me.PanelParametrosTecnicos.Size = New System.Drawing.Size(317, 122)
         Me.PanelParametrosTecnicos.TabIndex = 232
@@ -756,7 +756,7 @@ Partial Class F1_Equipos02
         Me.Panel2.Controls.Add(Me.PanelListImagenes)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Panel2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(319, 232)
         Me.Panel2.TabIndex = 6
@@ -908,7 +908,7 @@ Partial Class F1_Equipos02
         Me.grDetalle.ColumnAutoResize = True
         Me.grDetalle.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grDetalle.Location = New System.Drawing.Point(0, 122)
-        Me.grDetalle.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grDetalle.Margin = New System.Windows.Forms.Padding(2)
         Me.grDetalle.Name = "grDetalle"
         Me.grDetalle.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.grDetalle.Office2007CustomColor = System.Drawing.Color.DodgerBlue
@@ -928,7 +928,7 @@ Partial Class F1_Equipos02
         Me.PanelDetalle.Controls.Add(Me.LabelX4)
         Me.PanelDetalle.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelDetalle.Location = New System.Drawing.Point(0, 0)
-        Me.PanelDetalle.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PanelDetalle.Margin = New System.Windows.Forms.Padding(2)
         Me.PanelDetalle.Name = "PanelDetalle"
         Me.PanelDetalle.Size = New System.Drawing.Size(317, 122)
         Me.PanelDetalle.TabIndex = 232
@@ -1036,7 +1036,7 @@ Partial Class F1_Equipos02
         Me.ClientSize = New System.Drawing.Size(1350, 729)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Location = New System.Drawing.Point(0, 0)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "F1_Equipos02"
         Me.Text = "F1_Equipos02"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized

@@ -672,9 +672,9 @@ Public Class F1_Equipos02
     End Sub
 
     Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
-
-
         tbNombre.Focus()
+        FiltrarParametros2(-1)
+        FiltrarDetalle(-1)
         EsNuevo = True
     End Sub
 
